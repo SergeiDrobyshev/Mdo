@@ -1,0 +1,90 @@
+package by.belgosles.sergei.mdo;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.ContextMenu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+public class PerechetAddSpecies extends AppCompatActivity  {
+
+    private static final int DELETE_ADDED_LIST_ID = 1;
+    ListAddedSpeciesAdapter listAddedSpeciesAdapter;
+    ArrayList<String> arrayListAddedSpecies = new ArrayList<>();
+    String messagetext;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pereche_add_species);
+        Intent intent = getIntent();
+        messagetext = intent.getStringExtra("message");
+
+        final NoDefaultSpinner spinner = findViewById(R.id.spinner_poroda_value);
+        ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
+        if(messagetext.equals("create")) {
+            ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
+            arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
+            spinner.setAdapter(arrayadapterspinner);
+
+            listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
+            listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
+        }else{
+            //заполнение полей из бд
+        }
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {  // добавление в arraylist выбранного item из spinner и обновление адаптера списка
+
+                String selectedItem = spinner.getSelectedItem().toString();
+                if(arrayListAddedSpecies.contains(selectedItem)){
+                    //выбранная порода уже добавлена
+
+                }else {
+                    arrayListAddedSpecies.add(selectedItem);
+                    listAddedSpeciesAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        registerForContextMenu(listviewAddedSpecies);
+        listviewAddedSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String addedSpeciesTolist = listAddedSpeciesAdapter.getItem(position).toString();
+                Intent intent = new Intent(PerechetAddSpecies.this, Perechet.class);
+                intent.putExtra(Perechet.Extra_OnClickAddedSpecies,addedSpeciesTolist);
+                intent.putExtra("message", messagetext);
+                startActivity(intent);
+            }
+        });
+    }
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, view, menuInfo);
+        menu.add(0, DELETE_ADDED_LIST_ID, 0, "Удалить запись");
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        if (item.getItemId() == DELETE_ADDED_LIST_ID) {
+            AdapterView.AdapterContextMenuInfo acmi = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+            arrayListAddedSpecies.remove(acmi.position);  // удаление из arraylist выбранной записи в списке
+            listAddedSpeciesAdapter.notifyDataSetChanged();
+            return true;
+        }
+        return super.onContextItemSelected(item);
+    }
+}

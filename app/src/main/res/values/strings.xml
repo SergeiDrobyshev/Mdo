@@ -1,0 +1,115 @@
+<resources>
+    <string name="app_name">Mdo</string>
+    <string name="create_vedom">Создать ведомость</string>
+    <string name="change_vedom">Просмотреть, изменить ведомости</string>
+    <string name="date">Дата заполнения</string>
+    <string name="tax_category">Разряд такс</string>
+    <string name="realization">Реализация</string>
+    <string name="inaccessibility">Труднодоступность</string>
+    <string name="fond">Земли гослесфонда</string>
+    <string name="zapas">Запас и таксовая стоимость</string>
+    <string name="rezult">Результаты:</string>
+    <string name="rybke_ne_podlegit">Рубке не подлежат</string>
+    <string name="podrost">Подрост/Загрязнение</string>
+    <string name="save">Сохранить ведомость</string>
+    <string name="vedom_mdo">Ведомость материально-денежной  оценки</string>
+    <string name="perechet">Ведомость перечета  деревьев</string>
+    <string name="vid_polz">Вид пользования</string>
+    <string name="forest_category">Категория леса</string>
+    <string name="year_forest_fund">Год лес. фонда</string>
+    <string name="year_otvod">Год отвода</string>
+    <string name="number_lesosek">Номер лесосеки</string>
+    <string name="square">Площадь экспл., га</string>
+    <string name="hoz_section">Хозсекция</string>
+    <string name="species_group">Группа пород</string>
+    <string name="type_cutting">Вид рубки</string>
+    <string name="accounting_method">Метод учета</string>
+    <string name="cleaning_method">Способ очистки</string>
+    <string name="recovery_method">Cпособ \nвосстановления</string>
+    <string name="sostav">Состав</string>
+    <string name="bonitet">Бонитет</string>
+    <string name="forest_type">Тип леса</string>
+    <string name="cover">Покров</string>
+    <string name="soil">Почва</string>
+    <string name="stand_condition">Состояние \nнасаждений</string>
+    <string name="age">Возраст</string>
+    <string name="fullness">Полнота</string>
+    <string name="sr_height">Средняя высота, м</string>
+    <string name="sr_diameter">Средний диаметр, см</string>
+    <string name="note">Примечание</string>
+    <string name="save_mdo">Сохранить изменения</string>
+    <string name="poroda">Порода:</string>
+    <string name="dimeter_tree">Диаметр\nна высоте\nгруди, см</string>
+    <string name="del">деловых</string>
+    <string name="drov">дровяных</string>
+    <string name="amout_trees">число деревьев</string>
+    <string name="total_trees">Всего\nдеревьев:</string>
+    <string name="amount_of_whip">Ср. объем\nхлыста:</string>
+    <string name="model_tree">Модельные деревья</string>
+    <string name="height_measure">Данные замеров высот</string>
+    <string name="save_perechet">Сохранить данные</string>
+    <string name="height_category">Разряд высот</string>
+    <string name="amount_thousand">Количество, \nтыс. шт.на 1 га</string>
+    <string name="preservation_area">Площадь, \nподлежащая \nсохранению, га</string>
+    <string name="undergrowth">Подрост</string>
+    <string name="pollution">Загрязнение</string>
+    <string name="radiation_report">Акт радиационного обследования:</string>
+    <string name="number_report">номер:</string>
+    <string name="date_report">дата:</string>
+    <string name="radiation_pollution_density">Плотность радио-\nактивного загрязнения \nпочвы, Кu/кв.км</string>
+    <string name="specific_activity">Удельная активность:</string>
+    <string name="specific_activity_del">деловой древесины,\nБк/кг</string>
+    <string name="specific_activity_drov">дровяной древесины,\nБк/кг</string>
+    <string name="plant_area">Площадь \nсеменников, га</string>
+    <string name="plant_amount">Кол-во семен-\nников, на 1 га</string>
+    <string-array name="porody_testing">
+        <item>береза</item>
+        <item>дуб</item>
+        <item>сосна</item>
+        <item>липа</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="view_of_testes">Выберите вид \nсеменников:</string>
+    <string name="amount_testes">Кол-во \nсеменников:</string>
+    <string name="number_testes">Номера \nсеменников:</string>
+    <string name="add">Добавить</string>
+    <string name="view_of_testes_table">Вид семен-\nников</string>
+    <string name="amount_testes1">Кол-во\nсемен\nников</string>
+    <string name="number_testes1">Номера \nсемен-\nников</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wood_stock">Запас древесины, куб. м.</string>
+    <string name="del_kr">деловой крупной</string>
+    <string name="del_sr">деловой средней</string>
+    <string name="del_mel">деловой мелкой</string>
+    <string name="itog_del">итого деловой:</string>
+    <string name="firewood">дровяной</string>
+    <string name="itog_liquid">итого ликвида</string>
+    <string name="liquid_krone">ликвида из кроны</string>
+    <string name="brushwood_illiquid">хвороста (неликвид)</string>
+    <string name="waste">отходов</string>
+    <string name="total">всего</string>
+    <string name="tax_value">Таксовая стоимость, руб.</string>
+    <string name="forest_quarter">Номер лесного \nквартала</string>
+    <string name="number_tax_area">Номер таксац.\nвыдела</string>
+    <string name="forestry">Лесничество</string>
+    <string name="change">изменить</string>
+    <string name="delete">удалить</string>
+
+    <string-array name="view_of_testes">
+        <item>группы по 3-5 деревьев</item>
+        <item>деревья, запрещенные к рубке</item>
+        <item>куртины семенные</item>
+        <item>одиночные деревья-семенники</item>
+        <item>сохранение биоразнообразия</item>
+    </string-array>
+
+    <string-array name="species_trees">
+        <item>береза</item>
+        <item>дуб</item>
+        <item>сосна</item>
+        <item>ольха</item>
+    </string-array>
+</resources>

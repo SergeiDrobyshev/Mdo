@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="textview_textsize">15sp</dimen>
+    <dimen name="textview_textsize_table">12sp</dimen>
+    <dimen name="button_textsize">12sp</dimen>
+    <dimen name="margin">16dp</dimen>
+    <dimen name="layout_height">36dp</dimen>
+    <dimen name="marginTop">17dp</dimen>
+    <dimen name="marginLeft">20dp</dimen>
+    <dimen name="button_padding">25dp</dimen>
+    <dimen name="layout_height_view_line">4dp</dimen>
+    <dimen name="layout_margin_bottom">30dp</dimen>
+    <dimen name="layout_height2">55dp</dimen>
+    <dimen name="layout_width_column_perechet">77dp</dimen>
+    <dimen name="layout_width_button">100dp</dimen>
+    <dimen name="layout_width_button_save">250dp</dimen>
+    <dimen name="textsizeListItemsAlertDialog">16sp</dimen>
+    <dimen name="spinner_dropdown_item_height">37dp</dimen>
+
+
+
+</resources>

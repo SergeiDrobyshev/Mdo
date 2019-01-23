@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="by.belgosles.sergei.mdo">
+
+    <application
+        android:name=".App"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".CreateStatement"
+            android:label="Создать ведомость"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".StatementMdo"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".Perechet"
+            android:label="Ведомость перечета деревьев"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".UndergrowthAndPollution"
+            android:label="Подрост/Загрязнение"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".CannotBeCutting"
+            android:label="Рубке не подлежат"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".StockAndTax"
+            android:label="Запас и таксовая стоимость" />
+        <activity
+            android:name=".ChangeStatements.ChangeStatement"
+            android:label="Список ведомостей" />
+        <activity
+            android:name=".SpeciesCannotbeCutting"
+            android:label="Рубке не подлежат"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".PerechetAddSpecies"
+            android:label="Ведомость перечета деревьев"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity android:name=".RezultStockAndTax" />
+        <activity android:name=".ChangeStatements.ChangeSpecificStatement"></activity>
+    </application>
+
+</manifest>

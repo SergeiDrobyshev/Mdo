@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+<LinearLayout 
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/margin"
+    tools:context=".Perechet"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:text="@string/poroda"
+        android:textSize="@dimen/textview_textsize"/>
+
+    <TextView
+        android:id="@+id/textview_species_forPerechet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/marginLeft"
+        android:textSize="@dimen/textview_textsize"
+        android:textColor="@color/primary_text"/>
+
+    </LinearLayout>
+
+    <TableLayout
+        android:id="@+id/table_perechet"
+        android:layout_marginTop="@dimen/marginTop"
+        android:stretchColumns="1,2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_column="1"
+                android:layout_span="2"
+                android:textSize="@dimen/textview_textsize"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/amout_trees"
+                />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop">
+
+            <TextView
+                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_height="wrap_content"
+                android:text="@string/dimeter_tree"
+                android:textSize="@dimen/textview_textsize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/del"
+                android:layout_gravity="center"
+                android:layout_column="1"
+                android:textSize="@dimen/textview_textsize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/drov"
+                android:textSize="@dimen/textview_textsize"/>
+        </TableRow>
+
+    </TableLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerViewPerechet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/item_perechet">
+    </android.support.v7.widget.RecyclerView>
+
+    <TableLayout
+        android:id="@+id/table_vsego"
+        android:layout_marginTop="@dimen/marginTop"
+        android:stretchColumns="1,2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop">
+
+            <TextView
+                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_height="wrap_content"
+                android:text="@string/total_trees"
+                android:textSize="@dimen/textview_textsize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_column="1"
+                android:text="345"
+                android:textSize="@dimen/textview_textsize"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="234546"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:textSize="@dimen/textview_textsize" />
+        </TableRow>
+
+    </TableLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/layout_height_view_line"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_weight="0"
+        android:background="?android:attr/listDivider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marginTop"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textview_height_category"
+            android:layout_width="@dimen/layout_width_column_perechet"
+            android:layout_height="wrap_content"
+            android:text="@string/height_category"
+            android:textSize="@dimen/textview_textsize" />
+
+        <Spinner
+            android:id="@+id/spinner_recovery_method"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/layout_height"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/model_tree"
+        android:layout_width="@dimen/layout_width_button_save"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="@string/model_tree"
+        android:textSize="@dimen/button_textsize"/>
+
+    <Button
+        android:id="@+id/height_measure"
+        android:layout_width="@dimen/layout_width_button_save"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/button_padding"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/marginTop"
+        android:text="@string/height_measure"
+        android:textSize="@dimen/button_textsize"/>
+
+    <Button
+        android:id="@+id/save_perechet"
+        android:layout_width="@dimen/layout_width_button_save"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/layout_margin_bottom"
+        android:padding="@dimen/button_padding"
+        android:text="@string/save_perechet"
+        android:textSize="@dimen/button_textsize" />
+
+</LinearLayout>
+</ScrollView>
