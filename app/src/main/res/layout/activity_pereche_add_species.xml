@@ -62,4 +62,15 @@
 
     </ListView>
 
+    <Button
+        android:id="@+id/save_total_perechet"
+        android:layout_width="@dimen/layout_width_button_save"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/marginTop"
+        android:layout_marginBottom="@dimen/layout_margin_bottom"
+        android:padding="@dimen/button_padding"
+        android:text="@string/save_perechet"
+        android:textSize="@dimen/button_textsize" />
+
 </LinearLayout>

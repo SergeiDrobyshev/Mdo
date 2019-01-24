@@ -1,23 +1,27 @@
 package by.belgosles.sergei.mdo;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class PerechetAddSpecies extends AppCompatActivity  {
+public class PerechetAddSpecies extends AppCompatActivity implements View.OnClickListener  {
 
     private static final int DELETE_ADDED_LIST_ID = 1;
     ListAddedSpeciesAdapter listAddedSpeciesAdapter;
     ArrayList<String> arrayListAddedSpecies = new ArrayList<>();
     String messagetext;
+    Button saveTotalPerechet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,19 +29,18 @@ public class PerechetAddSpecies extends AppCompatActivity  {
         setContentView(R.layout.activity_pereche_add_species);
         Intent intent = getIntent();
         messagetext = intent.getStringExtra("message");
+        saveTotalPerechet = findViewById(R.id.save_total_perechet);
 
         final NoDefaultSpinner spinner = findViewById(R.id.spinner_poroda_value);
         ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
+        ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
+        arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
+        spinner.setAdapter(arrayadapterspinner);
         if(messagetext.equals("create")) {
-            ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
-            arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
-            spinner.setAdapter(arrayadapterspinner);
 
             listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
             listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
-        }else{
-            //заполнение полей из бд
-        }
+        }//заполнение полей из бд
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -86,5 +89,23 @@ public class PerechetAddSpecies extends AppCompatActivity  {
             return true;
         }
         return super.onContextItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.save_total_perechet:
+                new  AlertDialog.Builder(this)
+                        .setMessage("Вы действительно хотите сохранить?")
+                        .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                finish();
+                            }
+                        })
+                        .setNegativeButton("Нет", null)
+                        .show();
+                break;
+        }
     }
 }

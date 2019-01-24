@@ -110,6 +110,7 @@
                 android:textSize="@dimen/textview_textsize"/>
 
             <TextView
+                android:id="@+id/sum_del"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -118,6 +119,7 @@
                 android:textSize="@dimen/textview_textsize"/>
 
             <TextView
+                android:id="@+id/sum_drov"
                 android:layout_width="wrap_content"
                 android:text="234546"
                 android:layout_height="wrap_content"
@@ -149,7 +151,7 @@
             android:textSize="@dimen/textview_textsize" />
 
         <Spinner
-            android:id="@+id/spinner_recovery_method"
+            android:id="@+id/spinner_heights_level"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:layout_marginStart="@dimen/marginLeft"

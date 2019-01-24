@@ -132,7 +132,6 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         finish();
-                        // dfjgsljgbdgfsgsd
                     }
                 })
                 .setNegativeButton("Нет", null)
