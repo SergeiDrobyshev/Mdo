@@ -65,7 +65,7 @@
     <Button
         android:id="@+id/save_total_perechet"
         android:layout_width="@dimen/layout_width_button_save"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/marginTop"
         android:layout_marginBottom="@dimen/layout_margin_bottom"

@@ -22,6 +22,8 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
     ArrayList<String> arrayListAddedSpecies = new ArrayList<>();
     String messagetext;
     Button saveTotalPerechet;
+    Perechet perechet;
+    ArrayList<EnumCopy> listEnum = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +72,15 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                 intent.putExtra(Perechet.Extra_OnClickAddedSpecies,addedSpeciesTolist);
                 intent.putExtra("message", messagetext);
                 startActivity(intent);
+
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+       // listEnum.add(perechet.enumCopy);
     }
 
     @Override
@@ -100,6 +109,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                         .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                //perechet.enumCopy
                                 finish();
                             }
                         })
