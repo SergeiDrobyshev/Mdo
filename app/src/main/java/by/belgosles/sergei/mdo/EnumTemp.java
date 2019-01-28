@@ -2,7 +2,7 @@ package by.belgosles.sergei.mdo;
 
 import java.util.ArrayList;
 
-public class EnumCopy {
+public class EnumTemp {
 
     public String species_copy;
     public ArrayList<EdittextModelPerechet> perechettrees = new ArrayList<>();

@@ -63,13 +63,14 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
                 }
                 @Override
                 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                    masvalues.get(getAdapterPosition()).setDiameter(textviewDiameter.getText().toString());
                     masvalues.get(getAdapterPosition()).setEdittext_del(editTextDel.getText().toString());
                 }
                 @Override
                 public void afterTextChanged(Editable editable) {
                 }
             });
-            masvalues.get(getAdapterPosition()).setDiameter(textviewDiameter.getText().toString());
+
             editTextDrov.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {

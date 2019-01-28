@@ -23,7 +23,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
     String messagetext;
     Button saveTotalPerechet;
     Perechet perechet;
-    ArrayList<EnumCopy> listEnum = new ArrayList<>();
+    ArrayList<EnumTemp> listEnum = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +38,12 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
         ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
         arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(arrayadapterspinner);
+        listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
+        listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
+
         if(messagetext.equals("create")) {
 
-            listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
-            listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
         }//заполнение полей из бд
-
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {  // добавление в arraylist выбранного item из spinner и обновление адаптера списка
@@ -51,13 +51,11 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                 String selectedItem = spinner.getSelectedItem().toString();
                 if(arrayListAddedSpecies.contains(selectedItem)){
                     //выбранная порода уже добавлена
-
                 }else {
                     arrayListAddedSpecies.add(selectedItem);
                     listAddedSpeciesAdapter.notifyDataSetChanged();
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
             }

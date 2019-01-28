@@ -18,7 +18,7 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
     Spinner spinner_heights_level;
     int [] diameters = new int [30];
     String messagetext;
-    public EnumCopy enumCopy = new EnumCopy();
+    public EnumTemp enumTemp = new EnumTemp();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +38,12 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
         RecyclerView recyclerView =  findViewById(R.id.recyclerViewPerechet);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        PerechetAdapter adapter = new PerechetAdapter(diameters, this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setItemViewCacheSize(diameters.length);
+        
         if(messagetext.equals("create")){
-            PerechetAdapter adapter = new PerechetAdapter(diameters, this);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setItemViewCacheSize(diameters.length);
+
 
         }//заполнить перечетку данными из бд
 
@@ -68,12 +69,12 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
                         .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
+                                enumTemp.sum_del_copy = sum_del.getText().toString();
+                                enumTemp.sum_drov_copy = sum_drov.getText().toString();
+                                enumTemp.heights_level_copy = spinner_heights_level.getSelectedItem().toString();
+                                enumTemp.species_copy = tv.getText().toString();
+                                enumTemp.perechettrees = PerechetAdapter.masvalues;
                                 PerechetAdapter.masvalues.clear();
-                                enumCopy.sum_del_copy = sum_del.getText().toString();
-                                enumCopy.sum_drov_copy = sum_drov.getText().toString();
-                                enumCopy.heights_level_copy = spinner_heights_level.getSelectedItem().toString();
-                                enumCopy.species_copy = tv.getText().toString();
-                                enumCopy.perechettrees = PerechetAdapter.masvalues;
                                 finish();
                             }
                         })
