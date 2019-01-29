@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -19,6 +20,7 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
     int [] diameters = new int [30];
     String messagetext;
     public EnumTemp enumTemp = new EnumTemp();
+    Button savePerechet;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,12 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
         PerechetAdapter adapter = new PerechetAdapter(diameters, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(diameters.length);
-        
+
         if(messagetext.equals("create")){
 
 
         }//заполнить перечетку данными из бд
+        savePerechet.setOnClickListener(this);
 
     }
 
@@ -54,6 +57,7 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
         sum_del = findViewById(R.id.sum_del);
         sum_drov = findViewById(R.id.sum_drov);
         spinner_heights_level = findViewById(R.id.spinner_heights_level);
+        savePerechet = findViewById(R.id.save_perechet);
     }
 
     @Override

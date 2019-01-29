@@ -21,9 +21,10 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
 
     private int [] diameters;
     private  LayoutInflater inflater;
-    static ArrayList<EdittextModelPerechet> masvalues = new ArrayList<>();
+    static ArrayList<EdittextModelPerechet> masvalues;
 
     PerechetAdapter(int[] diameters, Context ctx) {
+         masvalues = new ArrayList<>();
         this.diameters = diameters;
         inflater = LayoutInflater.from(ctx);
     }
@@ -39,7 +40,6 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
             holder.bind(diameters[position]);
 
             //методы для считывания значений из полей, и для записи значений из бд
-
     }
 
     @Override
@@ -48,6 +48,7 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+
         private TextView textviewDiameter;
         private EditText editTextDel;
         private EditText editTextDrov;
@@ -57,6 +58,7 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
             textviewDiameter = view.findViewById(R.id.textView_diameter_number);
             editTextDel = view.findViewById(R.id.editText_del);
             editTextDrov = view.findViewById(R.id.editText_drov);
+
             editTextDel.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -91,3 +93,5 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
         }
     }
 }
+
+//https://stackoverflow.com/questions/37096547/how-to-get-data-from-edit-text-in-a-recyclerview
