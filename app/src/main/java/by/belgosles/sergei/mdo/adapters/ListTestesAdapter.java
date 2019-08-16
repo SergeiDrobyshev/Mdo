@@ -1,4 +1,4 @@
-package by.belgosles.sergei.mdo;
+package by.belgosles.sergei.mdo.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -10,12 +10,15 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import by.belgosles.sergei.mdo.KindOFTestesTrees;
+import by.belgosles.sergei.mdo.R;
+
 public class ListTestesAdapter extends BaseAdapter {
     Context ctx;
     private ArrayList<KindOFTestesTrees> kindOFTestes;
     private LayoutInflater layoutInflater;
 
-    ListTestesAdapter(Context context, ArrayList<KindOFTestesTrees> kindOFTestesTrees) {
+    public ListTestesAdapter(Context context, ArrayList<KindOFTestesTrees> kindOFTestesTrees) {
         ctx = context;
         kindOFTestes = kindOFTestesTrees;
         layoutInflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);

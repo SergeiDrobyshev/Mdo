@@ -1,4 +1,4 @@
-package by.belgosles.sergei.mdo;
+package by.belgosles.sergei.mdo.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,17 +13,17 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import by.belgosles.sergei.mdo.EdittextModelPerechet;
+import by.belgosles.sergei.mdo.R;
 
 public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHolder> {
 
     private int [] diameters;
     private  LayoutInflater inflater;
-    static ArrayList<EdittextModelPerechet> masvalues;
+    public static ArrayList<EdittextModelPerechet> masvalues;
 
-    PerechetAdapter(int[] diameters, Context ctx) {
+    public PerechetAdapter(int[] diameters, Context ctx) {
          masvalues = new ArrayList<>();
         this.diameters = diameters;
         inflater = LayoutInflater.from(ctx);

@@ -1,6 +1,6 @@
 package by.belgosles.sergei.mdo;
 
-class KindOFTestesTrees {
+public class KindOFTestesTrees {
     private String viewOftestes , diameter, amount, number;
 
     KindOFTestesTrees(String viewOftestes, String diameter, String amount, String number) {

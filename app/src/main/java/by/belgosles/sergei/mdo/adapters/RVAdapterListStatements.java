@@ -1,29 +1,30 @@
-package by.belgosles.sergei.mdo.ChangeStatements;
+package by.belgosles.sergei.mdo.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import by.belgosles.sergei.mdo.App;
-import by.belgosles.sergei.mdo.CreateStatement;
-import by.belgosles.sergei.mdo.Db.AppDb;
-import by.belgosles.sergei.mdo.Db.Statement;
+import by.belgosles.sergei.mdo.activity.CreateStatement;
 import by.belgosles.sergei.mdo.R;
+import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.Fund;
 
-public class RVAdapterChangeStatement extends RecyclerView.Adapter<RVAdapterChangeStatement.ViewHolder> {
-    private int [] mas;
+public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListStatements.ViewHolder> {
+    private ArrayList<Fund> fundlistcreated;
     private Context context;
 
-    RVAdapterChangeStatement(int[] mas, Context context){
-        this.mas = mas;
+    public RVAdapterListStatements(ArrayList<Fund> mas, Context context){
+        this.fundlistcreated = mas;
         this.context = context;
     }
 
@@ -34,15 +35,12 @@ public class RVAdapterChangeStatement extends RecyclerView.Adapter<RVAdapterChan
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
+        holder.bind(fundlistcreated.get(position));
         holder.change_statement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, CreateStatement.class);
-                intent.putExtra("message", "change");
-              //  intent.putExtra("id", );
-                context.startActivity(intent);
-                // передать id по котороve необходимо найти в бд записи и заполнить данными макет
+                statementDetail(context, holder.getAdapterPosition());// передать id выбранного лесничества для выборк
             }
         });
 
@@ -56,7 +54,14 @@ public class RVAdapterChangeStatement extends RecyclerView.Adapter<RVAdapterChan
 
     @Override
     public int getItemCount() {
-        return mas.length;
+        return fundlistcreated.size();
+    }
+
+    public void statementDetail(Context context, long id_fund){
+        Intent intent = new Intent(context, CreateStatement.class);
+        intent.putExtra(CreateStatement.EXTRA_MESSAGE, id_fund); // номер порядковый и ид из бд
+        context.startActivity(intent);
+        // передать id по котороe не обходимо найти в бд записи и заполнить данными макет
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder  {
@@ -72,12 +77,11 @@ public class RVAdapterChangeStatement extends RecyclerView.Adapter<RVAdapterChan
             delete_statement = view.findViewById(R.id.itemrecycler_delete_statement);
         }
 
-        /*void bind1 (){
-         AppDb db = App.getInstance().getDatabase();
-            List<Statement> st = db.getstatementDao().getAll();
-            et_forestry.setText(st.get(0).forestry);
-            et_date.setText(st.get(0).filling_date);
+        void bind (Fund statement){
+            AppDb db = App.getInstance().getDatabase();
+            //et_forestry.setText(); достать по ид лесничетсва его название и сетнуть на вью
+            //et_date.setText(st.get(0).filling_date); достать дату по ид
         }
-*/
+
     }
 }

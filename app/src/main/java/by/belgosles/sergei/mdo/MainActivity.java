@@ -6,10 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import by.belgosles.sergei.mdo.ChangeStatements.ChangeStatement;
+import by.belgosles.sergei.mdo.activity.CreateStatement;
+import by.belgosles.sergei.mdo.activity.ListStatements;
 
 public class MainActivity extends AppCompatActivity {
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,14 +34,13 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener onclickChange = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ChangeStatement.class);
+                Intent intent = new Intent(MainActivity.this, ListStatements.class);
                 startActivity(intent);
             }
         };
 
         createVedom.setOnClickListener(onclickCreate);
         changeVedom.setOnClickListener(onclickChange);
-
 
     }
 }

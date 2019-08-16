@@ -1,4 +1,4 @@
-package by.belgosles.sergei.mdo;
+package by.belgosles.sergei.mdo.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import by.belgosles.sergei.mdo.R;
 
 public class ListAddedSpeciesAdapter extends BaseAdapter {
     Context ctx;

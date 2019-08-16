@@ -15,6 +15,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import by.belgosles.sergei.mdo.adapters.ListAddedSpeciesAdapter;
+
 public class PerechetAddSpecies extends AppCompatActivity implements View.OnClickListener  {
 
     private static final int DELETE_ADDED_LIST_ID = 1;
@@ -108,6 +110,8 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 //perechet.enumCopy
+                                // продумать уничтожение активити из стэка и сохранение данных
+
                                 finish();
                             }
                         })

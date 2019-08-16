@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import by.belgosles.sergei.mdo.adapters.PerechetAdapter;
+
 public class Perechet extends AppCompatActivity implements View.OnClickListener {
     public static final String Extra_OnClickAddedSpecies = "m";
     TextView tv, sum_del,sum_drov;

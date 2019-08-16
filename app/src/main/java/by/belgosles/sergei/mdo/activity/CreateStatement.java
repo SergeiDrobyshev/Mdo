@@ -1,5 +1,6 @@
-package by.belgosles.sergei.mdo;
+package by.belgosles.sergei.mdo.activity;
 
+import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -10,9 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import java.util.Calendar;
 
-import by.belgosles.sergei.mdo.Db.AppDb;
-import by.belgosles.sergei.mdo.Db.Statement;
-import by.belgosles.sergei.mdo.Db.StatementDao;
+import by.belgosles.sergei.mdo.App;
+import by.belgosles.sergei.mdo.CannotBeCutting;
+import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.Fund;
+import by.belgosles.sergei.mdo.PerechetAddSpecies;
+import by.belgosles.sergei.mdo.R;
+import by.belgosles.sergei.mdo.StatementMdo;
+import by.belgosles.sergei.mdo.StockAndTax;
+import by.belgosles.sergei.mdo.UndergrowthAndPollution;
 
 public class CreateStatement extends AppCompatActivity implements View.OnClickListener {
 
@@ -21,6 +28,7 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
     private AppDb db;
     public static final String EXTRA_MESSAGE = "message";
     String messagetext, id;
+    Bundle bundle;
 
 
     @Override
@@ -28,25 +36,32 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_statement);
 
-        Intent intent = getIntent();
-        messagetext = intent.getStringExtra(EXTRA_MESSAGE);
-        //id = intent.getStringExtra("id");
         findFields();
+        buttonListeners();
 
+        db = App.getInstance().getDatabase();
+
+        fillFields();
+    }
+
+    private void fillFields() {
+        bundle = getIntent().getExtras();
+        if((bundle != null ? bundle.getLong(EXTRA_MESSAGE) : 0) > 0){
+            //fill fields from db
+        }
+        else{
+            Calendar calendar = Calendar.getInstance();
+            edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
+        }
+    }
+
+    private void buttonListeners() {
         statementMdo.setOnClickListener(this);
         statementPerechet.setOnClickListener(this);
         statementPodrost.setOnClickListener(this);
         cannotBeCutting.setOnClickListener(this);
         stockAndTtax.setOnClickListener(this);
         saveCreateStatement.setOnClickListener(this);
-        db = App.getInstance().getDatabase();
-
-        if(messagetext.equals("create")){
-            Calendar calendar = Calendar.getInstance();
-            edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
-        } else {
-            // заполнить пустые ячейки из бд
-        }
     }
 
     @Override
@@ -84,21 +99,21 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
                 intent.putExtra("message", messagetext);
                 startActivity(intent);
             case R.id.save_create_statement:
-                final Statement statement = new Statement();
-                statement.filling_date = edittextDate.getText().toString();
-                statement.forestry = forestry.getText().toString();
-                statement.tax_rate = tax_category.getText().toString();
-                statement.implementation = realization.getText().toString();
+                final Fund fund = new Fund();
+                //fund.filling_date = edittextDate.getText().toString();
+               // fund.id_forestry = forestry.getText().toString();
+               // fund.tax_rate = tax_category.getText().toString();
+               // fund.implementation = realization.getText().toString();
 
-                statement.forest_fund_year = StatementMdo.species.get("forest_fund_year");
-                statement.allotment_year = StatementMdo.species.get("allotment_year");
+                //fund.year_fund = StatementMdo.species.get("year_fund");
+                //fund.year_allot = StatementMdo.species.get("year_allot");
 
                 new  AlertDialog.Builder(this)
                         .setMessage("Вы действительно хотите сохранить?")
                         .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                db.getstatementDao().insert(statement);
+                                db.getstatementDao().insert(fund);
                                 finish();
                             }
                         })

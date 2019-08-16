@@ -1,6 +1,6 @@
 package by.belgosles.sergei.mdo;
 
-class EdittextModelPerechet {
+public class EdittextModelPerechet {
     private String diameter;
     private String edittext_del;
     private String edittext_drov;

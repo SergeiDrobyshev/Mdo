@@ -69,8 +69,8 @@ public class StatementMdo extends AppCompatActivity implements View.OnClickListe
                            @Override
                            public void onClick(DialogInterface dialogInterface, int i) {
                                species.clear();
-                               species.put("forest_fund_year", editText_year_forest_fund.getText().toString());
-                               species.put("allotment_year",editText_year_otvod.getText().toString());
+                               species.put("year_fund", editText_year_forest_fund.getText().toString());
+                               species.put("year_allot",editText_year_otvod.getText().toString());
                                finish();
                            }
                        })
@@ -81,8 +81,8 @@ public class StatementMdo extends AppCompatActivity implements View.OnClickListe
     }
 
     public void fillingFields(Map<String,String> species){
-        editText_year_forest_fund.setText(species.get("forest_fund_year"));
-        editText_year_otvod.setText(species.get("allotment_year"));
+        editText_year_forest_fund.setText(species.get("year_fund"));
+        editText_year_otvod.setText(species.get("year_allot"));
         //добавить остальные поля
     }
 

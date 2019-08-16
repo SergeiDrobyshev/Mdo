@@ -17,6 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import by.belgosles.sergei.mdo.adapters.ListTestesAdapter;
+
 import static by.belgosles.sergei.mdo.R.id.spinner_view_of_testes;
 
 public class SpeciesCannotbeCutting extends AppCompatActivity implements View.OnClickListener {

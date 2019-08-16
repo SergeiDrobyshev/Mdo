@@ -13,14 +13,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
-            android:name=".CreateStatement"
+            android:name=".activity.CreateStatement"
             android:label="Создать ведомость"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -42,8 +37,13 @@
             android:name=".StockAndTax"
             android:label="Запас и таксовая стоимость" />
         <activity
-            android:name=".ChangeStatements.ChangeStatement"
-            android:label="Список ведомостей" />
+            android:name=".activity.ListStatements"
+            android:label="Список ведомостей" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".SpeciesCannotbeCutting"
             android:label="Рубке не подлежат"
@@ -53,7 +53,6 @@
             android:label="Ведомость перечета деревьев"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".RezultStockAndTax" />
-        <activity android:name=".ChangeStatements.ChangeSpecificStatement"></activity>
     </application>
 
 </manifest>
