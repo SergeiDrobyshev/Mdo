@@ -1,34 +1,37 @@
 package by.belgosles.sergei.mdo.activity;
 
-import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.Calendar;
 
 import by.belgosles.sergei.mdo.App;
 import by.belgosles.sergei.mdo.CannotBeCutting;
-import by.belgosles.sergei.mdo.model.entity.AppDb;
-import by.belgosles.sergei.mdo.model.entity.Fund;
 import by.belgosles.sergei.mdo.PerechetAddSpecies;
 import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.StatementMdo;
 import by.belgosles.sergei.mdo.StockAndTax;
 import by.belgosles.sergei.mdo.UndergrowthAndPollution;
+import by.belgosles.sergei.mdo.adapters.RVAdapterListStatements;
+import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.Fund;
 
 public class CreateStatement extends AppCompatActivity implements View.OnClickListener {
 
     Button statementMdo, statementPerechet, statementPodrost, cannotBeCutting, stockAndTtax, saveCreateStatement;
     EditText edittextDate, forestry, tax_category, realization;
     private AppDb db;
-    public static final String EXTRA_MESSAGE = "message";
+    public static final String EXTRA_id_fund = "id_fund";
     String messagetext, id;
     Bundle bundle;
+    private Fund fund;
 
 
     @Override
@@ -46,13 +49,24 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
 
     private void fillFields() {
         bundle = getIntent().getExtras();
-        if((bundle != null ? bundle.getLong(EXTRA_MESSAGE) : 0) > 0){
-            //fill fields from db
+        int request_code;
+        if (bundle != null) {
+            request_code = bundle.getInt("REQUEST_CODE");
+            if (request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE) {
+                 fund = db.getstatementDao().getSelectedFundForChange(bundle.getLong(EXTRA_id_fund));
+                 fillfieldsfromDB(fund);
+
+            } else {
+                Calendar calendar = Calendar.getInstance();
+                edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
+            }
         }
-        else{
-            Calendar calendar = Calendar.getInstance();
-            edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
-        }
+    }
+
+    private void fillfieldsfromDB(Fund fund) {
+        // заполнение полей из бд
+        forestry.setText(fund.getId_forestry());
+        realization.setText(fund.getImplementation());
     }
 
     private void buttonListeners() {
@@ -101,9 +115,9 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
             case R.id.save_create_statement:
                 final Fund fund = new Fund();
                 //fund.filling_date = edittextDate.getText().toString();
-               // fund.id_forestry = forestry.getText().toString();
+                fund.setId_forestry(forestry.getText().toString());
                // fund.tax_rate = tax_category.getText().toString();
-               // fund.implementation = realization.getText().toString();
+                fund.setImplementation(realization.getText().toString());
 
                 //fund.year_fund = StatementMdo.species.get("year_fund");
                 //fund.year_allot = StatementMdo.species.get("year_allot");
@@ -114,6 +128,7 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
                                 db.getstatementDao().insert(fund);
+                                setResult(RESULT_OK);
                                 finish();
                             }
                         })
@@ -143,12 +158,7 @@ public class CreateStatement extends AppCompatActivity implements View.OnClickLi
     public void onBackPressed() {
         new  AlertDialog.Builder(this)
                 .setMessage("Выйти без сохранения?")
-                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        finish();
-                    }
-                })
+                .setPositiveButton("Да", (dialogInterface, i) -> finish())
                 .setNegativeButton("Нет", null)
                 .show();
     }

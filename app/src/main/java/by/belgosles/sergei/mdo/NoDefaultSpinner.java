@@ -1,10 +1,6 @@
 package by.belgosles.sergei.mdo;
 
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -14,8 +10,12 @@ import android.widget.AdapterView;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 
+import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
-public class NoDefaultSpinner extends android.support.v7.widget.AppCompatSpinner {
+
+public class NoDefaultSpinner extends androidx.appcompat.widget.AppCompatSpinner {
 
     public NoDefaultSpinner(Context context) {
         super(context);

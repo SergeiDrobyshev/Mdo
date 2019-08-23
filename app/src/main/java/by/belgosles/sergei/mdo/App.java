@@ -6,15 +6,12 @@ import androidx.room.Room;
 
 import com.facebook.stetho.Stetho;
 
-import by.belgosles.sergei.mdo.TEstDb.AppDbDict;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
 
 public class App extends Application {
 
     public static App instance;
-    public static App instance_dict;
     private AppDb database;
-    private AppDbDict database_dict;
 
     @Override
     public void onCreate() {
@@ -22,12 +19,7 @@ public class App extends Application {
         Stetho.initializeWithDefaults(this);
         instance = this;
         database = Room.databaseBuilder(this, AppDb.class, "databaseMdo").allowMainThreadQueries()
-                // удалить .allowMainThreadQueries()
-                .build();
-
-        database_dict = Room.databaseBuilder(this, AppDbDict.class, "databaseDicts")
-                .createFromAsset("DICT_ACC_METH.dbf")
-                .allowMainThreadQueries()
+                .createFromAsset("DICTS_MDO.db")
                 // удалить .allowMainThreadQueries()
                 .build();
        InitializeStetho();
@@ -39,14 +31,6 @@ public class App extends Application {
 
     public AppDb getDatabase() {
         return database;
-    }
-
-    public static App getInstance_dict() {
-        return instance_dict;
-    }
-
-    public AppDbDict getDatabase_dict() {
-        return database_dict;
     }
 
     public void InitializeStetho (){

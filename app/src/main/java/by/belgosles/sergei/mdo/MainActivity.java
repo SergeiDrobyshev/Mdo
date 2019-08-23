@@ -1,10 +1,11 @@
 package by.belgosles.sergei.mdo;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import by.belgosles.sergei.mdo.activity.CreateStatement;
 import by.belgosles.sergei.mdo.activity.ListStatements;

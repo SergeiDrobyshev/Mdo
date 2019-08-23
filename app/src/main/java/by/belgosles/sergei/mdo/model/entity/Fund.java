@@ -21,6 +21,7 @@ public class Fund {
     private String id_leshoz;
     private String id_tax_rate;
     private String filling_date;
+
     private String implementation;
     private boolean inaccessibility; // труднодоступность
     private boolean state_fund_forest;
