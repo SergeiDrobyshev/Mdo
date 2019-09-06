@@ -15,7 +15,7 @@
         <activity android:name=".MainActivity">
         </activity>
         <activity
-            android:name=".activity.CreateStatement"
+            android:name=".activity.CreateStatementActivity"
             android:label="Создать ведомость"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -37,7 +37,7 @@
             android:name=".StockAndTax"
             android:label="Запас и таксовая стоимость" />
         <activity
-            android:name=".activity.ListStatements"
+            android:name=".activity.ListStatementsActivity"
             android:label="Список ведомостей" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

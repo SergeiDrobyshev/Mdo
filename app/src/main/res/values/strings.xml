@@ -97,6 +97,10 @@
     <string name="forestry">Лесничество</string>
     <string name="change">изменить</string>
     <string name="delete">удалить</string>
+    <string name="date_error">введите дату заполнения!</string>
+    <string name="forestry_error">Выберите лесничество!</string>
+    <string name="tax_category_error">Выберите разряд такс!</string>
+    <string name="realization_error">Выберите реализацию!</string>
 
     <string-array name="view_of_testes">
         <item>группы по 3-5 деревьев</item>

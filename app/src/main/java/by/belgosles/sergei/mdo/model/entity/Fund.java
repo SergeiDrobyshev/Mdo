@@ -19,10 +19,10 @@ public class Fund {
     }
 
     private String id_leshoz;
-    private String id_tax_rate;
+    private int id_tax_rate;
     private String filling_date;
 
-    private String implementation;
+    private int id_implementation;
     private boolean inaccessibility; // труднодоступность
     private boolean state_fund_forest;
 
@@ -54,11 +54,11 @@ public class Fund {
         this.id_forestry = id_forestry;
     }
 
-    public String getId_tax_rate() {
+    public int getId_tax_rate() {
         return id_tax_rate;
     }
 
-    public void setId_tax_rate(String id_tax_rate) {
+    public void setId_tax_rate(int id_tax_rate) {
         this.id_tax_rate = id_tax_rate;
     }
 
@@ -70,12 +70,12 @@ public class Fund {
         this.filling_date = filling_date;
     }
 
-    public String getImplementation() {
-        return implementation;
+    public int getId_implementation() {
+        return id_implementation;
     }
 
-    public void setImplementation(String implementation) {
-        this.implementation = implementation;
+    public void setId_implementation(int id_implementation) {
+        this.id_implementation = id_implementation;
     }
 
     public boolean isInaccessibility() {

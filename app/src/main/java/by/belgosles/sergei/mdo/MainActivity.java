@@ -7,9 +7,10 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import by.belgosles.sergei.mdo.activity.CreateStatement;
-import by.belgosles.sergei.mdo.activity.ListStatements;
+import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
+import by.belgosles.sergei.mdo.activity.ListStatementsActivity;
 
+//TODO Remove activity
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -23,19 +24,16 @@ public class MainActivity extends AppCompatActivity {
         createVedom = findViewById(R.id.create_statement);
         changeVedom = findViewById(R.id.change_statement);
 
-        View.OnClickListener onclickCreate = new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, CreateStatement.class);
-                intent.putExtra("message","create");
-                startActivity(intent);
-            }
+        View.OnClickListener onclickCreate = view -> {
+            Intent intent = new Intent(MainActivity.this, CreateStatementActivity.class);
+            intent.putExtra("message","create");
+            startActivity(intent);
         };
 
         View.OnClickListener onclickChange = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, ListStatements.class);
+                Intent intent = new Intent(MainActivity.this, ListStatementsActivity.class);
                 startActivity(intent);
             }
         };

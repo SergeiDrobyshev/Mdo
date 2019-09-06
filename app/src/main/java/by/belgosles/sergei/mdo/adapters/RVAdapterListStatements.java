@@ -11,18 +11,15 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
-import by.belgosles.sergei.mdo.App;
+
 import by.belgosles.sergei.mdo.R;
-import by.belgosles.sergei.mdo.activity.CreateStatement;
-import by.belgosles.sergei.mdo.activity.ListStatements;
-import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
 import by.belgosles.sergei.mdo.model.entity.Fund;
 
 public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListStatements.ViewHolder> {
-    private ArrayList<Fund> fundlistcreated;
+    public ArrayList<Fund> fundlistcreated;
     private Context context;
     public static final int REQUEST_CODE_CHANGE = 1;
-    private ListStatements listStatements = new ListStatements();
 
     public RVAdapterListStatements(ArrayList<Fund> mas, Context context){
         this.fundlistcreated = mas;
@@ -45,16 +42,16 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
     public void onBindViewHolder(@NonNull final ViewHolder holder, int position) {
         holder.bind(fundlistcreated.get(position));
         holder.change_statement.setOnClickListener(view -> {
-            Intent intent = new Intent(view.getContext(), CreateStatement.class);
-            intent.putExtra(CreateStatement.EXTRA_id_fund , holder.getAdapterPosition());
+            Intent intent = new Intent(view.getContext(), CreateStatementActivity.class);
+            intent.putExtra(CreateStatementActivity.EXTRA_id_fund ,getFundIdByPosition(position));
             intent.putExtra("REQUEST_CODE", REQUEST_CODE_CHANGE);
             // номер порядковый и ид из бд
             context.startActivity(intent);
             //listStatements.statementDetail(view.getContext(), holder.getAdapterPosition(), REQUEST_CODE_CHANGE);// передать id выбранного лесничества для выборк
         });
 
-        holder.delete_statement.setOnClickListener(view -> {
-            // кнопка удалить в ресайклере
+        holder.delete_statement.setOnClickListener(view1 -> {
+           // deleteStatementFromDb(position);
         });
     }
 
@@ -63,16 +60,24 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
         return fundlistcreated.size();
     }
 
+    private long getFundIdByPosition(int position){
+            return fundlistcreated.get(position).getId_fund();
+    }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder  {
         private EditText et_vid, et_forestry, et_date;
-        private Button change_statement, delete_statement;
+        private  Button change_statement;
+        private Button delete_statement;
 
         ViewHolder(View view, Context context) {
             super(view);
             et_vid = view.findViewById(R.id.editText_vid_polzov);
+            et_vid.setKeyListener(null);
             et_forestry = view.findViewById(R.id.editText_itemrecyclerview_forestry);
+            et_forestry.setKeyListener(null);
             et_date = view.findViewById(R.id.editText_itemrecyclerview_date);
+            et_date.setKeyListener(null);
             change_statement = view.findViewById(R.id.itemrecycler_change_statement);
             delete_statement = view.findViewById(R.id.itemrecycler_delete_statement);
 
@@ -80,10 +85,11 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
         }
 
         void bind (Fund statement){
-            AppDb db = App.getInstance().getDatabase();
-            //et_forestry.setText(); достать по ид лесничетсва его название и сетнуть на вью
-            //et_date.setText(st.get(0).filling_date); достать дату по ид
+            if(statement != null) {
+                et_forestry.setText(statement.getId_forestry()); //достать по ид лесничетсва его название и сетнуть на вью
+                et_date.setText(statement.getFilling_date());
+                //достать дату по ид
+            }
         }
-
     }
 }

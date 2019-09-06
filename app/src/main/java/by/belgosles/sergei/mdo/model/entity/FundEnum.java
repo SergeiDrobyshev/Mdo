@@ -6,7 +6,10 @@ import androidx.room.PrimaryKey;
 
 import static androidx.room.ForeignKey.CASCADE;
 
-@Entity(foreignKeys = @ForeignKey(entity = Fund.class, parentColumns = "id_fund", childColumns = "id_fund", onDelete = CASCADE, onUpdate = CASCADE))
+@Entity(foreignKeys = {
+        @ForeignKey(entity = Fund.class, parentColumns = "id_fund", childColumns = "id_fund", onDelete = CASCADE, onUpdate = CASCADE),
+       // @ForeignKey(entity = DictSpecies.class, childColumns = "id_species", parentColumns = "CODE_SPECIES")
+})
 public class FundEnum {
     @PrimaryKey(autoGenerate = true)
     private long id_fund_enum;
