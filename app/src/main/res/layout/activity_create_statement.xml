@@ -158,7 +158,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:padding="@dimen/button_padding"
-                android:text="@string/rybke_ne_podlegit"
+                android:text="@string/not_cut"
                 android:textSize="@dimen/button_textsize" />
         </LinearLayout>
 

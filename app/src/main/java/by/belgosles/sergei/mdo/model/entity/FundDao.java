@@ -15,7 +15,7 @@ public interface FundDao {
     List<Fund> getAllStatements();
 
     @Query("SELECT * FROM Fund WHERE id_fund = :id_fund")
-    public Fund getSelectedFundForChange(long id_fund);
+    public Fund getFundById(long id_fund);
 
     @Update
     void update(Fund fund);

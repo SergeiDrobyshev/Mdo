@@ -31,7 +31,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pereche_add_species);
+        setContentView(R.layout.fragment_enum_add_species);
         Intent intent = getIntent();
         messagetext = intent.getStringExtra("message");
         saveTotalPerechet = findViewById(R.id.save_total_perechet);
@@ -44,9 +44,6 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
         listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
         listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
 
-        if(messagetext.equals("create")) {
-
-        }//заполнение полей из бд
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int position, long l) {  // добавление в arraylist выбранного item из spinner и обновление адаптера списка

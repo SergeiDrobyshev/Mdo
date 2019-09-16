@@ -12,22 +12,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".activity.StatementInfoActivity"
+            android:label="@string/title_activity_statement_info"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".activity.CreateStatementActivity"
             android:label="Создать ведомость"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".StatementMdo"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name=".Perechet"
             android:label="Ведомость перечета деревьев"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".UndergrowthAndPollution"
-            android:label="Подрост/Загрязнение"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
             android:name=".CannotBeCutting"
@@ -38,9 +35,10 @@
             android:label="Запас и таксовая стоимость" />
         <activity
             android:name=".activity.ListStatementsActivity"
-            android:label="Список ведомостей" >
+            android:label="Список ведомостей">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

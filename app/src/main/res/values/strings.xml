@@ -9,10 +9,10 @@
     <string name="fond">Земли гослесфонда</string>
     <string name="zapas">Запас и таксовая стоимость</string>
     <string name="rezult">Результаты:</string>
-    <string name="rybke_ne_podlegit">Рубке не подлежат</string>
+    <string name="not_cut">Рубке не подлежат</string>
     <string name="podrost">Подрост/Загрязнение</string>
     <string name="save">Сохранить ведомость</string>
-    <string name="vedom_mdo">Ведомость материально-денежной  оценки</string>
+    <string name="vedom_mdo">Ведомость материально-денежной \nоценки лесосеки</string>
     <string name="perechet">Ведомость перечета  деревьев</string>
     <string name="vid_polz">Вид пользования</string>
     <string name="forest_category">Категория леса</string>
@@ -62,24 +62,18 @@
     <string name="specific_activity_drov">дровяной древесины,\nБк/кг</string>
     <string name="plant_area">Площадь \nсеменников, га</string>
     <string name="plant_amount">Кол-во семен-\nников, на 1 га</string>
-    <string-array name="porody_testing">
-        <item>береза</item>
-        <item>дуб</item>
-        <item>сосна</item>
-        <item>липа</item>
-    </string-array>
+    <string name="view_of_testes">Выберите вид \nсеменников:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="view_of_testes">Выберите вид \nсеменников:</string>
     <string name="amount_testes">Кол-во \nсеменников:</string>
     <string name="number_testes">Номера \nсеменников:</string>
     <string name="add">Добавить</string>
     <string name="view_of_testes_table">Вид семен-\nников</string>
     <string name="amount_testes1">Кол-во\nсемен\nников</string>
     <string name="number_testes1">Номера \nсемен-\nников</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="wood_stock">Запас древесины, куб. м.</string>
     <string name="del_kr">деловой крупной</string>
     <string name="del_sr">деловой средней</string>
@@ -102,6 +96,15 @@
     <string name="tax_category_error">Выберите разряд такс!</string>
     <string name="realization_error">Выберите реализацию!</string>
 
+    <string name="title_activity_statement_info">StatementInfoActivity</string>
+    <string name="tab_text_1">Данные о лесосеке</string>
+    <string name="tab_text_2">Перечет</string>
+    <string-array name="porody_testing">
+        <item>береза</item>
+        <item>дуб</item>
+        <item>сосна</item>
+        <item>липа</item>
+    </string-array>
     <string-array name="view_of_testes">
         <item>группы по 3-5 деревьев</item>
         <item>деревья, запрещенные к рубке</item>
@@ -109,7 +112,6 @@
         <item>одиночные деревья-семенники</item>
         <item>сохранение биоразнообразия</item>
     </string-array>
-
     <string-array name="species_trees">
         <item>береза</item>
         <item>дуб</item>

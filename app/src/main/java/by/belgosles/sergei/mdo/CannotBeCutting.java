@@ -18,7 +18,7 @@ public class CannotBeCutting extends AppCompatActivity implements View.OnClickLi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cannot_be_cutting);
+        setContentView(R.layout.fragment_can_not_cut);
 
         pressToSelectSpecies = (Button) findViewById(R.id.press_to_select);
         pressToSelectSpecies.setOnClickListener(this);

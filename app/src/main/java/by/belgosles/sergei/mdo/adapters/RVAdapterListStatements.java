@@ -12,18 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
+import by.belgosles.sergei.mdo.activity.ListStatementsActivity;
 import by.belgosles.sergei.mdo.model.entity.Fund;
 
 public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListStatements.ViewHolder> {
-    public ArrayList<Fund> fundlistcreated;
+    private ArrayList<Fund> fundlistcreated;
     private Context context;
     public static final int REQUEST_CODE_CHANGE = 1;
+    private ListStatementsActivity activity;
 
     public RVAdapterListStatements(ArrayList<Fund> mas, Context context){
         this.fundlistcreated = mas;
         this.context = context;
+        this.activity = (ListStatementsActivity) context;
     }
 
     public void dataChanged(ArrayList<Fund> fundlist){
@@ -47,11 +52,11 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
             intent.putExtra("REQUEST_CODE", REQUEST_CODE_CHANGE);
             // номер порядковый и ид из бд
             context.startActivity(intent);
-            //listStatements.statementDetail(view.getContext(), holder.getAdapterPosition(), REQUEST_CODE_CHANGE);// передать id выбранного лесничества для выборк
+            //listStatements.toStatementActivity(view.getContext(), holder.getAdapterPosition(), REQUEST_CODE_CHANGE);// передать id выбранного лесничества для выборк
         });
 
         holder.delete_statement.setOnClickListener(view1 -> {
-           // deleteStatementFromDb(position);
+           activity.deleteStatementFromDb(getFundIdByPosition(position));
         });
     }
 
@@ -66,22 +71,18 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
 
 
     static class ViewHolder extends RecyclerView.ViewHolder  {
-        private EditText et_vid, et_forestry, et_date;
-        private  Button change_statement;
-        private Button delete_statement;
+        @BindView(R.id.editText_vid_polzov) EditText et_vid;
+        @BindView(R.id.editText_itemrecyclerview_forestry) EditText et_forestry;
+        @BindView(R.id.editText_itemrecyclerview_date) EditText et_date;
+        @BindView(R.id.itemrecycler_change_statement) Button change_statement;
+        @BindView(R.id.itemrecycler_delete_statement) Button delete_statement;
 
         ViewHolder(View view, Context context) {
             super(view);
-            et_vid = view.findViewById(R.id.editText_vid_polzov);
+            ButterKnife.bind(this, view);
             et_vid.setKeyListener(null);
-            et_forestry = view.findViewById(R.id.editText_itemrecyclerview_forestry);
             et_forestry.setKeyListener(null);
-            et_date = view.findViewById(R.id.editText_itemrecyclerview_date);
             et_date.setKeyListener(null);
-            change_statement = view.findViewById(R.id.itemrecycler_change_statement);
-            delete_statement = view.findViewById(R.id.itemrecycler_delete_statement);
-
-
         }
 
         void bind (Fund statement){

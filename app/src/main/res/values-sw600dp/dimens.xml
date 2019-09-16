@@ -16,5 +16,6 @@
     <dimen name="layout_width_button_save">600dp</dimen>
     <dimen name="textsizeListItemsAlertDialog">32sp</dimen>
     <dimen name="spinner_dropdown_item_height">67dp</dimen>
+    <dimen name="appBarTitle_padding">18dp</dimen>
 
 </resources>

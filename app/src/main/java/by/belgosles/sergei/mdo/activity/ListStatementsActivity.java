@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,7 +33,7 @@ public class ListStatementsActivity extends androidx.appcompat.app.AppCompatActi
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_change_statement);
+        setContentView(R.layout.activity_list_statements);
         ButterKnife.bind(this);
 
         database = App.getInstance().getDatabase();
@@ -48,7 +49,7 @@ public class ListStatementsActivity extends androidx.appcompat.app.AppCompatActi
 
     private void addFloatButtonCreateStatement(Context ctx) {
         fab.setOnClickListener(view -> {
-            statementDetail(ctx, newId, REQUEST_CODE_CREATE); // передать новый id для лесничества
+            toStatementActivity(ctx, newId, REQUEST_CODE_CREATE); // передать новый id для лесничества
         });
     }
 
@@ -63,12 +64,26 @@ public class ListStatementsActivity extends androidx.appcompat.app.AppCompatActi
         }
     }
 
-    public void statementDetail(Context context, long id_fund, int REQUEST_CODE){
+    public void toStatementActivity(Context context, long id_fund, int REQUEST_CODE){
         Intent intent = new Intent(context, CreateStatementActivity.class);
         intent.putExtra(CreateStatementActivity.EXTRA_id_fund, id_fund);
         intent.putExtra("REQUEST_CODE", REQUEST_CODE);
         // номер порядковый и ид из бд
         startActivityForResult(intent, REQUEST_CODE);
         // передать id по котороe не обходимо найти в бд записи и заполнить данными макет
+    }
+
+    public void deleteStatementFromDb(long fundIdByPosition) {
+        new AlertDialog.Builder(this)
+                .setMessage("Вы действительно хотите удалить ведомость?")
+                .setPositiveButton("Да", (dialogInterface, i) -> {
+                    Fund fund = database.getstatementDao().getFundById(fundIdByPosition);
+                    database.getstatementDao().delete(fund);
+                    ArrayList <Fund> fundList  = (ArrayList<Fund>) database.getstatementDao().getAllStatements();
+                    adapter.dataChanged(fundList);
+                })
+                .setNegativeButton("Нет", null)
+                .show();
+
     }
 }

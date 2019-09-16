@@ -2,6 +2,7 @@ package by.belgosles.sergei.mdo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -19,12 +20,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import by.belgosles.sergei.mdo.App;
-import by.belgosles.sergei.mdo.CannotBeCutting;
-import by.belgosles.sergei.mdo.PerechetAddSpecies;
 import by.belgosles.sergei.mdo.R;
-import by.belgosles.sergei.mdo.StatementMdo;
 import by.belgosles.sergei.mdo.StockAndTax;
-import by.belgosles.sergei.mdo.UndergrowthAndPollution;
 import by.belgosles.sergei.mdo.adapters.RVAdapterListStatements;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
 import by.belgosles.sergei.mdo.model.entity.Fund;
@@ -88,7 +85,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
 
     private void fillfieldsfromDB()  {
         // заполнение полей из бд
-        fund = db.getstatementDao().getSelectedFundForChange(bundle.getLong(EXTRA_id_fund));
+        fund = db.getstatementDao().getFundById(bundle.getLong(EXTRA_id_fund));
 
         if(fund.getFilling_date() != null){
             edittextDate.setText(fund.getFilling_date());
@@ -107,7 +104,6 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        StatementMdo.species.clear();
     }
 
     @OnClick({R.id.statement_mdo, R.id.statement_perechet, R.id.statement_podrost, R.id.cannot_be_cutting, R.id.stock_and_tax, R.id.save_create_statement})
@@ -115,11 +111,13 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         Intent intent;
         switch (view.getId()) {
             case R.id.statement_mdo:
-                intent = new Intent(CreateStatementActivity.this, StatementMdo.class);
-                intent.putExtra("message", messagetext);
+                intent = new Intent(CreateStatementActivity.this, StatementInfoActivity.class);
                 startActivity(intent);
+               /* intent = new Intent(CreateStatementActivity.this, StatementMdoFragment.class);
+                intent.putExtra("message", messagetext);
+                startActivity(intent);*/
                 break;
-            case R.id.statement_perechet:
+            /*case R.id.statement_perechet:
                 intent = new Intent(CreateStatementActivity.this, PerechetAddSpecies.class);
                 intent.putExtra("message", messagetext);
                 startActivity(intent);
@@ -133,18 +131,20 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 intent = new Intent(CreateStatementActivity.this, CannotBeCutting.class);
                 intent.putExtra("message", messagetext);
                 startActivity(intent);
-                break;
+                break;*/
             case R.id.stock_and_tax:
                 intent = new Intent(CreateStatementActivity.this , StockAndTax.class);
                 intent.putExtra("message", messagetext);
                 startActivity(intent);
+                break;
             case R.id.save_create_statement:
-                //isEmptyFields();
+                if(isEmptyFields()){
+                    break;
+                }
                 new  AlertDialog.Builder(this)
                         .setMessage("Вы действительно хотите сохранить?")
                         .setPositiveButton("Да", (dialogInterface, i) -> {
                             if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE){
-
                                 db.getstatementDao().update(setDataToFund());
                             }else {
                                 Fund fund = setDataToFund();
@@ -207,26 +207,29 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         return 0;
     }
 
-    private void isEmptyFields (){
+    private boolean isEmptyFields (){
         if(edittextDate.getText().toString().isEmpty()){
             showWarnWindow("",getString(R.string.date_error));
+            return true;
         }
         if(forestry.getText().toString().isEmpty()){
             showWarnWindow("",getString(R.string.forestry_error));
+            return true;
         }
         if(tax_category.getSelectedItem() == null){
             showWarnWindow("",getString(R.string.tax_category_error));
+            return true;
         }
         if(realization.getSelectedItem() == null){
             showWarnWindow("",getString(R.string.realization_error));
+            return true;
         }
+        return false;
     }
 
     private void showWarnWindow(String title, String mes){
-        new  AlertDialog.Builder(this)
-                .setTitle(title)
-                .setMessage(mes)
-                .setPositiveButton("Да", null)
-                .show();
+        Toast toast = Toast.makeText(this, mes,Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }
