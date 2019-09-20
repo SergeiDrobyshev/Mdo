@@ -34,15 +34,15 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
         setContentView(R.layout.fragment_enum_add_species);
         Intent intent = getIntent();
         messagetext = intent.getStringExtra("message");
-        saveTotalPerechet = findViewById(R.id.save_total_perechet);
+        //saveTotalPerechet = findViewById(R.id.save_total_perechet);
 
         NoDefaultSpinner spinner = findViewById(R.id.spinner_poroda_value);
-        ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
+       // ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
         ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
         arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(arrayadapterspinner);
         listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);
-        listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
+        //listviewAddedSpecies.setAdapter(listAddedSpeciesAdapter);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -61,8 +61,8 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
             }
         });
 
-        registerForContextMenu(listviewAddedSpecies);
-        listviewAddedSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+       // registerForContextMenu(listviewAddedSpecies);
+       /* listviewAddedSpecies.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 String addedSpeciesTolist = listAddedSpeciesAdapter.getItem(position).toString();
@@ -72,7 +72,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                 startActivity(intent);
 
             }
-        });
+        });*/
     }
 
     @Override
@@ -100,7 +100,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()){
+       /* switch (view.getId()){
             case R.id.save_total_perechet:
                 new  AlertDialog.Builder(this)
                         .setMessage("Вы действительно хотите сохранить?")
@@ -116,6 +116,6 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
                         .setNegativeButton("Нет", null)
                         .show();
                 break;
-        }
+        }*/
     }
 }

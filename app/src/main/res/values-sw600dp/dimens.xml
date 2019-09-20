@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="textview_textsize">23sp</dimen>
+    <dimen name="textview_textsize">18sp</dimen>
     <dimen name="textview_textsize_table">20sp</dimen>
-    <dimen name="button_textsize">20sp</dimen>
+    <dimen name="button_textsize">18sp</dimen>
     <dimen name="margin">32dp</dimen>
-    <dimen name="layout_height">70dp</dimen>
-    <dimen name="marginTop">30dp</dimen>
+    <dimen name="layout_height">45dp</dimen>
+    <dimen name="marginTop">10dp</dimen>
     <dimen name="marginLeft">35dp</dimen>
-    <dimen name="button_padding">35dp</dimen>
+    <dimen name="button_padding">30dp</dimen>
     <dimen name="layout_height_view_line">8dp</dimen>
     <dimen name="layout_margin_bottom">35dp</dimen>
     <dimen name="layout_height2">75dp</dimen>
@@ -17,5 +17,7 @@
     <dimen name="textsizeListItemsAlertDialog">32sp</dimen>
     <dimen name="spinner_dropdown_item_height">67dp</dimen>
     <dimen name="appBarTitle_padding">18dp</dimen>
+    <dimen name="textsize_spinner_prompt">18sp</dimen>
+    <dimen name="marginLeft_perechet">50dp</dimen>
 
 </resources>

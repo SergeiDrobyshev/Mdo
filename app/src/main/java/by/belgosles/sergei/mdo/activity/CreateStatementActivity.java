@@ -37,7 +37,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
 
     private AppDb db;
     public static final String EXTRA_id_fund = "id_fund";
-    String messagetext, id;
+    String messagetext;
     Bundle bundle;
     private Fund fund;
     private int request_code;
@@ -56,12 +56,12 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     private void setAdapters() {
         ArrayList<String> refsDataRealiz = (ArrayList<String>) db.getDictsDao().getAllRealizs();
         ArrayList <String> refsDataTax = (ArrayList<String>) db.getDictsDao().getAllTaxRate();
-        ArrayAdapter<String> tax_adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, refsDataTax);
+        ArrayAdapter<String> tax_adapter = new ArrayAdapter<>(this, R.layout.spinner_item, refsDataTax);
         tax_adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         tax_category.setAdapter(tax_adapter);
         //setListeners();
 
-        ArrayAdapter<String> realiz_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, refsDataRealiz);
+        ArrayAdapter<String> realiz_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, refsDataRealiz);
         realiz_adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
         realization.setAdapter(realiz_adapter);
         //setListeners();
@@ -106,32 +106,14 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         super.onDestroy();
     }
 
-    @OnClick({R.id.statement_mdo, R.id.statement_perechet, R.id.statement_podrost, R.id.cannot_be_cutting, R.id.stock_and_tax, R.id.save_create_statement})
+    @OnClick({R.id.statement_mdo, R.id.stock_and_tax, R.id.save_create_statement})
     public void onClick(View view){
         Intent intent;
         switch (view.getId()) {
             case R.id.statement_mdo:
                 intent = new Intent(CreateStatementActivity.this, StatementInfoActivity.class);
                 startActivity(intent);
-               /* intent = new Intent(CreateStatementActivity.this, StatementMdoFragment.class);
-                intent.putExtra("message", messagetext);
-                startActivity(intent);*/
                 break;
-            /*case R.id.statement_perechet:
-                intent = new Intent(CreateStatementActivity.this, PerechetAddSpecies.class);
-                intent.putExtra("message", messagetext);
-                startActivity(intent);
-                break;
-            case R.id.statement_podrost:
-                intent = new Intent(CreateStatementActivity.this, UndergrowthAndPollution.class);
-                intent.putExtra("message", messagetext);
-                startActivity(intent);
-                break;
-            case R.id.cannot_be_cutting:
-                intent = new Intent(CreateStatementActivity.this, CannotBeCutting.class);
-                intent.putExtra("message", messagetext);
-                startActivity(intent);
-                break;*/
             case R.id.stock_and_tax:
                 intent = new Intent(CreateStatementActivity.this , StockAndTax.class);
                 intent.putExtra("message", messagetext);

@@ -99,6 +99,7 @@
     <string name="title_activity_statement_info">StatementInfoActivity</string>
     <string name="tab_text_1">Данные о лесосеке</string>
     <string name="tab_text_2">Перечет</string>
+    <string name="add_species">Добавьте породу</string>
     <string-array name="porody_testing">
         <item>береза</item>
         <item>дуб</item>

@@ -5,6 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/spinner_dropdown_item_height"
     android:gravity="center_vertical"
+    android:paddingLeft="20dp"
+    android:paddingStart="20dp"
     android:ellipsize="marquee"
     android:textSize="@dimen/textview_textsize"
-    android:textColor="#212121"/>
+    android:textColor="#212121"
+     />

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
+    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -14,69 +19,121 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="@dimen/marginTop">
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/amount_of_whip"
-                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="@string/amount_of_whip"
-                android:layout_gravity="center"
                 android:textSize="@dimen/textview_textsize"/>
 
             <EditText
                 android:id="@+id/editText_amount_of_whip"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/layout_width_column_perechet"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:textSize="@dimen/textview_textsize"
                 android:layout_marginStart="@dimen/marginLeft"
-                android:inputType="number"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textview_poroda"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:text="Добавьте породу"
-                android:textSize="@dimen/textview_textsize"/>
+                android:inputType="numberDecimal"/>
 
             <by.belgosles.sergei.mdo.NoDefaultSpinner
                 android:id="@+id/spinner_poroda_value"
                 android:layout_width="0dp"
-                android:layout_height="@dimen/layout_height"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_weight="1" />
+                android:layout_weight="1"
+                android:spinnerMode="dialog"
+                android:layout_gravity="center_vertical|start"
+                android:gravity="center"
+                android:prompt="@string/add_species"
+                android:background="@drawable/spinner_background"
+                />
 
         </LinearLayout>
 
-        <ListView
-            android:id="@+id/listview_added_species"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-        </ListView>
-
-        <Button
-            android:id="@+id/save_total_perechet"
-            android:layout_width="@dimen/layout_width_button_save"
+        <LinearLayout
+            android:id="@+id/new_layout_enum"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/marginTop"
-            android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:padding="@dimen/button_padding"
-            android:text="@string/save_perechet"
-            android:textSize="@dimen/button_textsize" />
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop">
+
+            <TextView
+                android:id="@+id/amount_tress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginRight="40dp"
+                android:text="@string/amout_trees"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/diameters"
+                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:text="@string/dimeter_tree"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+
+            <TextView
+                android:id="@+id/del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:text="@string/del"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintBottom_toBottomOf="@+id/diameters"
+                app:layout_constraintEnd_toStartOf="@+id/drov"
+                app:layout_constraintTop_toTopOf="@+id/diameters" />
+
+            <TextView
+                android:id="@+id/drov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:text="@string/drov"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintBottom_toBottomOf="@+id/diameters"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/diameters" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewPerechet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/diameters"
+                tools:listitem="@layout/item_perechet">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </LinearLayout>
+</ScrollView>

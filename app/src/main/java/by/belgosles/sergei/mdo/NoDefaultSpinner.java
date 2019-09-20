@@ -49,6 +49,8 @@ public class NoDefaultSpinner extends androidx.appcompat.widget.AppCompatSpinner
         }
     }
 
+
+
     protected SpinnerAdapter newProxy(SpinnerAdapter obj) {
         return (SpinnerAdapter) java.lang.reflect.Proxy.newProxyInstance(
                 obj.getClass().getClassLoader(),
@@ -89,7 +91,7 @@ public class NoDefaultSpinner extends androidx.appcompat.widget.AppCompatSpinner
 
         protected View getView(int position, View convertView, ViewGroup parent) throws IllegalAccessException {
             if( position < 0 ) {
-                final TextView v = (TextView) ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(android.R.layout.simple_spinner_item,parent,false);
+                final TextView v = (TextView) ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.spinner_item,parent,false);
                 v.setText(getPrompt());
                 return v;
             }

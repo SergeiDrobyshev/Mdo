@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import by.belgosles.sergei.mdo.R;
 
 public class ListAddedSpeciesAdapter extends BaseAdapter {
-    Context ctx;
+    private Context ctx;
     private ArrayList<String> addedSpecies;
     private LayoutInflater layoutInflater;
 

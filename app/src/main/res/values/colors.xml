@@ -6,4 +6,6 @@
 
     <color name="primary_text">#212121</color>
     <color name="primary_color">#2196f3</color>
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorDarkGrey">#A9A9A9</color>
 </resources>
