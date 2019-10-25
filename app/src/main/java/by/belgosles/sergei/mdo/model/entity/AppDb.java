@@ -3,6 +3,8 @@ package by.belgosles.sergei.mdo.model.entity;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 
+import by.belgosles.sergei.mdo.model.dao.DictsDao;
+import by.belgosles.sergei.mdo.model.dao.FundDao;
 import by.belgosles.sergei.mdo.model.entity.refs.DictAccMeth;
 import by.belgosles.sergei.mdo.model.entity.refs.DictBonitet;
 import by.belgosles.sergei.mdo.model.entity.refs.DictCatProtect;

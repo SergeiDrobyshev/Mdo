@@ -2,6 +2,7 @@ package by.belgosles.sergei.mdo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -41,7 +42,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     Bundle bundle;
     private Fund fund;
     private int request_code;
-
+    private long rowId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,15 +55,16 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     }
 
     private void setAdapters() {
+        //todo new spin adapter
         ArrayList<String> refsDataRealiz = (ArrayList<String>) db.getDictsDao().getAllRealizs();
         ArrayList <String> refsDataTax = (ArrayList<String>) db.getDictsDao().getAllTaxRate();
-        ArrayAdapter<String> tax_adapter = new ArrayAdapter<>(this, R.layout.spinner_item, refsDataTax);
-        tax_adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> tax_adapter = new ArrayAdapter<>(this, R.layout.spinner_item1, refsDataTax);
+        tax_adapter.setDropDownViewResource( R.layout.spinner_dropdown_item);
         tax_category.setAdapter(tax_adapter);
         //setListeners();
 
-        ArrayAdapter<String> realiz_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item, refsDataRealiz);
-        realiz_adapter.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item);
+        ArrayAdapter<String> realiz_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item1, refsDataRealiz);
+        realiz_adapter.setDropDownViewResource( R.layout.spinner_dropdown_item);
         realization.setAdapter(realiz_adapter);
         //setListeners();
     }
@@ -79,6 +81,9 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
                 stateFundForest.setChecked(true);
                 inaccessibility.setChecked(false);
+                fund = new Fund();
+                rowId = db.getstatementDao().insert(fund);
+                //Log.e("id_new", String.valueOf(rowId));
             }
         }
     }
@@ -104,6 +109,13 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.e("OnDestroy","onDestroy");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e("OnStop","OnStop");
     }
 
     @OnClick({R.id.statement_mdo, R.id.stock_and_tax, R.id.save_create_statement})
@@ -112,6 +124,12 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         switch (view.getId()) {
             case R.id.statement_mdo:
                 intent = new Intent(CreateStatementActivity.this, StatementInfoActivity.class);
+                if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE) {
+                    intent.putExtra(EXTRA_id_fund, fund.getId_fund());
+                }
+                else{
+                    intent.putExtra(EXTRA_id_fund, rowId);
+                }
                 startActivity(intent);
                 break;
             case R.id.stock_and_tax:
@@ -129,11 +147,12 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                             if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE){
                                 db.getstatementDao().update(setDataToFund());
                             }else {
-                                Fund fund = setDataToFund();
-                                db.getstatementDao().insert(fund);
+                               // Fund fund = setDataToFund();
+                               // db.getstatementDao().insert(fund);
                             }
                             setResult(RESULT_OK);
                             finish();
+                            Log.e("finish","finish");
                         })
                         .setNegativeButton("Нет", null)
                         .show();
@@ -142,16 +161,8 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     }
 
     private Fund setDataToFund() {
-        // убрать проверку на заполнеине полей
-        if(fund == null){
-            fund = new Fund();
-        }
-        if(!getInputtedText(edittextDate).isEmpty()){
-            fund.setFilling_date(getInputtedText(edittextDate));
-        }
-        if(!getInputtedText(forestry).isEmpty()){
-            fund.setId_forestry(getInputtedText(forestry));
-        }
+        fund.setFilling_date(getInputtedText(edittextDate));
+        fund.setId_forestry(getInputtedText(forestry));
 
         fund.setId_tax_rate(getinputTextSp(tax_category));
         fund.setId_implementation(getinputTextSp(realization));
@@ -165,7 +176,12 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     public void onBackPressed() {
         new  AlertDialog.Builder(this)
                 .setMessage("Выйти без сохранения?")
-                .setPositiveButton("Да", (dialogInterface, i) -> finish())
+                .setPositiveButton("Да", (dialogInterface, i) -> {
+                    if(request_code != RVAdapterListStatements.REQUEST_CODE_CHANGE){
+                        db.getstatementDao().delete(fund);
+                    }
+                    finish();
+                })
                 .setNegativeButton("Нет", null)
                 .show();
     }

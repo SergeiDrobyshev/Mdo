@@ -28,10 +28,10 @@ dependencies {
     implementation "androidx.appcompat:appcompat:1.1.0"
     implementation "androidx.constraintlayout:constraintlayout:1.1.3"
     implementation "androidx.legacy:legacy-support-v4:1.0.0"
-    implementation "androidx.recyclerview:recyclerview:1.1.0-beta04"
+    implementation "androidx.recyclerview:recyclerview:1.1.0-beta05"
     implementation "androidx.cardview:cardview:1.0.0"
 
-    def room_version = "2.2.0-rc01"
+    def room_version = "2.2.0"
     implementation "androidx.room:room-runtime:$room_version"
     implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
     annotationProcessor "androidx.room:room-compiler:$room_version"
@@ -43,5 +43,4 @@ dependencies {
     implementation "com.jakewharton:butterknife:10.1.0"
     annotationProcessor "com.jakewharton:butterknife-compiler:10.1.0"
     implementation 'org.jetbrains:annotations:15.0'
-
 }

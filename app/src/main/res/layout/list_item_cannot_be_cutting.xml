@@ -16,21 +16,21 @@
 
     <TextView
         android:id="@+id/list_deiameter_testes"
-        android:layout_width="@dimen/layout_width_column_perechet"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="@dimen/textview_textsize_table"/>
 
     <TextView
         android:id="@+id/list_amount_testes"
-        android:layout_width="@dimen/layout_width_column_perechet"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="@dimen/textview_textsize_table"/>
 
     <TextView
         android:id="@+id/list_number_testes"
-        android:layout_width="@dimen/layout_width_column_perechet"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
         android:textSize="@dimen/textview_textsize_table"/>

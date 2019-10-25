@@ -11,7 +11,6 @@
     <dimen name="layout_height_view_line">8dp</dimen>
     <dimen name="layout_margin_bottom">35dp</dimen>
     <dimen name="layout_height2">75dp</dimen>
-    <dimen name="layout_width_column_perechet">150dp</dimen>
     <dimen name="layout_width_button">200dp</dimen>
     <dimen name="layout_width_button_save">600dp</dimen>
     <dimen name="textsizeListItemsAlertDialog">32sp</dimen>
@@ -19,5 +18,7 @@
     <dimen name="appBarTitle_padding">18dp</dimen>
     <dimen name="textsize_spinner_prompt">18sp</dimen>
     <dimen name="marginLeft_perechet">50dp</dimen>
+    <dimen name="perecher_recycler_height">350dp</dimen>
+    <dimen name="width_tv_diameter">100dp</dimen>
 
 </resources>

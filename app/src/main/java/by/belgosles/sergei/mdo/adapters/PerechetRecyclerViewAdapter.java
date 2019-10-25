@@ -18,13 +18,13 @@ import java.util.ArrayList;
 import by.belgosles.sergei.mdo.EdittextModelPerechet;
 import by.belgosles.sergei.mdo.R;
 
-public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHolder> {
+public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRecyclerViewAdapter.ViewHolder> {
 
     private int [] diameters;
     private  LayoutInflater inflater;
     public static ArrayList<EdittextModelPerechet> masvalues;
 
-    public PerechetAdapter(int[] diameters, Context ctx) {
+    public PerechetRecyclerViewAdapter(int[] diameters, Context ctx) {
          masvalues = new ArrayList<>();
         this.diameters = diameters;
         inflater = LayoutInflater.from(ctx);
@@ -37,7 +37,7 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PerechetAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull PerechetRecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
             holder.bind(diameters[position]);
 
             //методы для считывания значений из полей, и для записи значений из бд
@@ -60,32 +60,6 @@ public class PerechetAdapter extends RecyclerView.Adapter<PerechetAdapter.ViewHo
             editTextDel = view.findViewById(R.id.editText_del);
             editTextDrov = view.findViewById(R.id.editText_drov);
 
-            editTextDel.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    masvalues.get(getAdapterPosition()).setDiameter(textviewDiameter.getText().toString());
-                    masvalues.get(getAdapterPosition()).setEdittext_del(editTextDel.getText().toString());
-                }
-                @Override
-                public void afterTextChanged(Editable editable) {
-                }
-            });
-
-            editTextDrov.addTextChangedListener(new TextWatcher() {
-                @Override
-                public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                }
-                @Override
-                public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    masvalues.get(getAdapterPosition()).setEdittext_drov(editTextDrov.getText().toString());
-                }
-                @Override
-                public void afterTextChanged(Editable editable) {
-                }
-            });
         }
 
         void bind(final int diameter) {

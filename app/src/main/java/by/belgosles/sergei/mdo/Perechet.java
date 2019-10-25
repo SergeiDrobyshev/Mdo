@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import by.belgosles.sergei.mdo.adapters.PerechetAdapter;
+import by.belgosles.sergei.mdo.adapters.PerechetRecyclerViewAdapter;
 
 public class Perechet extends AppCompatActivity implements View.OnClickListener {
     public static final String Extra_OnClickAddedSpecies = "m";
@@ -43,7 +43,7 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
         RecyclerView recyclerView =  findViewById(R.id.recyclerViewPerechet);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        PerechetAdapter adapter = new PerechetAdapter(diameters, this);
+        PerechetRecyclerViewAdapter adapter = new PerechetRecyclerViewAdapter(diameters, this);
         recyclerView.setAdapter(adapter);
         recyclerView.setItemViewCacheSize(diameters.length);
 
@@ -80,8 +80,8 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
                                 enumTemp.sum_drov_copy = sum_drov.getText().toString();
                                 enumTemp.heights_level_copy = spinner_heights_level.getSelectedItem().toString();
                                 enumTemp.species_copy = tv.getText().toString();
-                                enumTemp.perechettrees = PerechetAdapter.masvalues;
-                                PerechetAdapter.masvalues.clear();
+                                enumTemp.perechettrees = PerechetRecyclerViewAdapter.masvalues;
+                                PerechetRecyclerViewAdapter.masvalues.clear();
                                 finish();
                             }
                         })
@@ -98,7 +98,7 @@ public class Perechet extends AppCompatActivity implements View.OnClickListener 
                 .setPositiveButton("Да", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        PerechetAdapter.masvalues.clear();
+                        PerechetRecyclerViewAdapter.masvalues.clear();
                         finish();
                     }
                 })

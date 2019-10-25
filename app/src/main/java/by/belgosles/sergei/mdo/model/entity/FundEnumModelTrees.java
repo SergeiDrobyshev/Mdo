@@ -48,7 +48,7 @@ public class FundEnumModelTrees {
         this.diameter = diameter;
     }
 
-    public int getHeight() {
+    /*public int getHeight() {
         return height;
     }
 
@@ -56,6 +56,6 @@ public class FundEnumModelTrees {
         this.height = height;
     }
 
-    private int height;
+    private int height;*/
 
 }

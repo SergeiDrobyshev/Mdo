@@ -66,7 +66,7 @@ public class ListStatementsActivity extends androidx.appcompat.app.AppCompatActi
 
     public void toStatementActivity(Context context, long id_fund, int REQUEST_CODE){
         Intent intent = new Intent(context, CreateStatementActivity.class);
-        intent.putExtra(CreateStatementActivity.EXTRA_id_fund, id_fund);
+        //intent.putExtra(CreateStatementActivity.EXTRA_id_fund, id_fund);
         intent.putExtra("REQUEST_CODE", REQUEST_CODE);
         // номер порядковый и ид из бд
         startActivityForResult(intent, REQUEST_CODE);

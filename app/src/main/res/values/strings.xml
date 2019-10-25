@@ -42,7 +42,7 @@
     <string name="dimeter_tree">Диаметр\nна высоте\nгруди, см</string>
     <string name="del">деловых</string>
     <string name="drov">дровяных</string>
-    <string name="amout_trees">число деревьев</string>
+    <string name="amout_trees">число \nдеревьев</string>
     <string name="total_trees">Всего\nдеревьев:</string>
     <string name="amount_of_whip">Ср. объем\nхлыста:</string>
     <string name="model_tree">Модельные деревья</string>

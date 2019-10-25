@@ -1,7 +1,10 @@
 package by.belgosles.sergei.mdo.model.entity;
 
+import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 @Entity
 public class Fund {
@@ -10,15 +13,15 @@ public class Fund {
 
     private String id_forestry;
 
-    public String getId_leshoz() {
+    public int getId_leshoz() {
         return id_leshoz;
     }
 
-    public void setId_leshoz(String id_leshoz) {
+    public void setId_leshoz(int id_leshoz) {
         this.id_leshoz = id_leshoz;
     }
 
-    private String id_leshoz;
+    private int id_leshoz;
     private int id_tax_rate;
     private String filling_date;
 
@@ -26,14 +29,16 @@ public class Fund {
     private boolean inaccessibility; // труднодоступность
     private boolean state_fund_forest;
 
-    private String id_type_use, id_categ, year_fund, year_allot, square;
-    private   int kvart_n, cut_area_n, tax_vydel_n;
+    private int id_type_use, id_categ;
+    private String year_fund, year_allot, square;
+    private String kvart_n, cut_area_n, tax_vydel_n;
 
-    private String id_hoz_section, id_group_species, id_type_cut, id_account_method, id_clean_method, id_recovery_method;
+    private int id_hoz_section, id_group_species, id_type_cut, id_account_method, id_clean_method, id_recovery_method;
 
-    private String sostav, id_bonitet, id_forest_type, forest_cover/*покров*/, id_soil, id_plaint_state;
+    private String sostav, forest_cover/*покров*/;
+    private int id_bonitet, id_forest_type,  id_soil, id_plaint_state;
 
-    private int age, fullness, ave_height, ave_diameter;
+    private String  age, fullness, ave_height, ave_diameter;
     private String comment;
 
     private String ave_whip;
@@ -94,19 +99,19 @@ public class Fund {
         this.state_fund_forest = state_fund_forest;
     }
 
-    public String getId_type_use() {
+    public int getId_type_use() {
         return id_type_use;
     }
 
-    public void setId_type_use(String id_type_use) {
+    public void setId_type_use(int id_type_use) {
         this.id_type_use = id_type_use;
     }
 
-    public String getId_categ() {
+    public int getId_categ() {
         return id_categ;
     }
 
-    public void setId_categ(String id_categ) {
+    public void setId_categ(int id_categ) {
         this.id_categ = id_categ;
     }
 
@@ -134,75 +139,75 @@ public class Fund {
         this.square = square;
     }
 
-    public int getKvart_n() {
+    public String getKvart_n() {
         return kvart_n;
     }
 
-    public void setKvart_n(int kvart_n) {
+    public void setKvart_n(String kvart_n) {
         this.kvart_n = kvart_n;
     }
 
-    public int getCut_area_n() {
+    public String getCut_area_n() {
         return cut_area_n;
     }
 
-    public void setCut_area_n(int cut_area_n) {
+    public void setCut_area_n(String cut_area_n) {
         this.cut_area_n = cut_area_n;
     }
 
-    public int getTax_vydel_n() {
+    public String getTax_vydel_n() {
         return tax_vydel_n;
     }
 
-    public void setTax_vydel_n(int tax_vydel_n) {
+    public void setTax_vydel_n(String tax_vydel_n) {
         this.tax_vydel_n = tax_vydel_n;
     }
 
-    public String getId_hoz_section() {
+    public int getId_hoz_section() {
         return id_hoz_section;
     }
 
-    public void setId_hoz_section(String id_hoz_section) {
+    public void setId_hoz_section(int id_hoz_section) {
         this.id_hoz_section = id_hoz_section;
     }
 
-    public String getId_group_species() {
+    public int getId_group_species() {
         return id_group_species;
     }
 
-    public void setId_group_species(String id_group_species) {
+    public void setId_group_species(int id_group_species) {
         this.id_group_species = id_group_species;
     }
 
-    public String getId_type_cut() {
+    public int getId_type_cut() {
         return id_type_cut;
     }
 
-    public void setId_type_cut(String id_type_cut) {
+    public void setId_type_cut(int id_type_cut) {
         this.id_type_cut = id_type_cut;
     }
 
-    public String getId_account_method() {
+    public int getId_account_method() {
         return id_account_method;
     }
 
-    public void setId_account_method(String id_account_method) {
+    public void setId_account_method(int id_account_method) {
         this.id_account_method = id_account_method;
     }
 
-    public String getId_clean_method() {
+    public int getId_clean_method() {
         return id_clean_method;
     }
 
-    public void setId_clean_method(String id_clean_method) {
+    public void setId_clean_method(int id_clean_method) {
         this.id_clean_method = id_clean_method;
     }
 
-    public String getId_recovery_method() {
+    public int getId_recovery_method() {
         return id_recovery_method;
     }
 
-    public void setId_recovery_method(String id_recovery_method) {
+    public void setId_recovery_method(int id_recovery_method) {
         this.id_recovery_method = id_recovery_method;
     }
 
@@ -214,19 +219,19 @@ public class Fund {
         this.sostav = sostav;
     }
 
-    public String getId_bonitet() {
+    public int getId_bonitet() {
         return id_bonitet;
     }
 
-    public void setId_bonitet(String id_bonitet) {
+    public void setId_bonitet(int id_bonitet) {
         this.id_bonitet = id_bonitet;
     }
 
-    public String getId_forest_type() {
+    public int getId_forest_type() {
         return id_forest_type;
     }
 
-    public void setId_forest_type(String id_forest_type) {
+    public void setId_forest_type(int id_forest_type) {
         this.id_forest_type = id_forest_type;
     }
 
@@ -238,51 +243,51 @@ public class Fund {
         this.forest_cover = forest_cover;
     }
 
-    public String getId_soil() {
+    public int getId_soil() {
         return id_soil;
     }
 
-    public void setId_soil(String id_soil) {
+    public void setId_soil(int id_soil) {
         this.id_soil = id_soil;
     }
 
-    public String getId_plaint_state() {
+    public int getId_plaint_state() {
         return id_plaint_state;
     }
 
-    public void setId_plaint_state(String id_plaint_state) {
+    public void setId_plaint_state(int id_plaint_state) {
         this.id_plaint_state = id_plaint_state;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
-    public int getFullness() {
+    public String getFullness() {
         return fullness;
     }
 
-    public void setFullness(int fullness) {
+    public void setFullness(String fullness) {
         this.fullness = fullness;
     }
 
-    public int getAve_height() {
+    public String getAve_height() {
         return ave_height;
     }
 
-    public void setAve_height(int ave_height) {
+    public void setAve_height(String ave_height) {
         this.ave_height = ave_height;
     }
 
-    public int getAve_diameter() {
+    public String getAve_diameter() {
         return ave_diameter;
     }
 
-    public void setAve_diameter(int ave_diameter) {
+    public void setAve_diameter(String ave_diameter) {
         this.ave_diameter = ave_diameter;
     }
 

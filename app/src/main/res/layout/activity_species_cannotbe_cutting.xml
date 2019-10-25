@@ -164,21 +164,21 @@
             android:textSize="@dimen/textview_textsize_table"/>
 
         <TextView
-            android:layout_width="@dimen/layout_width_column_perechet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Диаметр"
             android:textSize="@dimen/textview_textsize_table" />
 
         <TextView
-            android:layout_width="@dimen/layout_width_column_perechet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Кол-во"
             android:textSize="@dimen/textview_textsize_table" />
 
         <TextView
-            android:layout_width="@dimen/layout_width_column_perechet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Номера"

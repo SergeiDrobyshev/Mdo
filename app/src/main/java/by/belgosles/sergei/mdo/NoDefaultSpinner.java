@@ -91,7 +91,7 @@ public class NoDefaultSpinner extends androidx.appcompat.widget.AppCompatSpinner
 
         protected View getView(int position, View convertView, ViewGroup parent) throws IllegalAccessException {
             if( position < 0 ) {
-                final TextView v = (TextView) ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.spinner_item,parent,false);
+                final TextView v = (TextView) ((LayoutInflater)getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE)).inflate(R.layout.spinner_item1,parent,false);
                 v.setText(getPrompt());
                 return v;
             }

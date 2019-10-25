@@ -58,7 +58,7 @@
             android:layout_marginTop="@dimen/marginTop">
 
             <TextView
-                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dimeter_tree"
                 android:textSize="@dimen/textview_textsize"/>
@@ -104,7 +104,7 @@
             android:layout_marginTop="@dimen/marginTop">
 
             <TextView
-                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total_trees"
                 android:textSize="@dimen/textview_textsize"/>
@@ -145,7 +145,7 @@
 
         <TextView
             android:id="@+id/textview_height_category"
-            android:layout_width="@dimen/layout_width_column_perechet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/height_category"
             android:textSize="@dimen/textview_textsize" />

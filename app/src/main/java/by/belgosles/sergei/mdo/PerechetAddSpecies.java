@@ -1,6 +1,5 @@
 package by.belgosles.sergei.mdo;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -9,9 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -38,7 +35,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
 
         NoDefaultSpinner spinner = findViewById(R.id.spinner_poroda_value);
        // ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
-        ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item);
+        ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item1);
         arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(arrayadapterspinner);
         listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);

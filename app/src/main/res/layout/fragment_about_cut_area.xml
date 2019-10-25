@@ -29,6 +29,7 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
+                android:spinnerMode="dialog"
                 android:textSize="@dimen/textview_textsize" />
         </LinearLayout>
 
@@ -52,7 +53,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"/>
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -239,7 +241,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -262,7 +265,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -285,7 +289,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -308,7 +313,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -331,7 +337,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -355,7 +362,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <View
@@ -411,7 +419,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -435,7 +444,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -483,7 +493,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout
@@ -508,7 +519,8 @@
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"/>
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <LinearLayout

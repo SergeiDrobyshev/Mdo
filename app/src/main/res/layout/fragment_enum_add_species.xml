@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent">
 <LinearLayout
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -33,9 +32,10 @@
             <EditText
                 android:id="@+id/editText_amount_of_whip"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
+                android:layout_weight="0.5"
                 android:textSize="@dimen/textview_textsize"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:inputType="numberDecimal"/>
@@ -74,60 +74,65 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="40dp"
+                android:gravity="center"
                 android:text="@string/amout_trees"
                 android:textSize="@dimen/textview_textsize"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/diameters"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/diameters"
-                android:layout_width="@dimen/layout_width_column_perechet"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
                 android:text="@string/dimeter_tree"
                 android:textSize="@dimen/textview_textsize"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/del"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="50dp"
-                android:layout_marginRight="50dp"
                 android:text="@string/del"
                 android:textSize="@dimen/textview_textsize"
-                app:layout_constraintBottom_toBottomOf="@+id/diameters"
-                app:layout_constraintEnd_toStartOf="@+id/drov"
-                app:layout_constraintTop_toTopOf="@+id/diameters" />
+                app:layout_constraintEnd_toStartOf="@+id/guideline1"
+                app:layout_constraintStart_toEndOf="@+id/diameters"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.60"/>
 
             <TextView
                 android:id="@+id/drov"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
                 android:text="@string/drov"
                 android:textSize="@dimen/textview_textsize"
-                app:layout_constraintBottom_toBottomOf="@+id/diameters"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/diameters" />
+                app:layout_constraintStart_toStartOf="@+id/guideline1"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewPerechet"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/perecher_recycler_height"
                 android:layout_marginTop="8dp"
                 android:clipToPadding="false"
-                android:scrollbars="vertical"
+                android:scrollbars="vertical|horizontal"
+                android:background="@drawable/perechet_recyclerview_style"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/diameters"
-                tools:listitem="@layout/item_perechet">
+                app:layout_constraintTop_toBottomOf="@+id/diameters">
 
             </androidx.recyclerview.widget.RecyclerView>
 
