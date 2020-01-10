@@ -19,7 +19,7 @@ public class StockAndTax extends AppCompatActivity {
         // взять из бд список добавленных пород в перечетке и передать в адаптер спиннера
 
 
-       ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item1);
+       ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item11);
        arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
        spinner.setAdapter(arrayadapterspinner);
 

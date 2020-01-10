@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,7 +23,9 @@ import butterknife.OnClick;
 import by.belgosles.sergei.mdo.App;
 import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.StockAndTax;
+import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.adapters.RVAdapterListStatements;
+import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
 import by.belgosles.sergei.mdo.model.entity.Fund;
 
@@ -55,18 +57,13 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     }
 
     private void setAdapters() {
-        //todo new spin adapter
-        ArrayList<String> refsDataRealiz = (ArrayList<String>) db.getDictsDao().getAllRealizs();
-        ArrayList <String> refsDataTax = (ArrayList<String>) db.getDictsDao().getAllTaxRate();
-        ArrayAdapter<String> tax_adapter = new ArrayAdapter<>(this, R.layout.spinner_item1, refsDataTax);
-        tax_adapter.setDropDownViewResource( R.layout.spinner_dropdown_item);
+        ArrayList <DictName> list_tax_rate = (ArrayList<DictName>) db.getDictsDao().getAllRankTrf();
+        DictSpinnerAdapter tax_adapter = new DictSpinnerAdapter(this, R.layout.spinner_dropdown_item , list_tax_rate);
         tax_category.setAdapter(tax_adapter);
-        //setListeners();
 
-        ArrayAdapter<String> realiz_adapter = new ArrayAdapter<String>(this, R.layout.spinner_item1, refsDataRealiz);
-        realiz_adapter.setDropDownViewResource( R.layout.spinner_dropdown_item);
-        realization.setAdapter(realiz_adapter);
-        //setListeners();
+        ArrayList<DictName> list_realiz = (ArrayList<DictName>) db.getDictsDao().getAllMethReal();
+        DictSpinnerAdapter adapter_realiz = new DictSpinnerAdapter(this, R.layout.spinner_dropdown_item, list_realiz);
+        realization.setAdapter(adapter_realiz);
     }
 
     private void fillFields() {
@@ -82,14 +79,14 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 stateFundForest.setChecked(true);
                 inaccessibility.setChecked(false);
                 fund = new Fund();
-                rowId = db.getstatementDao().insert(fund);
-                //Log.e("id_new", String.valueOf(rowId));
+                rowId = db.getstatementDao().insert(fund);// id созданной ведомости
             }
         }
     }
 
     private void fillfieldsfromDB()  {
         // заполнение полей из бд
+        //todo не доставать весь обьект fund, а только те что нужны
         fund = db.getstatementDao().getFundById(bundle.getLong(EXTRA_id_fund));
 
         if(fund.getFilling_date() != null){
@@ -106,18 +103,6 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         stateFundForest.setChecked(fund.isState_fund_forest());
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e("OnDestroy","onDestroy");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e("OnStop","OnStop");
-    }
-
     @OnClick({R.id.statement_mdo, R.id.stock_and_tax, R.id.save_create_statement})
     public void onClick(View view){
         Intent intent;
@@ -130,7 +115,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 else{
                     intent.putExtra(EXTRA_id_fund, rowId);
                 }
-                startActivity(intent);
+                startActivityForResult(intent, request_code);
                 break;
             case R.id.stock_and_tax:
                 intent = new Intent(CreateStatementActivity.this , StockAndTax.class);
@@ -144,15 +129,14 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 new  AlertDialog.Builder(this)
                         .setMessage("Вы действительно хотите сохранить?")
                         .setPositiveButton("Да", (dialogInterface, i) -> {
-                            if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE){
-                                db.getstatementDao().update(setDataToFund());
+                            if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE){// проверка на создание новой ведомости или изменение старой
+                                updateFund(fund.getId_fund());
                             }else {
-                               // Fund fund = setDataToFund();
-                               // db.getstatementDao().insert(fund);
+                                updateFund(rowId);
                             }
                             setResult(RESULT_OK);
                             finish();
-                            Log.e("finish","finish");
+
                         })
                         .setNegativeButton("Нет", null)
                         .show();
@@ -160,16 +144,20 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         }
     }
 
-    private Fund setDataToFund() {
-        fund.setFilling_date(getInputtedText(edittextDate));
-        fund.setId_forestry(getInputtedText(forestry));
+    // сохранение данных из вью в бд
+    private void updateFund(long id_fund) {
+        String filling_date = getInputtedText(edittextDate);
+        //todo сохранять id виесто значения
+        String id_forestry = getInputtedText(forestry);
 
-        fund.setId_tax_rate(getinputTextSp(tax_category));
-        fund.setId_implementation(getinputTextSp(realization));
-        fund.setInaccessibility(inaccessibility.isChecked());
-        fund.setState_fund_forest(stateFundForest.isChecked());
+        int id_tax_category = (Integer) tax_category.getSelectedView().getTag();
+        int id_implementation = (Integer) realization.getSelectedView().getTag();
 
-        return fund;
+        boolean inaccessibilityValue = inaccessibility.isChecked();
+        boolean stateFundForestValue = stateFundForest.isChecked();
+
+        db.getstatementDao().updateFromCreateStatementActivity(filling_date, id_forestry, id_tax_category, id_implementation,
+                inaccessibilityValue, stateFundForestValue, id_fund);
     }
 
     @Override
@@ -177,8 +165,8 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         new  AlertDialog.Builder(this)
                 .setMessage("Выйти без сохранения?")
                 .setPositiveButton("Да", (dialogInterface, i) -> {
-                    if(request_code != RVAdapterListStatements.REQUEST_CODE_CHANGE){
-                        db.getstatementDao().delete(fund);
+                    if(request_code == ListStatementsActivity.REQUEST_CODE_CREATE){
+                        db.getstatementDao().deleteNotSaveStatement(rowId);
                     }
                     finish();
                 })
@@ -191,18 +179,6 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
             return editText.getText().toString();
         }
         return "";
-    }
-
-    private int getinputTextSp(Spinner sp) {
-            String name = sp.getSelectedItem().toString();
-            if(sp == tax_category){
-                return db.getDictsDao().getIdRankTax(name);
-            }
-            else if(sp == realization){
-                return db.getDictsDao().getIdMethReal(name);
-            }
-            //TODO
-        return 0;
     }
 
     private boolean isEmptyFields (){
@@ -229,5 +205,10 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         Toast toast = Toast.makeText(this, mes,Toast.LENGTH_LONG);
         toast.setGravity(Gravity.CENTER, 0, 0);
         toast.show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
     }
 }

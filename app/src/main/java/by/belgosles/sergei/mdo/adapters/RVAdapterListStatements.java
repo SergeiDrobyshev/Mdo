@@ -88,8 +88,7 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
         void bind (Fund statement){
             if(statement != null) {
                 et_forestry.setText(statement.getId_forestry()); //достать по ид лесничетсва его название и сетнуть на вью
-                et_date.setText(statement.getFilling_date());
-                //достать дату по ид
+                et_date.setText(statement.getFilling_date());//достать дату по ид
             }
         }
     }

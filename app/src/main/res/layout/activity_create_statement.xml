@@ -71,11 +71,11 @@
             <Spinner
                 android:id="@+id/sp_tax_category"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"/>
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
 
         </LinearLayout>
 
@@ -95,11 +95,11 @@
             <Spinner
                 android:id="@+id/sp_realization"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_gravity="center_vertical"
-                android:textSize="@dimen/textview_textsize"/>
+                android:textSize="@dimen/textview_textsize"
+                android:spinnerMode="dialog"/>
         </LinearLayout>
 
         <CheckBox

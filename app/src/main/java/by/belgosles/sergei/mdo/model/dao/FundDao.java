@@ -19,11 +19,53 @@ public interface FundDao {
     @Query("SELECT * FROM Fund WHERE id_fund = :id_fund")
     public Fund getFundById(long id_fund);
 
-    @Query("Select last_insert_rowid()")
-    public int getLastInsertRowId();
+    @Query("Update Fund SET " +
+            "id_type_use = :id_type_use, " +
+            "id_categ = :id_categ," +
+            "year_fund = :year_fund," +
+            "year_allot = :year_allot," +
+            "kvart_n = :kvart_n," +
+            "cut_area_n = :cut_area_n," +
+            "tax_vydel_n = :tax_vydel_n," +
+            "square = :square," +
+            "id_hoz_section = :id_hoz_section," +
+            "id_group_species = :id_group_species," +
+            "id_type_cut = :id_type_cut," +
+            "id_account_method = :id_account_method," +
+            "id_clean_method = :id_clean_method," +
+            "id_recovery_method = :id_recovery_method," +
+            "sostav = :sostav," +
+            "id_bonitet = :id_bonitet," +
+            "id_forest_type = :id_forest_type," +
+            "forest_cover = :forest_cover," +
+            "id_soil = :id_soil," +
+            "id_plaint_state = :id_plaint_state," +
+            "age = :age," +
+            "fullness = :fullness," +
+            "ave_height = :ave_height," +
+            "ave_diameter = :ave_diameter," +
+            "comment = :comment " +
+            "Where id_fund = :id_fund")
+    void updateFromStatementMdoFragment(int id_type_use, int id_categ, String year_fund, String year_allot,
+                                        String kvart_n, String cut_area_n, String tax_vydel_n, String square,
+                                        int id_hoz_section, int id_group_species, int id_type_cut, int id_account_method, int id_clean_method, int id_recovery_method,
+                                        String sostav, int id_bonitet, int id_forest_type, String forest_cover, int id_soil, int id_plaint_state, String age,
+                                        String fullness, String ave_height, String ave_diameter, String comment, long id_fund);
 
-    @Update
-    void update(Fund fund);
+    @Query("Update Fund SET " +
+            "filling_date = :filling_date," +
+            "id_forestry = :id_forestry," +
+            "id_tax_rate = :id_tax_rate," +       //todo change to int id_forestry
+            "id_implementation = :id_implementation," +
+            "inaccessibility = :inaccessibility," +
+            "state_fund_forest = :state_fund_forest " +
+            "WHERE id_fund = :id_fund")
+    void updateFromCreateStatementActivity(String filling_date, String id_forestry, int id_tax_rate,
+                                           int id_implementation, boolean inaccessibility, boolean state_fund_forest, long id_fund);
+
+    @Query("Delete From Fund Where id_fund = :id_fund")
+    void deleteNotSaveStatement(long id_fund);
+
 
     @Insert
     long insert(Fund fund);

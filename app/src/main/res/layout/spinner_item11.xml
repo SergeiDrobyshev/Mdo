@@ -12,3 +12,4 @@
     android:paddingBottom="2dp"
     android:maxLines="2"
     android:textColor="#212121" />
+<!-- todo удалить потом -->

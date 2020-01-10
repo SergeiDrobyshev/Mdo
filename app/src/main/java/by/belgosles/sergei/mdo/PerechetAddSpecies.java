@@ -35,7 +35,7 @@ public class PerechetAddSpecies extends AppCompatActivity implements View.OnClic
 
         NoDefaultSpinner spinner = findViewById(R.id.spinner_poroda_value);
        // ListView listviewAddedSpecies = (ListView) findViewById(R.id.listview_added_species);
-        ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item1);
+        ArrayAdapter arrayadapterspinner = ArrayAdapter.createFromResource(this, R.array.species_trees, R.layout.spinner_item11);
         arrayadapterspinner.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(arrayadapterspinner);
         listAddedSpeciesAdapter = new ListAddedSpeciesAdapter(this, arrayListAddedSpecies);

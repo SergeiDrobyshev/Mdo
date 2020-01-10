@@ -11,6 +11,7 @@ public class Fund {
     @PrimaryKey(autoGenerate = true)
     public long id_fund;
 
+    //todo change to int
     private String id_forestry;
 
     public int getId_leshoz() {
