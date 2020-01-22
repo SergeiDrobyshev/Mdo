@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
-        android:layout_marginBottom="@dimen/layout_margin_bottom"
+        android:layout_marginBottom= "@dimen/layout_margin_bottom"
         android:orientation="vertical">
 
         <LinearLayout

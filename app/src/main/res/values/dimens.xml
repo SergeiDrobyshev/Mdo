@@ -24,7 +24,7 @@
     <dimen name="appBarTitle_padding">12dp</dimen>
     <dimen name="textsize_spinner_prompt">10sp</dimen>
     <dimen name="marginLeft_perechet">20dp</dimen>
-    <dimen name="perecher_recycler_height">250dp</dimen>
+    <dimen name="perecher_recycler_height">280dp</dimen>
     <dimen name="width_tv_diameter">77dp</dimen>
 
 

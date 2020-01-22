@@ -1,73 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_general"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin"
         android:orientation="vertical">
 
         <LinearLayout
+            android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/amount_of_whip"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical"
                 android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
                 android:text="@string/amount_of_whip"
-                android:textSize="@dimen/textview_textsize"/>
+                android:textSize="@dimen/textview_textsize" />
 
             <EditText
                 android:id="@+id/editText_amount_of_whip"
-                android:layout_marginLeft="@dimen/marginLeft"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="center_horizontal"
-                android:layout_weight="0.5"
-                android:textSize="@dimen/textview_textsize"
                 android:layout_marginStart="@dimen/marginLeft"
-                android:inputType="numberDecimal"/>
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/textview_textsize" />
 
             <by.belgosles.sergei.mdo.NoDefaultSpinner
                 android:id="@+id/spinner_poroda_value"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:layout_weight="1"
-                android:spinnerMode="dialog"
-                android:layout_gravity="center_vertical|start"
+                android:background="@drawable/spinner_background"
                 android:gravity="center"
                 android:prompt="@string/add_species"
-                android:background="@drawable/spinner_background"
-                />
+                android:spinnerMode="dialog" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.constraintlayout.helper.widget.Flow
             android:id="@+id/new_layout_enum"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop">
+            android:layout_marginTop="16dp"
+            app:flow_wrapMode="chain"
+            app:flow_horizontalBias="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/new_layout_enum">
 
             <TextView
                 android:id="@+id/amount_tress"
@@ -109,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.60"/>
+                app:layout_constraintGuide_percent="0.60" />
 
             <TextView
                 android:id="@+id/drov"
@@ -126,9 +139,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/perecher_recycler_height"
                 android:layout_marginTop="8dp"
+                android:background="@drawable/perechet_recyclerview_style"
                 android:clipToPadding="false"
                 android:scrollbars="vertical|horizontal"
-                android:background="@drawable/perechet_recyclerview_style"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
@@ -136,9 +149,8 @@
 
             </androidx.recyclerview.widget.RecyclerView>
 
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>
 </ScrollView>

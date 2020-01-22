@@ -47,7 +47,7 @@ public class SpeciesCannotbeCutting extends AppCompatActivity implements View.On
         textView.setText(onClickWood);
 
         spinner = findViewById(spinner_view_of_testes);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.view_of_testes, R.layout.spinner_item11);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(this, R.array.view_of_testes, R.layout.spinner_title);
         adapter.setDropDownViewResource(R.layout.spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
