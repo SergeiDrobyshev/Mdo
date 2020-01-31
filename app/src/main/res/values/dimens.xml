@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="textview_textsize">13sp</dimen>
+    <dimen name="textview_textsize">12sp</dimen>
     <dimen name="textview_textsize_table">10sp</dimen>
     <dimen name="button_textsize">10sp</dimen>
     <dimen name="margin">16dp</dimen>
@@ -25,7 +25,7 @@
     <dimen name="textsize_spinner_prompt">10sp</dimen>
     <dimen name="marginLeft_perechet">20dp</dimen>
     <dimen name="perecher_recycler_height">280dp</dimen>
-    <dimen name="width_tv_diameter">77dp</dimen>
+    <dimen name="width_tv_diameter">35dp</dimen>
 
 
 </resources>

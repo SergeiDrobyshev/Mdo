@@ -4,18 +4,21 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.helper.widget.Flow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -39,16 +42,16 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 public class EnumFragment extends Fragment {
     @BindView(R.id.spinner_poroda_value) Spinner spin_allSpecies;
     @BindView(R.id.recyclerViewPerechet) RecyclerView rvPerechet;
-    @BindView(R.id.new_layout_enum) Flow layout_enum;
     @BindView(R.id.editText_amount_of_whip) EditText ed_whip;
     @BindView(R.id.constraint_general) ConstraintLayout constraintLayout_general;
+    @BindView(R.id.radioGroup_selected_species) RadioGroup radioGroupSelectedSpecies;
 
     private AppDb db;
     private ArrayList<String> listAddedSpecies = new ArrayList<>();
     private int [] diameters = new int[30];
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+    private ArrayList<DictName> saveSpeciesList = new ArrayList<>();
     private static final String ID_FUND = "param1";
+    // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
@@ -88,6 +91,19 @@ public class EnumFragment extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_enum_add_species, container,false);
         ButterKnife.bind(this,view);
         setViewAdapters();
+        if(savedInstanceState != null){
+            if (savedInstanceState.containsKey("speciesButtons")) {
+                ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons") ;
+                if (list != null) {
+                    restoreButtonsSpecies(list);
+                }
+            }
+        }
+        radioGroupSelectedSpecies.setOnCheckedChangeListener((radioGroup, i) -> {
+            int id_checkedSpecies = radioGroup.getCheckedRadioButtonId();
+
+
+        });
         return view;
     }
 
@@ -109,42 +125,46 @@ public class EnumFragment extends Fragment {
         rvPerechet.setItemViewCacheSize(diameters.length);
     }
 
-    private void saveValues(){
-        String whip = String.valueOf(ed_whip.getText());
+    public void saveValues(long id_fund){
+        String whip = getInputtedText(ed_whip);
     }
 
     @OnItemSelected(R.id.spinner_poroda_value)
     public void onClick(){
-        String selectedItemValue = spin_allSpecies.getSelectedItem().toString();
-        int id_species = (Integer) spin_allSpecies.getSelectedView().getTag();
+        DictName selectedDictName = (DictName) spin_allSpecies.getSelectedItem();
+        String selectedItemValue = selectedDictName.getValue();
+        int id_species = selectedDictName.getId();
 
+        //todo change orientation, remove onclick
         if(listAddedSpecies.contains(selectedItemValue)){
             Toast toast = Toast.makeText(getContext(),"Выбранная порода уже добавлена!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
         }else {
             listAddedSpecies.add(selectedItemValue);
-            addNewButtonToView(selectedItemValue, id_species);
+            addNewButton(selectedItemValue, id_species);
+            saveSpeciesList.add(selectedDictName);
             //listAddedSpeciesAdapter.notifyDataSetChanged();
         }
     }
 
-
-    private void addNewButtonToView(String selectedItemValue, long id_species) {
-        Button btn = new Button(getContext());
-        btn.setText(selectedItemValue);
-        btn.setTag(id_species);
-        btn.setTextSize(10);
-        btn.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
+    private void addNewButton(String selectedItemValue, long id_species) {
+        RadioButton rb = new RadioButton(getContext());
+        rb.setText(selectedItemValue);
+        //rb.setTag(id_species);
+        rb.setTextSize(13);
+        rb.setLayoutParams(new LinearLayout .LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         //todo version sdk
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            btn.setId(View.generateViewId());
-        }
-        constraintLayout_general.addView(btn);
-        layout_enum.addView(btn);
-        btn.setOnClickListener(view -> {
+        rb.setId((int) id_species);
+        radioGroupSelectedSpecies.addView(rb);
 
-        });
+
+           /* Log.e("onClickButtonSpecies", rb.getText().toString());
+            clickButton(id_species);*/
+    }
+
+    private void clickButton(long id_species) {
+
     }
 
     @Override
@@ -159,10 +179,27 @@ public class EnumFragment extends Fragment {
         db.close();
     }
 
-
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("speciesButtons", saveSpeciesList);
+    }
 
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    private String getInputtedText(EditText editText) {
+        if (editText.getText() != null) {
+            return editText.getText().toString();
+        }
+        return "";
+    }
+
+    private void restoreButtonsSpecies(ArrayList<DictName> list){
+        for (DictName species: list) {
+            addNewButton(species.getValue(), species.getId());
+        }
     }
 }

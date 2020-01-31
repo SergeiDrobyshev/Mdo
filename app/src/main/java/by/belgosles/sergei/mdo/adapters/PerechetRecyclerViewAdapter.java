@@ -25,7 +25,7 @@ public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRe
     public static ArrayList<EdittextModelPerechet> masvalues;
 
     public PerechetRecyclerViewAdapter(int[] diameters, Context ctx) {
-         masvalues = new ArrayList<>();
+        masvalues = new ArrayList<>();
         this.diameters = diameters;
         inflater = LayoutInflater.from(ctx);
     }
@@ -59,12 +59,15 @@ public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRe
             textviewDiameter = view.findViewById(R.id.textView_diameter_number);
             editTextDel = view.findViewById(R.id.editText_del);
             editTextDrov = view.findViewById(R.id.editText_drov);
-
         }
 
         void bind(final int diameter) {
             String t = Integer.toString(diameter);
             textviewDiameter.setText(t);
+        }
+
+        void savePerechetValues(){
+
         }
     }
 }

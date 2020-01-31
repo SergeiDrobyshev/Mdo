@@ -39,10 +39,10 @@
     <string name="note">Примечание</string>
     <string name="save_mdo">Сохранить изменения</string>
     <string name="poroda">Порода:</string>
-    <string name="dimeter_tree">Диаметр\nна высоте\nгруди, см</string>
-    <string name="del">деловых</string>
-    <string name="drov">дровяных</string>
-    <string name="amout_trees">число \nдеревьев</string>
+    <string name="dimeter_tree">Диаметр,\nсм</string>
+    <string name="del">дел.</string>
+    <string name="drov">дров.</string>
+    <string name="amout_trees">Кол-во</string>
     <string name="total_trees">Всего\nдеревьев:</string>
     <string name="amount_of_whip">Ср. объем\nхлыста:</string>
     <string name="model_tree">Модельные деревья</string>

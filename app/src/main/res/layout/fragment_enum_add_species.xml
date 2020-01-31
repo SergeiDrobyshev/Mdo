@@ -1,156 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-<LinearLayout
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_general"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/margin">
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/amount_of_whip"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_vertical"
+            android:text="@string/amount_of_whip"
+            android:textSize="@dimen/textview_textsize"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/amount_of_whip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:text="@string/amount_of_whip"
-                android:textSize="@dimen/textview_textsize" />
-
-            <EditText
-                android:id="@+id/editText_amount_of_whip"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_weight="0.5"
-                android:gravity="center_horizontal"
-                android:inputType="numberDecimal"
-                android:textSize="@dimen/textview_textsize" />
-
-            <by.belgosles.sergei.mdo.NoDefaultSpinner
-                android:id="@+id/spinner_poroda_value"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical|start"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:layout_weight="1"
-                android:background="@drawable/spinner_background"
-                android:gravity="center"
-                android:prompt="@string/add_species"
-                android:spinnerMode="dialog" />
-
-        </LinearLayout>
-
-        <androidx.constraintlayout.helper.widget.Flow
-            android:id="@+id/new_layout_enum"
-            android:layout_width="match_parent"
+        <EditText
+            android:id="@+id/editText_amount_of_whip"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:flow_wrapMode="chain"
-            app:flow_horizontalBias="0"
+            android:layout_marginStart="2dp"
+            android:layout_marginLeft="2dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginRight="2dp"
+            android:gravity="center_horizontal"
+            android:inputType="numberDecimal"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_general"
+            app:layout_constraintStart_toEndOf="@+id/amount_of_whip"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_general"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <by.belgosles.sergei.mdo.NoDefaultSpinner
+            android:id="@+id/spinner_poroda_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_background"
+            android:gravity="start"
+            android:prompt="@string/add_species"
+            android:spinnerMode="dialog"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_general"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup_selected_species"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintHeight_percent="0.84"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_general"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+            app:layout_constraintTop_toTopOf="@+id/recyclerViewPerechet" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/amount_tress"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/marginTop"
+            android:gravity="center"
+            android:text="@string/amout_trees"
+            android:textSize="@dimen/textview_textsize"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/new_layout_enum">
+            app:layout_constraintStart_toEndOf="@+id/diameters"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_poroda_value" />
 
-            <TextView
-                android:id="@+id/amount_tress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:gravity="center"
-                android:text="@string/amout_trees"
-                android:textSize="@dimen/textview_textsize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/diameters"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/diameters"
+            android:layout_width="@dimen/width_tv_diameter"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/dimeter_tree"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintStart_toStartOf="@+id/guideline_general"
+            app:layout_constraintTop_toTopOf="@+id/amount_tress" />
 
-            <TextView
-                android:id="@+id/diameters"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="@string/dimeter_tree"
-                android:textSize="@dimen/textview_textsize"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/del"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/del"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/diameters"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_del_drov"
+            app:layout_constraintStart_toEndOf="@+id/diameters" />
 
-            <TextView
-                android:id="@+id/del"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/del"
-                android:textSize="@dimen/textview_textsize"
-                app:layout_constraintEnd_toStartOf="@+id/guideline1"
-                app:layout_constraintStart_toEndOf="@+id/diameters"
-                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_del_drov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.79" />
 
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.60" />
+        <TextView
+            android:id="@+id/drov"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/drov"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/diameters"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_del_drov" />
 
-            <TextView
-                android:id="@+id/drov"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/drov"
-                android:textSize="@dimen/textview_textsize"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/guideline1"
-                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPerechet"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/marginTop"
+            android:background="@drawable/perechet_recyclerview_style"
+            android:clipToPadding="false"
+            android:scrollbars="vertical|horizontal"
+            app:layout_constraintHeight_percent="0.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_general"
+            app:layout_constraintTop_toBottomOf="@+id/diameters">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerViewPerechet"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/perecher_recycler_height"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/perechet_recyclerview_style"
-                android:clipToPadding="false"
-                android:scrollbars="vertical|horizontal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/diameters">
-
-            </androidx.recyclerview.widget.RecyclerView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.recyclerview.widget.RecyclerView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</LinearLayout>
 </ScrollView>

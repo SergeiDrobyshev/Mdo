@@ -23,10 +23,6 @@
             android:label="Создать ведомость"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
-            android:name=".Perechet"
-            android:label="Ведомость перечета деревьев"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
             android:name=".CannotBeCutting"
             android:label="Рубке не подлежат"
             android:windowSoftInputMode="stateAlwaysHidden" />
@@ -45,10 +41,6 @@
         <activity
             android:name=".SpeciesCannotbeCutting"
             android:label="Рубке не подлежат"
-            android:windowSoftInputMode="stateAlwaysHidden" />
-        <activity
-            android:name=".PerechetAddSpecies"
-            android:label="Ведомость перечета деревьев"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity android:name=".RezultStockAndTax" />
     </application>
