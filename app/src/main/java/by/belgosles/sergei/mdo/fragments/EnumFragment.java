@@ -2,15 +2,11 @@ package by.belgosles.sergei.mdo.fragments;
 
 import android.content.Context;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.OrientationEventListener;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -19,18 +15,20 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.helper.widget.Flow;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnItemSelected;
 import by.belgosles.sergei.mdo.App;
+import by.belgosles.sergei.mdo.DiamDelDrov;
 import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.adapters.PerechetRecyclerViewAdapter;
@@ -48,16 +46,16 @@ public class EnumFragment extends Fragment {
 
     private AppDb db;
     private ArrayList<String> listAddedSpecies = new ArrayList<>();
-    private int [] diameters = new int[30];
+    private ArrayList<DiamDelDrov> listDiamsForAdapter = new ArrayList<>();
     private ArrayList<DictName> saveSpeciesList = new ArrayList<>();
+    private int prevIdCheckedSpecies = 0;
     private static final String ID_FUND = "param1";
-    // TODO: Rename parameter arguments, choose names that match
     private static final String ARG_PARAM2 = "param2";
-
+    private PerechetRecyclerViewAdapter rvPerechetAdapter;
+    private Map<Integer, ArrayList<DiamDelDrov>> mapSpeciesAndDelDrovAmount = new HashMap<>();
     // TODO: Rename and change types of parameters
     private long id_fund;
     private String mParam2;
-
     private OnFragmentInteractionListener mListener;
 
     public EnumFragment() {
@@ -76,7 +74,7 @@ public class EnumFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
+        //setRetainInstance(true);
         if (getArguments() != null) {
             id_fund = getArguments().getLong(ID_FUND);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -95,16 +93,33 @@ public class EnumFragment extends Fragment {
             if (savedInstanceState.containsKey("speciesButtons")) {
                 ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons") ;
                 if (list != null) {
-                    restoreButtonsSpecies(list);
+                    //restoreButtonsSpecies(list);
                 }
             }
         }
         radioGroupSelectedSpecies.setOnCheckedChangeListener((radioGroup, i) -> {
-            int id_checkedSpecies = radioGroup.getCheckedRadioButtonId();
-
-
+            if(prevIdCheckedSpecies !=0) {
+                int idCheckedSpecies = radioGroup.getCheckedRadioButtonId();
+                saveEnumWoodAmout(prevIdCheckedSpecies);
+                setEnumWoodAmountByIdCheckedSpecies(idCheckedSpecies);
+            }
+            prevIdCheckedSpecies = radioGroup.getCheckedRadioButtonId();
         });
+
         return view;
+    }
+
+    private void saveEnumWoodAmout(int prevIdCheckedSpecies) {
+        mapSpeciesAndDelDrovAmount.put(prevIdCheckedSpecies, rvPerechetAdapter.retrieveList());
+    }
+
+    private void setEnumWoodAmountByIdCheckedSpecies(int idSpecies) {
+        if(mapSpeciesAndDelDrovAmount.containsKey(idSpecies)){
+            ArrayList<DiamDelDrov> testlist = mapSpeciesAndDelDrovAmount.get(idSpecies);
+            rvPerechetAdapter.dataChanged(testlist);
+        }else {
+            rvPerechetAdapter.dataChanged(listDiamsForAdapter);// todo pass list, not copy list
+        }
     }
 
     private void setViewAdapters() {
@@ -113,20 +128,23 @@ public class EnumFragment extends Fragment {
         spin_allSpecies.setAdapter(adapter_species);
 
         int k = 8;
-        for (int i = 0; i < 30; i++ ){
-            diameters [i] = k;
+        for (int i = 0; i < 30; i++){
+            DiamDelDrov diamDelDrov = new DiamDelDrov();
+            diamDelDrov.diameter = String.valueOf(k);
+            listDiamsForAdapter.add(diamDelDrov);
             k = k + 4;
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         rvPerechet.setLayoutManager(layoutManager);
-        PerechetRecyclerViewAdapter adapter = new PerechetRecyclerViewAdapter(diameters, getContext());
-        rvPerechet.setAdapter(adapter);
-        rvPerechet.setItemViewCacheSize(diameters.length);
+        rvPerechetAdapter = new PerechetRecyclerViewAdapter(listDiamsForAdapter, getContext());
+        rvPerechet.setAdapter(rvPerechetAdapter);
+        //rvPerechet.setItemViewCacheSize(listDiamDelDrov.size());
     }
 
     public void saveValues(long id_fund){
         String whip = getInputtedText(ed_whip);
+
     }
 
     @OnItemSelected(R.id.spinner_poroda_value)
@@ -144,7 +162,7 @@ public class EnumFragment extends Fragment {
             listAddedSpecies.add(selectedItemValue);
             addNewButton(selectedItemValue, id_species);
             saveSpeciesList.add(selectedDictName);
-            //listAddedSpeciesAdapter.notifyDataSetChanged();
+            //listAddedSpeciesAdapter.DataSetChanged();
         }
     }
 
@@ -161,10 +179,6 @@ public class EnumFragment extends Fragment {
 
            /* Log.e("onClickButtonSpecies", rb.getText().toString());
             clickButton(id_species);*/
-    }
-
-    private void clickButton(long id_species) {
-
     }
 
     @Override

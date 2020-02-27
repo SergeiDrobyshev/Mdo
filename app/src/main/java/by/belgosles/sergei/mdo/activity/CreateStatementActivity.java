@@ -92,9 +92,11 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         if(fund.getFilling_date() != null){
             edittextDate.setText(fund.getFilling_date());
         }
+
         if(fund.getId_forestry() != null){
             forestry.setText(fund.getId_forestry());
         }
+
         //todo remove -1
         tax_category.setSelection(fund.getId_tax_rate() - 1);
         realization.setSelection(fund.getId_implementation() - 1);

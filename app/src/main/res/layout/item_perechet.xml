@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp">
@@ -12,15 +13,10 @@
         android:gravity="center"
         android:textSize="@dimen/textview_textsize"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/item_guideline_diam_drov"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/item_guideline_diam_drov"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"/>
+
 
     <EditText
         android:id="@+id/editText_del"
@@ -30,7 +26,7 @@
         android:textSize="@dimen/textview_textsize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/item_guideline_del_drov"
-        app:layout_constraintStart_toStartOf="@+id/item_guideline_diam_drov"
+        app:layout_constraintStart_toEndOf="@+id/textView_diameter_number"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -38,17 +34,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.56" />
+        app:layout_constraintGuide_percent="0.58" />
 
     <EditText
         android:id="@+id/editText_drov"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:layout_marginStart="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="2dp"
-        android:layout_marginEnd="2dp"
         android:textSize="@dimen/textview_textsize"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -58,9 +58,10 @@
         <RadioGroup
             android:id="@+id/radioGroup_selected_species"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            app:layout_constraintHeight_percent="0.84"
+            android:layout_marginRight="8dp"
+            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_general"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -119,16 +120,17 @@
             android:id="@+id/recyclerViewPerechet"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:layout_constraintHeight_default="wrap"
             android:layout_marginTop="@dimen/marginTop"
+            android:layout_marginBottom="25dp"
             android:background="@drawable/perechet_recyclerview_style"
             android:clipToPadding="false"
-            android:scrollbars="vertical|horizontal"
-            app:layout_constraintHeight_percent="0.8"
+            android:scrollbars="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
             app:layout_constraintTop_toBottomOf="@+id/diameters">
 
         </androidx.recyclerview.widget.RecyclerView>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
