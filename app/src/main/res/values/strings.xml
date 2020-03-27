@@ -100,6 +100,9 @@
     <string name="tab_text_1">Данные о лесосеке</string>
     <string name="tab_text_2">Перечет</string>
     <string name="add_species">Добавьте породу</string>
+    <string name="addDiameterRow">Добавить диаметр</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
     <string-array name="porody_testing">
         <item>береза</item>
         <item>дуб</item>
@@ -119,4 +122,23 @@
         <item>сосна</item>
         <item>ольха</item>
     </string-array>
+    <integer-array name="refs_diameters">
+        <item>8</item>
+        <item>12</item>
+        <item>16</item>
+        <item>20</item>
+        <item>24</item>
+        <item>28</item>
+        <item>32</item>
+        <item>36</item>
+        <item>40</item>
+        <item>44</item>
+        <item>48</item>
+        <item>52</item>
+        <item>56</item>
+        <item>60</item>
+        <item>64</item>
+        <item>68</item>
+        <item>72</item>
+    </integer-array>
 </resources>

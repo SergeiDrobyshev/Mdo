@@ -55,6 +55,18 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/addDiameterDelDrovRow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/addDiameterRow"
+            android:textSize="@dimen/textview_textsize"
+            android:layout_marginTop="@dimen/marginTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline_general"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_poroda_value" />
+
         <RadioGroup
             android:id="@+id/radioGroup_selected_species"
             android:layout_width="0dp"
@@ -65,7 +77,7 @@
             app:layout_constraintEnd_toStartOf="@+id/guideline_general"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/recyclerViewPerechet" />
+            app:layout_constraintTop_toTopOf="@+id/linearLayout_add_diam" />
 
         <TextView
             android:id="@+id/amount_tress"
@@ -77,7 +89,7 @@
             android:textSize="@dimen/textview_textsize"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/diameters"
-            app:layout_constraintTop_toBottomOf="@+id/spinner_poroda_value" />
+            app:layout_constraintTop_toBottomOf="@+id/addDiameterDelDrovRow" />
 
         <TextView
             android:id="@+id/diameters"
@@ -116,7 +128,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_del_drov" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <LinearLayout
+            android:id="@+id/linearLayout_add_diam"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/marginTop"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline_general"
+            app:layout_constraintTop_toBottomOf="@+id/diameters"/>
+
+
+        <!--<androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerViewPerechet"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -130,7 +153,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
             app:layout_constraintTop_toBottomOf="@+id/diameters">
+        </androidx.recyclerview.widget.RecyclerView>-->
 
-        </androidx.recyclerview.widget.RecyclerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

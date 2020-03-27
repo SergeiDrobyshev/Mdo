@@ -32,7 +32,7 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
     }
 
     public void dataChanged(ArrayList<Fund> fundlist){
-        fundlistcreated.clear();
+        fundlistcreated.clear(); // todo change clear? chane update rv
         fundlistcreated.addAll(fundlist);
         notifyDataSetChanged();
     }

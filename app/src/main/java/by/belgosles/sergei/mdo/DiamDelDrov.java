@@ -1,15 +1,15 @@
 package by.belgosles.sergei.mdo;
 
 public class DiamDelDrov {
-    public String diameter;
+    public int diameter;
     public String delAmount;
     public String drovAmount;
 
-    public String getDiameter() {
+    public int getDiameter() {
         return diameter;
     }
 
-    public void setDiameter(String diameter) {
+    public void setDiameter(int diameter) {
         this.diameter = diameter;
     }
 

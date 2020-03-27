@@ -13,49 +13,49 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import by.belgosles.sergei.mdo.DiamDelDrov;
 import by.belgosles.sergei.mdo.R;
 
 public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRecyclerViewAdapter.ViewHolder> {
 
-    private ArrayList<DiamDelDrov> listDiamDelDrov;
+    private int[] diameters;
     private LayoutInflater inflater;
+    private Map<Integer, DiamDelDrov> maptest = new HashMap<>();
+    //private DiamDelDrov instanceItem;
 
-    public PerechetRecyclerViewAdapter(ArrayList<DiamDelDrov> listDiamDelDrov, Context ctx) {
+    public PerechetRecyclerViewAdapter(int[] arrayDiam, Context ctx) {
         inflater = LayoutInflater.from(ctx);
-        this.listDiamDelDrov = listDiamDelDrov;
+        this.diameters = arrayDiam;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(inflater.inflate(R.layout.item_perechet, parent, false), new MyCustomDelEdittextListener(), new MyCustomDrovEditTextListener());
+        return new ViewHolder(inflater.inflate(R.layout.row_diam_del_drov, parent, false), new MyCustomDelEdittextListener(), new MyCustomDrovEditTextListener());
     }
 
     @Override
     public void onBindViewHolder(@NonNull PerechetRecyclerViewAdapter.ViewHolder holder, @SuppressLint("RecyclerView") final int position) {
         holder.myCustomDelEdittextListener.updatePosition(holder.getAdapterPosition());
         holder.myCustomDrovEditTextListener.updatePosition(holder.getAdapterPosition());
-        holder.bind(listDiamDelDrov.get(position));
+        holder.bind(diameters[position]);
 
     }
 
     @Override
     public int getItemCount() {
-        return listDiamDelDrov.size();
+        return diameters.length;
     }
 
-    public ArrayList<DiamDelDrov> retrieveList() {
-        return listDiamDelDrov;
+    public Map<Integer,DiamDelDrov> retrieveMap() {
+        return maptest;
     }
 
-    public void dataChanged(ArrayList<DiamDelDrov> list){
-        listDiamDelDrov.clear();
-        listDiamDelDrov.addAll(list); //todo clear all lists, and addall add empty list, then recyclerview become invisible
-        notifyDataSetChanged();
+    public void dataChanged(Map<Integer, DiamDelDrov> map){
+
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
@@ -77,10 +77,10 @@ public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRe
             editTextDrov.addTextChangedListener(myCustomDrovEditTextListener);
         }
 
-        void bind(DiamDelDrov diamDelDrovItem) {
-            textviewDiameter.setText(diamDelDrovItem.diameter);
-            editTextDel.setText(diamDelDrovItem.delAmount);
-            editTextDrov.setText(diamDelDrovItem.drovAmount);
+        void bind(int diameter) {
+            textviewDiameter.setText(diameter);
+            //editTextDel.setText(diamDelDrovItem.delAmount);
+            //editTextDrov.setText(diamDelDrovItem.drovAmount);
         }
     }
 
@@ -97,7 +97,15 @@ public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRe
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-              listDiamDelDrov.get(position).delAmount = charSequence.toString();
+                if (!maptest.containsKey(position)) {
+                    DiamDelDrov newitem = new DiamDelDrov();
+                    //newitem.diameter = String.valueOf(diameters[position]);// todo
+                    newitem.delAmount = charSequence.toString();
+                    maptest.put(position, newitem);
+                } else {
+                    maptest.get(position).delAmount = charSequence.toString();// todo
+                }
+              //listDiamDelDrov.get(position).delAmount = charSequence.toString();
         }
 
         @Override
@@ -118,7 +126,7 @@ public class PerechetRecyclerViewAdapter extends RecyclerView.Adapter<PerechetRe
 
         @Override
         public void onTextChanged(CharSequence charSequence, int i, int i2, int i3) {
-            listDiamDelDrov.get(position).drovAmount = charSequence.toString();
+            //listDiamDelDrov.get(position).drovAmount = charSequence.toString();
         }
 
         @Override
