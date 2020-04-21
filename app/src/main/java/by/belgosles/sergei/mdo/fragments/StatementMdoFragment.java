@@ -100,14 +100,14 @@ public class StatementMdoFragment extends Fragment {
         Fund fund = db.getstatementDao().getFundById(id_fund);
         //вид пользования
         ArrayList<DictName> list_kind_use = (ArrayList<DictName>) db.getDictsDao().getAllKindUse();
-        DictSpinnerAdapter adapter_type_use = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_kind_use);
+        DictSpinnerAdapter adapter_type_use = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_kind_use);
         spin_type_use.setAdapter(adapter_type_use);
         if(getPosition(list_kind_use, fund.getId_type_use())!= 0){
             spin_type_use.setSelection(getPosition(list_kind_use, fund.getId_type_use()));
         }
         //категория леса
         ArrayList<DictName> list_group_for = (ArrayList<DictName>) db.getDictsDao().getAllGroupForest();
-        DictSpinnerAdapter adapter_category_forest = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_group_for);
+        DictSpinnerAdapter adapter_category_forest = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_group_for);
         spin_category_for.setAdapter(adapter_category_forest);
         if(getPosition(list_group_for, fund.getId_categ()) != 0 ){
             spin_category_for.setSelection(getPosition(list_group_for, fund.getId_categ()));
@@ -138,42 +138,42 @@ public class StatementMdoFragment extends Fragment {
         }
         //хозсекция
         ArrayList<DictName> list_hoz_section = (ArrayList<DictName>) db.getDictsDao().getAllSections();
-        DictSpinnerAdapter adapter_hoz_section = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_hoz_section);
+        DictSpinnerAdapter adapter_hoz_section = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_hoz_section);
         spin_hoz_section.setAdapter(adapter_hoz_section);
         if (getPosition(list_hoz_section,fund.getId_hoz_section()) != 0){
             spin_hoz_section.setSelection(getPosition(list_hoz_section,fund.getId_hoz_section()));
         }
         //группа пород
         ArrayList<DictName> list_species_group = (ArrayList<DictName>) db.getDictsDao().getAllSpeciesGroup();
-        DictSpinnerAdapter adapter_species_group = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_species_group);
+        DictSpinnerAdapter adapter_species_group = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_species_group);
         spin_species_group.setAdapter(adapter_species_group);
         if (getPosition(list_species_group, fund.getId_group_species()) != 0){
             spin_species_group.setSelection(getPosition(list_species_group, fund.getId_group_species()));
         }
         //вид рубки
         ArrayList<DictName> list_type_cut = (ArrayList<DictName>) db.getDictsDao().getAllCutTypes();
-        DictSpinnerAdapter adapter_type_cut = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_type_cut);
+        DictSpinnerAdapter adapter_type_cut = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_type_cut);
         spin_type_cut.setAdapter(adapter_type_cut);
         if(getPosition(list_type_cut,fund.getId_type_cut()) != 0 ){
             spin_type_cut.setSelection(getPosition(list_type_cut,fund.getId_type_cut()));
         }
         //метод учета
         ArrayList<DictName> list_acc_meth = (ArrayList<DictName>) db.getDictsDao().getAllAccMethods();
-        DictSpinnerAdapter adapter_acc_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_acc_meth);
+        DictSpinnerAdapter adapter_acc_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_acc_meth);
         spin_acc_meth.setAdapter(adapter_acc_meth);
         if(getPosition(list_acc_meth, fund.getId_account_method()) != 0){
             spin_acc_meth.setSelection(getPosition(list_acc_meth, fund.getId_account_method()));
         }
         //способ очистки
         ArrayList<DictName> list_clean_meth = (ArrayList<DictName>) db.getDictsDao().getAllCleanMethods();
-        DictSpinnerAdapter adaper_clean_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_clean_meth);
+        DictSpinnerAdapter adaper_clean_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_clean_meth);
         spin_clean_meth.setAdapter(adaper_clean_meth);
         if(getPosition(list_clean_meth, fund.getId_clean_method()) != 0){
             spin_clean_meth.setSelection(getPosition(list_clean_meth, fund.getId_clean_method()));
         }
         //способ восстановления
         ArrayList<DictName> list_recovery_meth = (ArrayList<DictName>) db.getDictsDao().getAllRecovMeths();
-        DictSpinnerAdapter adapter_recovery_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_recovery_meth);
+        DictSpinnerAdapter adapter_recovery_meth = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_recovery_meth);
         spin_recovery_meth.setAdapter(adapter_recovery_meth);
         if(getPosition(list_recovery_meth,fund.getId_recovery_method()) != 0){
             spin_recovery_meth.setSelection(getPosition(list_recovery_meth,fund.getId_recovery_method()));
@@ -184,14 +184,14 @@ public class StatementMdoFragment extends Fragment {
         }
         //бонитет
         ArrayList<DictName> list_bonitet = (ArrayList<DictName>) db.getDictsDao().getAllBonitets();
-        DictSpinnerAdapter adapter_bonitet = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_bonitet);
+        DictSpinnerAdapter adapter_bonitet = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_bonitet);
         spin_bonitet.setAdapter(adapter_bonitet);
         if(getPosition(list_bonitet, fund.getId_bonitet()) != 0){
             spin_bonitet.setSelection(getPosition(list_bonitet, fund.getId_bonitet()));
         }
         //тип леса
         ArrayList<DictName> list_type_for = (ArrayList<DictName>) db.getDictsDao().getAllTypeFor();
-        DictSpinnerAdapter adapter_type_for = new DictSpinnerAdapter(getContext(),R.layout.spinner_dropdown_item, list_type_for);
+        DictSpinnerAdapter adapter_type_for = new DictSpinnerAdapter(getContext(),R.layout.spinner_title, list_type_for);
         spin_type_for.setAdapter(adapter_type_for);
         if(getPosition(list_type_for, fund.getId_forest_type()) != 0){
             spin_type_for.setSelection(getPosition(list_type_for, fund.getId_forest_type()));
@@ -202,14 +202,14 @@ public class StatementMdoFragment extends Fragment {
         }
         //почвы
         ArrayList<DictName> list_soil = (ArrayList<DictName>) db.getDictsDao().getAllSoils();
-        DictSpinnerAdapter adapter_soil = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_soil);
+        DictSpinnerAdapter adapter_soil = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_soil);
         spin_soil.setAdapter(adapter_soil);
         if(getPosition(list_soil,fund.getId_soil()) != 0){
             spin_soil.setSelection(getPosition(list_soil,fund.getId_soil()));
         }
         //состояние насаждений
         ArrayList<DictName> list_stand_cond = (ArrayList<DictName>) db.getDictsDao().getAllStatus();
-        DictSpinnerAdapter adapter_stand_cond = new DictSpinnerAdapter(getContext(), R.layout.spinner_dropdown_item, list_stand_cond);
+        DictSpinnerAdapter adapter_stand_cond = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_stand_cond);
         spin_stand_cond.setAdapter(adapter_stand_cond);
         if(getPosition(list_stand_cond,fund.getId_plaint_state()) != 0){
             spin_stand_cond.setSelection(getPosition(list_stand_cond,fund.getId_plaint_state()));
@@ -253,6 +253,7 @@ public class StatementMdoFragment extends Fragment {
         db.close();
     }
 
+    //сохранение в БД установленной во Views информации
     public void saveMDOValues(long id_fund){
         int id_type_use = (Integer) spin_type_use.getSelectedView().getTag();
         int id_category_for = (Integer) spin_category_for.getSelectedView().getTag();

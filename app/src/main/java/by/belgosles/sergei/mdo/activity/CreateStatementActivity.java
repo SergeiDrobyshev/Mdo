@@ -58,11 +58,11 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
 
     private void setAdapters() {
         ArrayList <DictName> list_tax_rate = (ArrayList<DictName>) db.getDictsDao().getAllRankTrf();
-        DictSpinnerAdapter tax_adapter = new DictSpinnerAdapter(this, R.layout.spinner_dropdown_item , list_tax_rate);
+        DictSpinnerAdapter tax_adapter = new DictSpinnerAdapter(this, R.layout.spinner_title , list_tax_rate);
         tax_category.setAdapter(tax_adapter);
 
         ArrayList<DictName> list_realiz = (ArrayList<DictName>) db.getDictsDao().getAllMethReal();
-        DictSpinnerAdapter adapter_realiz = new DictSpinnerAdapter(this, R.layout.spinner_dropdown_item, list_realiz);
+        DictSpinnerAdapter adapter_realiz = new DictSpinnerAdapter(this, R.layout.spinner_title, list_realiz);
         realization.setAdapter(adapter_realiz);
     }
 
