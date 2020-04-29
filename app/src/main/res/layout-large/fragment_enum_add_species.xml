@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_general"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/constarint_add_species"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/amount_of_whip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:gravity="center_vertical"
+                android:text="@string/amount_of_whip"
+                android:textSize="@dimen/textview_textsize" />
+
+            <EditText
+                android:id="@+id/editText_amount_of_whip"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/marginLeft"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_weight="0.5"
+                android:gravity="center_horizontal"
+                android:inputType="numberDecimal"
+                android:textSize="@dimen/textview_textsize" />
+
+            <by.belgosles.sergei.mdo.NoDefaultSpinner
+                android:id="@+id/spinner_poroda_value"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|start"
+                android:layout_marginStart="@dimen/marginLeft"
+                android:layout_marginLeft="@dimen/marginLeft"
+                android:layout_weight="1"
+                android:background="@drawable/spinner_background"
+                android:gravity="center"
+                android:prompt="@string/add_species"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/new_layout_enum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            app:flow_wrapMode="chain"
+            app:flow_horizontalBias="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constarint_add_species">
+
+        </androidx.constraintlayout.helper.widget.Flow>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio=""
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/new_layout_enum"
+            app:layout_constraintTop_toBottomOf="@+id/constarint_add_species"
+            app:layout_constraintVertical_bias="0.0">
+
+            <TextView
+                android:id="@+id/amount_tress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/amout_trees"
+                android:textSize="@dimen/textview_textsize"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/diameters"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/diameters"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:gravity="center"
+                android:layout_marginTop="24dp"
+                android:text="@string/dimeter_tree"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/del"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/del"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_general"
+                app:layout_constraintStart_toEndOf="@+id/diameters"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_general"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.60"/>
+
+            <TextView
+                android:id="@+id/drov"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/drov"
+                android:textSize="@dimen/textview_textsize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline_general"
+                app:layout_constraintTop_toBottomOf="@+id/amount_tress" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewPerechet"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/perecher_recycler_height"
+                android:layout_marginTop="8dp"
+                android:clipToPadding="false"
+                android:scrollbars="vertical|horizontal"
+                android:background="@drawable/perechet_recyclerview_style"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/diameters">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
