@@ -6,7 +6,6 @@ import android.widget.Button;
 
 import com.google.android.material.tabs.TabLayout;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
@@ -59,7 +58,7 @@ public class StatementInfoActivity extends AppCompatActivity {
         fragment.saveMDOValues(id_fund);
 
         EnumFragment enumfragment = (EnumFragment) sectionsPagerAdapter.instantiateItem(viewPager,1);
-        enumfragment.saveValues(id_fund);
+        enumfragment.saveEnumValues(id_fund);
 
         UndegrowthPollutionFragment undegrowthPollutionFragment = (UndegrowthPollutionFragment) sectionsPagerAdapter.instantiateItem(viewPager,2);
 

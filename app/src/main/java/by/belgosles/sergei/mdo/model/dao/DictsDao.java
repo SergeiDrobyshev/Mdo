@@ -55,4 +55,7 @@ public interface DictsDao {
 
     @Query("Select CODE_RANK_TRF as id, NAME_RANK_TRF as value From DICT_RANK_TRF")
     List<DictName> getAllRankTrf();
+
+    @Query("Select CODE_TRF_HEIGHT as id, NAME_TRF_HEIGHT as value From DICT_TRF_HEIGHT")
+    List<DictName> getAllTrfHeight();
 }

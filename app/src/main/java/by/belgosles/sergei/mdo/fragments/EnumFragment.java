@@ -60,6 +60,7 @@ public class EnumFragment extends Fragment {
     Button addNewDiamRow;
     @BindView(R.id.linearLayout_add_diam)
     LinearLayout layoutAddDiamRows;
+    @BindView(R.id.spinner_trf_height) Spinner spin_trf_height;
 
     private AppDb db;
     private Map<Integer, List<DiamDelDrov>> mapEnumSpecies = new HashMap<>();
@@ -124,16 +125,20 @@ public class EnumFragment extends Fragment {
 
     // получение справочной информации из БД
     private void setViewAdapters() {
-        ArrayList<DictName> list_allSpecies = (ArrayList<DictName>) db.getDictsDao().getAllSpecies();
-        DictSpinnerAdapter adapter_species = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, list_allSpecies);
-        spin_allSpecies.setAdapter(adapter_species);
+        ArrayList<DictName> listAllSpecies = (ArrayList<DictName>) db.getDictsDao().getAllSpecies();
+        DictSpinnerAdapter adapterSpecies = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, listAllSpecies);
+        spin_allSpecies.setAdapter(adapterSpecies);
+
+        ArrayList<DictName> listAllTrfHeights = (ArrayList<DictName>) db.getDictsDao().getAllTrfHeight();
+        DictSpinnerAdapter adapterAllTrfHeight = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, listAllTrfHeights);
+        spin_trf_height.setAdapter(adapterAllTrfHeight);
 
     }
 
     private void addNewRadioButton(String selectedItemValue, long id_species) {
         RadioButton rb = new RadioButton(getContext());
         rb.setText(selectedItemValue);
-        rb.setTextSize(13);
+        rb.setTextSize(12);
         rb.setLayoutParams(new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT));
         //todo version sdk
         rb.setId((int) id_species);
@@ -314,7 +319,7 @@ public class EnumFragment extends Fragment {
         outState.putSerializable("speciesButtons", saveSpeciesList);
     }
 
-    public void saveValues(long id_fund) {
+    public void saveEnumValues(long id_fund) {
         String whip = getInputtedText(ed_whip);
     }
 
