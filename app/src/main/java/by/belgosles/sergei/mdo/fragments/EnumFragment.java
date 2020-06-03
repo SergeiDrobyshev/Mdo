@@ -33,6 +33,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -44,6 +45,9 @@ import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
+import by.belgosles.sergei.mdo.model.entity.Fund;
+import by.belgosles.sergei.mdo.model.entity.FundEnum;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
 
@@ -64,6 +68,7 @@ public class EnumFragment extends Fragment {
 
     private AppDb db;
     private Map<Integer, List<DiamDelDrov>> mapEnumSpecies = new HashMap<>();
+    private Map<Integer, Integer> mapTrfHeightSpecies = new HashMap<>();
     private ArrayList<DictName> saveSpeciesList = new ArrayList<>();// todo убрать. сохранять общий map
     private List<Integer> listDialogCheckedDiameters = new ArrayList<>();
     private static final String ID_FUND = "param1";
@@ -132,9 +137,9 @@ public class EnumFragment extends Fragment {
         ArrayList<DictName> listAllTrfHeights = (ArrayList<DictName>) db.getDictsDao().getAllTrfHeight();
         DictSpinnerAdapter adapterAllTrfHeight = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, listAllTrfHeights);
         spin_trf_height.setAdapter(adapterAllTrfHeight);
-
     }
 
+    // добавление радиокнопки с выбранной породой и
     private void addNewRadioButton(String selectedItemValue, long id_species) {
         RadioButton rb = new RadioButton(getContext());
         rb.setText(selectedItemValue);
@@ -153,36 +158,57 @@ public class EnumFragment extends Fragment {
         });
         List<DiamDelDrov> listRows = new ArrayList<>();
         mapEnumSpecies.put((int) id_species, listRows);
+        mapTrfHeightSpecies.put((int) id_species, (Integer) spin_trf_height.getSelectedItemPosition());
     }
 
-    //при смене породы в RadioGroup обновить строки с диаметрами
+    //при смене породы в RadioGroup обновить строки с диаметрами и значение разряда высот
     private void updateLayoutAddDiamRows(int idRadioButton){
         layoutAddDiamRows.removeAllViews();
         List<DiamDelDrov> list = mapEnumSpecies.get(idRadioButton);
         if (list != null && !list.isEmpty()) {
             addDiamRows(list);
         }
+        if(mapTrfHeightSpecies.containsKey(idRadioButton)) {
+            int position = mapTrfHeightSpecies.get(idRadioButton);
+            spin_trf_height.setSelection(position);
+        }else {
+              spin_trf_height.setPrompt("");
+        }
     }
 
     @OnItemSelected(R.id.spinner_poroda_value)
-    public void onClick() {
+    void onClick() {
         DictName selectedDictName = (DictName) spin_allSpecies.getSelectedItem();
         String selectedItemValue = selectedDictName.getValue();
         int id_species = selectedDictName.getId();
 
         //todo change orientation, remove onclick
         if (mapEnumSpecies.containsKey(id_species)) {
-            Toast toast = Toast.makeText(getContext(), "Выбранная порода уже добавлена!", Toast.LENGTH_LONG);
+           /* Toast toast = Toast.makeText(getContext(), "Выбранная порода уже добавлена!", Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
+            toast.show();*/
         } else {
             addNewRadioButton(selectedItemValue, id_species);
             saveSpeciesList.add(selectedDictName);
         }
     }
 
+    @OnItemSelected(R.id.spinner_trf_height)
+    public void onClickTrf(){
+        int position = spin_trf_height.getSelectedItemPosition();
+        // временное сохранение выбранной позиции разряда высот
+        if(radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1) {
+            mapTrfHeightSpecies.put(radioGroupSelectedSpecies.getCheckedRadioButtonId(), position);
+        }else {
+              //если не добавлено и не выбрано ни одной породы
+              /*Toast toast = Toast.makeText(getContext(), "Добавьте и выберите породу!", Toast.LENGTH_SHORT);
+              toast.setGravity(Gravity.CENTER, 0, 0);
+              toast.show();*/
+        }
+    }
+
     @OnClick(R.id.addDiameterDelDrovRow)
-    public void onClickAddDiameterButton() {
+    void onClickAddDiameterButton() {
         if(radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1){
             AlertDialog dialog = dialogAddDiam();
             dialog.show();
@@ -321,6 +347,10 @@ public class EnumFragment extends Fragment {
 
     public void saveEnumValues(long id_fund) {
         String whip = getInputtedText(ed_whip);
+        db.getstatementDao().updateFund(whip, id_fund);
+
+        //db.getstatementDao().updateFundEnum(,id_fund);
+        //db.getstatementDao().updateEnumTreesAmount();
     }
 
     public interface OnFragmentInteractionListener {
@@ -334,7 +364,9 @@ public class EnumFragment extends Fragment {
         builder.setMessage(mes)
                 .setPositiveButton("Да", (dialogInterface, i) -> {
                     radioGroupSelectedSpecies.removeView(rb);
+                    radioGroupSelectedSpecies.clearCheck();// снятие check с породы
                     mapEnumSpecies.remove(rb.getId());
+                    mapTrfHeightSpecies.remove(rb.getId());
                     updateLayoutAddDiamRows(rb.getId());
                 })
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {

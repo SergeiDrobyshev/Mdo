@@ -67,7 +67,7 @@
             app:layout_constraintStart_toStartOf="@+id/radioGroup_selected_species"
             app:layout_constraintTop_toBottomOf="@+id/amount_of_whip" />
 
-        <Spinner
+        <by.belgosles.sergei.mdo.NoDefaultSpinner
             android:id="@+id/spinner_trf_height"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="0dp"

@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import java.util.List;
 
 @Entity
-public class Fund {
+public class  Fund {
     @PrimaryKey(autoGenerate = true)
     public long id_fund;
 

@@ -2,7 +2,6 @@ package by.belgosles.sergei.mdo.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.CheckBox;
@@ -27,7 +26,9 @@ import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.adapters.RVAdapterListStatements;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
 import by.belgosles.sergei.mdo.model.entity.Fund;
+import by.belgosles.sergei.mdo.model.entity.FundEnum;
 
 public class CreateStatementActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -44,7 +45,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     Bundle bundle;
     private Fund fund;
     private int request_code;
-    private long rowId;
+    private long newFundId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +55,8 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         db = App.getInstance().getDatabase();
         setAdapters();
         fillFields();
+        // onConflict.replace
+        // без заполнения лесничества, даты , не активировать кнопку на ведомость мдо, создание строки и возвращение ид повесить на эту кнопку
     }
 
     private void setAdapters() {
@@ -78,8 +81,17 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 edittextDate.setText(calendar.get(Calendar.DAY_OF_MONTH) + "." + (calendar.get(Calendar.MONTH) + 1) + "." + calendar.get(Calendar.YEAR));
                 stateFundForest.setChecked(true);
                 inaccessibility.setChecked(false);
+
                 fund = new Fund();
-                rowId = db.getstatementDao().insert(fund);// id созданной ведомости
+                newFundId = db.getstatementDao().insertFund(fund);// id созданной ведомости
+
+                FundEnum fundEnum = new FundEnum();
+                fundEnum.setId_fund(newFundId);
+                long newFundEnumId = db.getstatementDao().insertFundEnum(fundEnum);
+
+                EnumTreesAmount enumTreesAmount = new EnumTreesAmount();
+                enumTreesAmount.setId_fund_enum(newFundEnumId);
+                long newEnumTreesAmount = db.getstatementDao().insertEnumTreesAmount(enumTreesAmount);
             }
         }
     }
@@ -115,7 +127,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                     intent.putExtra(EXTRA_id_fund, fund.getId_fund());
                 }
                 else{
-                    intent.putExtra(EXTRA_id_fund, rowId);
+                    intent.putExtra(EXTRA_id_fund, newFundId);
                 }
                 startActivityForResult(intent, request_code);
                 break;
@@ -134,7 +146,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                             if(request_code == RVAdapterListStatements.REQUEST_CODE_CHANGE){// проверка на создание новой ведомости или изменение старой
                                 updateFund(fund.getId_fund());
                             }else {
-                                updateFund(rowId);
+                                updateFund(newFundId);
                             }
                             setResult(RESULT_OK);
                             finish();
@@ -168,7 +180,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 .setMessage("Выйти без сохранения?")
                 .setPositiveButton("Да", (dialogInterface, i) -> {
                     if(request_code == ListStatementsActivity.REQUEST_CODE_CREATE){
-                        db.getstatementDao().deleteNotSaveStatement(rowId);
+                        db.getstatementDao().deleteNotSaveStatement(newFundId);
                     }
                     finish();
                 })

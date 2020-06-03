@@ -3,7 +3,6 @@ package by.belgosles.sergei.mdo.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -285,7 +284,7 @@ public class StatementMdoFragment extends Fragment {
         String sr_diameterValue = getInputtedText(sr_diameter);
         String noteValue = getInputtedText(note);
 
-        db.getstatementDao().updateFromStatementMdoFragment(id_type_use, id_category_for, yearForestFund, yeatOtvod,
+        db.getstatementDao().updateMdoStatementData(id_type_use, id_category_for, yearForestFund, yeatOtvod,
                 kvartN, cut_area_n, taxVydelN, squareValue,
                 id_hoz_section, id_species_group, id_type_cut, id_acc_meth, id_clean_meth, id_recovery_meth,
                 sostavValue, id_bonitet, id_type_forest, coverValue, id_soil, id_stand_cond, ageValue,
