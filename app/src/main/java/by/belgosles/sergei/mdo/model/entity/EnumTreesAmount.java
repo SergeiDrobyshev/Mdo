@@ -16,7 +16,7 @@ public class EnumTreesAmount {
     private int amount_del;
     private int amount_drov;
 
-    private int id_fund_enum;
+    private long id_fund_enum;
 
     public int getId_diameter() {
         return id_diameter;
@@ -42,11 +42,11 @@ public class EnumTreesAmount {
         this.amount_drov = amount_drov;
     }
 
-    public int getId_fund_enum() {
+    public long getId_fund_enum() {
         return id_fund_enum;
     }
 
-    public void setId_fund_enum(int id_fund_enum) {
+    public void setId_fund_enum(long id_fund_enum) {
         this.id_fund_enum = id_fund_enum;
     }
 

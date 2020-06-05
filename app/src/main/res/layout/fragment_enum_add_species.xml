@@ -18,13 +18,14 @@
             android:gravity="center_vertical"
             android:text="@string/amount_of_whip"
             android:textSize="@dimen/textview_textsize"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/trf_height"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
             android:id="@+id/editText_amount_of_whip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="2dp"
             android:layout_marginLeft="2dp"
             android:layout_marginEnd="2dp"
@@ -32,16 +33,16 @@
             android:gravity="center_horizontal"
             android:inputType="numberDecimal"
             android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/amount_of_whip"
             app:layout_constraintEnd_toStartOf="@+id/guideline_general"
-            app:layout_constraintStart_toEndOf="@+id/amount_of_whip"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toEndOf="@+id/amount_of_whip" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_general"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.4" />
+            app:layout_constraintGuide_percent="0.45" />
 
         <by.belgosles.sergei.mdo.NoDefaultSpinner
             android:id="@+id/spinner_poroda_value"
@@ -55,13 +56,38 @@
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/trf_height"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
+            android:gravity="center_vertical"
+            android:text="@string/height_category"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintStart_toStartOf="@+id/radioGroup_selected_species"
+            app:layout_constraintTop_toBottomOf="@+id/amount_of_whip" />
+
+        <by.belgosles.sergei.mdo.NoDefaultSpinner
+            android:id="@+id/spinner_trf_height"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingEnd="4dp"
+            android:paddingRight="4dp"
+            android:spinnerMode="dropdown"
+            app:layout_constraintBottom_toBottomOf="@+id/trf_height"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_general"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/trf_height"
+            app:layout_constraintTop_toTopOf="@+id/trf_height" />
+
         <Button
             android:id="@+id/addDiameterDelDrovRow"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marginTop"
             android:text="@string/addDiameterRow"
             android:textSize="@dimen/textview_textsize"
-            android:layout_marginTop="@dimen/marginTop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
@@ -72,8 +98,6 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_marginRight="8dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_general"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -136,7 +160,7 @@
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline_general"
-            app:layout_constraintTop_toBottomOf="@+id/diameters"/>
+            app:layout_constraintTop_toBottomOf="@+id/diameters" />
 
 
         <!--<androidx.recyclerview.widget.RecyclerView

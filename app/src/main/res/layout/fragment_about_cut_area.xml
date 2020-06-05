@@ -25,6 +25,7 @@
 
             <Spinner
                 android:id="@+id/spinner_vidpolz"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"
@@ -49,6 +50,7 @@
 
             <Spinner
                 android:id="@+id/spinner_forest_category"
+                style="@style/Widget.AppCompat.Spinner.Underlined"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/layout_height"
                 android:layout_marginStart="@dimen/marginLeft"

@@ -20,11 +20,11 @@ public class App extends Application {
         instance = this;
         database = Room.databaseBuilder(this, AppDb.class, "databaseMdo").allowMainThreadQueries()
                 .createFromAsset("DICTS_MDO.db")
-                //удалить .allowMainThreadQueries()
                 .build();
-       InitializeStetho();
+        InitializeStetho();
     }
 
+    //todo удалить .allowMainThreadQueries()
     public static App getInstance() {
         return instance;
     }

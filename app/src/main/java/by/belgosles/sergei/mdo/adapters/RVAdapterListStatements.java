@@ -48,7 +48,7 @@ public class RVAdapterListStatements extends RecyclerView.Adapter<RVAdapterListS
         holder.bind(fundlistcreated.get(position));
         holder.change_statement.setOnClickListener(view -> {
             Intent intent = new Intent(view.getContext(), CreateStatementActivity.class);
-            intent.putExtra(CreateStatementActivity.EXTRA_id_fund ,getFundIdByPosition(position));
+            intent.putExtra(CreateStatementActivity.EXTRA_id_fund, getFundIdByPosition(position));
             intent.putExtra("REQUEST_CODE", REQUEST_CODE_CHANGE);
             // номер порядковый и ид из бд
             context.startActivity(intent);

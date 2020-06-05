@@ -8,7 +8,9 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
 import by.belgosles.sergei.mdo.model.entity.Fund;
+import by.belgosles.sergei.mdo.model.entity.FundEnum;
 
 @Dao
 public interface FundDao {
@@ -46,11 +48,29 @@ public interface FundDao {
             "ave_diameter = :ave_diameter," +
             "comment = :comment " +
             "Where id_fund = :id_fund")
-    void updateFromStatementMdoFragment(int id_type_use, int id_categ, String year_fund, String year_allot,
-                                        String kvart_n, String cut_area_n, String tax_vydel_n, String square,
-                                        int id_hoz_section, int id_group_species, int id_type_cut, int id_account_method, int id_clean_method, int id_recovery_method,
-                                        String sostav, int id_bonitet, int id_forest_type, String forest_cover, int id_soil, int id_plaint_state, String age,
-                                        String fullness, String ave_height, String ave_diameter, String comment, long id_fund);
+    void updateMdoStatementData(int id_type_use, int id_categ, String year_fund, String year_allot,
+                                String kvart_n, String cut_area_n, String tax_vydel_n, String square,
+                                int id_hoz_section, int id_group_species, int id_type_cut, int id_account_method, int id_clean_method, int id_recovery_method,
+                                String sostav, int id_bonitet, int id_forest_type, String forest_cover, int id_soil, int id_plaint_state, String age,
+                                String fullness, String ave_height, String ave_diameter, String comment, long id_fund);
+
+    @Query("Update FundEnum SET " +
+            "id_species = :id_species," +
+            "id_height_level = :id_height_level "+
+            "Where id_fund = :id_fund")
+    void updateFundEnum(int id_species, int id_height_level, long id_fund);
+
+    @Query("Update Fund SET " +
+            "ave_whip = :whip " +
+            "Where id_fund = :id_fund")
+    void updateFund(String whip, long id_fund);
+
+    @Query("Update EnumTreesAmount SET " +
+            "id_diameter = :diameter," +
+            "amount_del = :del," +
+            "amount_drov = :drov " +
+            "Where id_fund_enum = :id_fund_enum")
+    void updateEnumTreesAmount(int diameter, int del, int drov, int id_fund_enum);
 
     @Query("Update Fund SET " +
             "filling_date = :filling_date," +
@@ -68,9 +88,14 @@ public interface FundDao {
 
 
     @Insert
-    long insert(Fund fund);
+    long insertFund(Fund fund);
+
+    @Insert
+    long insertFundEnum(FundEnum fundEnum);
+
+    @Insert
+    long insertEnumTreesAmount(EnumTreesAmount enumTreesAmount);
 
     @Delete
     void delete(Fund fund);
-
 }

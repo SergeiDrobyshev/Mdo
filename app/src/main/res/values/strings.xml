@@ -48,7 +48,7 @@
     <string name="model_tree">Модельные деревья</string>
     <string name="height_measure">Данные замеров высот</string>
     <string name="save_perechet">Сохранить данные</string>
-    <string name="height_category">Разряд высот</string>
+    <string name="height_category">Разряд \nвысот</string>
     <string name="amount_thousand">Количество, \nтыс. шт.на 1 га</string>
     <string name="preservation_area">Площадь, \nподлежащая \nсохранению, га</string>
     <string name="undergrowth">Подрост</string>

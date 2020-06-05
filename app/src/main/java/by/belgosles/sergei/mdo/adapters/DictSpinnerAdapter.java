@@ -56,6 +56,10 @@ public class DictSpinnerAdapter extends ArrayAdapter<DictName> {
         return createItemView(position, convertView, parent);
     }
 
+    public DictSpinnerAdapter(@NonNull Context context, int resource) {
+        super(context, resource);
+    }
+
     private View createItemView(int position, View convertView, ViewGroup parent) {
         final View view = inflater.inflate(resId, parent, false);
         TextView tv = (TextView) view.findViewById(R.id.tv_spinner_item);
@@ -66,6 +70,8 @@ public class DictSpinnerAdapter extends ArrayAdapter<DictName> {
 
         return view;
     }
+
+
 
 
 

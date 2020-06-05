@@ -16,7 +16,7 @@ public class FundEnum {
 
     private String id_species;
     private int id_height_level;
-    private int id_fund;
+    private long id_fund;
 
     public long getId_fund_enum() {
         return id_fund_enum;
@@ -42,11 +42,11 @@ public class FundEnum {
         this.id_height_level = id_height_level;
     }
 
-    public int getId_fund() {
+    public long getId_fund() {
         return id_fund;
     }
 
-    public void setId_fund(int id_fund) {
+    public void setId_fund(long id_fund) {
         this.id_fund = id_fund;
     }
 
