@@ -30,12 +30,14 @@ import by.belgosles.sergei.mdo.model.entity.refs.DictTypeStem;
         DictRankTrf.class, DictMeathReal.class, DictAccMeth.class, DictBonitet.class, DictCatProtect.class, DictCleanMeth.class, DictEcon.class,
         DictGroupForest.class, DictSeedsKind.class, DictKindUse.class, DictRgnMeth.class, DictSection.class, DictStatus.class, DictStrSoil.class,
         DictTrfHeight.class, DictTypeForest.class, DictTypeStem.class, DictCutMeth.class
-}, version = 5, exportSchema = false)
+},
+        version = 6, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
     public abstract FundDao getstatementDao();
 
     public abstract DictsDao getDictsDao();
+
 
     /*public static final Migration Migration_1_2 = new Migration(1,2) {
         @Override

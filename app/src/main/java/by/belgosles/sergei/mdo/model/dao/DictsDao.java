@@ -58,4 +58,7 @@ public interface DictsDao {
 
     @Query("Select CODE_TRF_HEIGHT as id, NAME_TRF_HEIGHT as value From DICT_TRF_HEIGHT")
     List<DictName> getAllTrfHeight();
+
+    @Query("Select NAME_SPECIES From DICT_SPECIES WHERE CODE_SPECIES = :id_species")
+    String getNameSpecies(int id_species);
 }

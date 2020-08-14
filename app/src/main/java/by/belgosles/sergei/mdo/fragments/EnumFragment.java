@@ -1,17 +1,12 @@
 package by.belgosles.sergei.mdo.fragments;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.ContextMenu;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -24,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -33,7 +27,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,8 +38,6 @@ import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
-import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
-import by.belgosles.sergei.mdo.model.entity.Fund;
 import by.belgosles.sergei.mdo.model.entity.FundEnum;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -98,7 +89,6 @@ public class EnumFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         inflater = getLayoutInflater();
-        //setRetainInstance(true);
         if (getArguments() != null) {
             id_fund = getArguments().getLong(ID_FUND);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -116,15 +106,17 @@ public class EnumFragment extends Fragment {
         diameters = getResources().getStringArray(R.array.refs_diameters);
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("speciesButtons")) {
-                ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons");
-                if (list != null) {
+               // ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons");
+               // if (list != null) {
                     //restoreButtonsSpecies(list);
-                }
+               // }
             }
         }
+        //обновление списка добавленных диаметров при выборе породы
         radioGroupSelectedSpecies.setOnCheckedChangeListener((radioGroup, i) -> {
             updateLayoutAddDiamRows(radioGroup.getCheckedRadioButtonId());
         });
+        getDataFromDb(id_fund);
         return view;
     }
 
@@ -139,8 +131,8 @@ public class EnumFragment extends Fragment {
         spin_trf_height.setAdapter(adapterAllTrfHeight);
     }
 
-    // добавление радиокнопки с выбранной породой и
-    private void addNewRadioButton(String selectedItemValue, long id_species) {
+    // добавление радиокнопки с выбранной породой
+    private void addNewRadioButton(String selectedItemValue, long id_species, int id_height_level) {
         RadioButton rb = new RadioButton(getContext());
         rb.setText(selectedItemValue);
         rb.setTextSize(12);
@@ -152,13 +144,13 @@ public class EnumFragment extends Fragment {
         rb.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                setEventOnLongClickRadioButtons(rb);
+                setOnLongClickRadioButtons(rb);
                 return false;
             }
         });
         List<DiamDelDrov> listRows = new ArrayList<>();
         mapEnumSpecies.put((int) id_species, listRows);
-        mapTrfHeightSpecies.put((int) id_species, (Integer) spin_trf_height.getSelectedItemPosition());
+        mapTrfHeightSpecies.put((int) id_species, id_height_level);
     }
 
     //при смене породы в RadioGroup обновить строки с диаметрами и значение разряда высот
@@ -188,7 +180,7 @@ public class EnumFragment extends Fragment {
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();*/
         } else {
-            addNewRadioButton(selectedItemValue, id_species);
+            addNewRadioButton(selectedItemValue, id_species, spin_trf_height.getSelectedItemPosition());
             saveSpeciesList.add(selectedDictName);
         }
     }
@@ -220,6 +212,7 @@ public class EnumFragment extends Fragment {
         }
     }
 
+    //выбор диаметров
     private AlertDialog dialogAddDiam() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(R.string.addDiameterRow)
@@ -249,6 +242,7 @@ public class EnumFragment extends Fragment {
                 });
         return builder.create();
     }
+
     // добавление строк с диаметрами
     private void addDiamRows(List <DiamDelDrov> listDiamRows){
         ConstraintLayout row = null;
@@ -342,13 +336,41 @@ public class EnumFragment extends Fragment {
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("speciesButtons", saveSpeciesList);
+        //outState.putSerializable("speciesButtons", saveSpeciesList);
     }
 
     public void saveEnumValues(long id_fund) {
         String whip = getInputtedText(ed_whip);
         db.getstatementDao().updateFund(whip, id_fund);
 
+        ArrayList<FundEnum> test = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);//все данные из FundEnum открытой ведомости
+        ArrayList<FundEnum> fundEnumList = new ArrayList<>();
+        for (Map.Entry<Integer, Integer> entry : mapTrfHeightSpecies.entrySet()) {
+            FundEnum fundEnum = new FundEnum();
+            fundEnum.setId_fund(id_fund);
+            fundEnum.setId_species(entry.getKey());
+            fundEnum.setId_height_level(entry.getValue());
+            fundEnumList.add(fundEnum);
+        }
+        if(test.isEmpty()){
+            //если в таблице перечетки нет записей
+            db.getstatementDao().insertListFundEnum(fundEnumList);
+        }
+        else {
+            for(FundEnum elemNew:fundEnumList){
+                for(FundEnum elemDb: test){
+                    if(elemNew.getId_species() == elemDb.getId_species()){
+                        elemNew.setId_fund_enum(elemDb.getId_fund_enum());
+                        db.getstatementDao().updateFundEnum(elemNew);
+                    }
+                }
+                if(elemNew.getId_fund_enum() == 0){
+                    db.getstatementDao().insertFundEnum(elemNew);
+                }
+            }
+        }
+
+        //fundEnum.setId_height_level();
         //db.getstatementDao().updateFundEnum(,id_fund);
         //db.getstatementDao().updateEnumTreesAmount();
     }
@@ -358,15 +380,15 @@ public class EnumFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void setEventOnLongClickRadioButtons (RadioButton rb){
+    private void setOnLongClickRadioButtons(RadioButton rb){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         String mes = getString(R.string.remove) + " " + rb.getText() + "?";
         builder.setMessage(mes)
                 .setPositiveButton("Да", (dialogInterface, i) -> {
                     radioGroupSelectedSpecies.removeView(rb);
                     radioGroupSelectedSpecies.clearCheck();// снятие check с породы
-                    mapEnumSpecies.remove(rb.getId());
-                    mapTrfHeightSpecies.remove(rb.getId());
+                    mapEnumSpecies.remove(rb.getId());// удаление из списка добавленных пород
+                    mapTrfHeightSpecies.remove(rb.getId());// удаление из списка тарифов
                     updateLayoutAddDiamRows(rb.getId());
                 })
                 .setNegativeButton(R.string.cancel, (dialogInterface, i) -> {
@@ -382,9 +404,22 @@ public class EnumFragment extends Fragment {
         return "";
     }
 
+    private void getDataFromDb (long id_fund){
+        ArrayList<FundEnum> fundEnum = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);
+        if(!fundEnum.isEmpty()) {
+            for (FundEnum elem : fundEnum) {
+                String nameSpecies = db.getDictsDao().getNameSpecies(elem.getId_species());
+                addNewRadioButton(nameSpecies, elem.getId_species(), elem.getId_height_level());//todo переписать метод, список диаметров передаются параметром,
+                //mapEnumSpecies.put(elem.getId_species(), null);//todo add DimDelDrov to put
+                //todo check recyclerView(кнопки с породами несколько можно выбрать)
+                //mapTrfHeightSpecies.put(elem.getId_species(), elem.getId_height_level());
+            }
+        }
+    }
+
     private void restoreButtonsSpecies(ArrayList<DictName> list) {
         for (DictName species : list) {
-            addNewRadioButton(species.getValue(), species.getId());
+            //addNewRadioButton(species.getValue(), species.getId());
         }
     }
 

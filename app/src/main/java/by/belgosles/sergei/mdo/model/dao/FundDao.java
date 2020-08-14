@@ -15,6 +15,21 @@ import by.belgosles.sergei.mdo.model.entity.FundEnum;
 @Dao
 public interface FundDao {
 
+    @Insert
+    long insertFund(Fund fund);
+
+    @Insert
+    void insertListFundEnum(List<FundEnum> fundEnumlist);
+
+    @Insert
+    void insertFundEnum(FundEnum fundEnum);
+
+    @Insert
+    long insertEnumTreesAmount(EnumTreesAmount enumTreesAmount);
+
+    @Delete
+    void delete(Fund fund);
+
     @Query("SELECT * FROM Fund")
     List<Fund> getAllStatements();
 
@@ -54,23 +69,13 @@ public interface FundDao {
                                 String sostav, int id_bonitet, int id_forest_type, String forest_cover, int id_soil, int id_plaint_state, String age,
                                 String fullness, String ave_height, String ave_diameter, String comment, long id_fund);
 
-    @Query("Update FundEnum SET " +
-            "id_species = :id_species," +
-            "id_height_level = :id_height_level "+
-            "Where id_fund = :id_fund")
-    void updateFundEnum(int id_species, int id_height_level, long id_fund);
-
     @Query("Update Fund SET " +
             "ave_whip = :whip " +
             "Where id_fund = :id_fund")
     void updateFund(String whip, long id_fund);
 
-    @Query("Update EnumTreesAmount SET " +
-            "id_diameter = :diameter," +
-            "amount_del = :del," +
-            "amount_drov = :drov " +
-            "Where id_fund_enum = :id_fund_enum")
-    void updateEnumTreesAmount(int diameter, int del, int drov, int id_fund_enum);
+    @Update
+    void updateFundEnum(FundEnum fundEnum);
 
     @Query("Update Fund SET " +
             "filling_date = :filling_date," +
@@ -86,16 +91,14 @@ public interface FundDao {
     @Query("Delete From Fund Where id_fund = :id_fund")
     void deleteNotSaveStatement(long id_fund);
 
+    @Query("Select * From FundEnum Where id_fund = :id_fund")
+    List<FundEnum> getFundEnum(long id_fund);
 
-    @Insert
-    long insertFund(Fund fund);
+    @Query("Update EnumTreesAmount SET " +
+            "id_diameter = :diameter," +
+            "amount_del = :del," +
+            "amount_drov = :drov " +
+            "Where id_fund_enum = :id_fund_enum")
+    void updateEnumTreesAmount(int diameter, int del, int drov, int id_fund_enum);
 
-    @Insert
-    long insertFundEnum(FundEnum fundEnum);
-
-    @Insert
-    long insertEnumTreesAmount(EnumTreesAmount enumTreesAmount);
-
-    @Delete
-    void delete(Fund fund);
 }

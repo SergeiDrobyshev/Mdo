@@ -14,7 +14,7 @@ public class FundEnum {
     @PrimaryKey(autoGenerate = true)
     private long id_fund_enum;
 
-    private String id_species;
+    private int id_species;
     private int id_height_level;
     private long id_fund;
 
@@ -26,11 +26,11 @@ public class FundEnum {
         this.id_fund_enum = id_fund_enum;
     }
 
-    public String getId_species() {
+    public int getId_species() {
         return id_species;
     }
 
-    public void setId_species(String id_species) {
+    public void setId_species(int id_species) {
         this.id_species = id_species;
     }
 

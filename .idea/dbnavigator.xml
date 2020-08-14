@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8">
-        <schema name="main" object-types="constraint, column, table, dataset trigger, index" />
+        <schema name="main" object-types="table, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -35,19 +35,19 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" object-ref="schemas/main/tables/Fund" />
-      <object connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" object-ref="schemas/main/tables/FundEnum" />
-      <object connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" object-ref="schemas/main/tables/FundEnumModelTrees" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
+    <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.EnumTreesAmount" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.DICT_TYPE_STEM" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.Growth" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.StockTaxCost" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.FundEnum" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.Fund" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.DICT_CAT_PROTECTION" active-filter-id="EMPTY_FILTER" />
     <filter-actions connection-id="7fb284b8-1cbf-4c9d-8402-6b0720dfbdf8" dataset="main.FundEnumModelTrees" active-filter-id="EMPTY_FILTER" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">

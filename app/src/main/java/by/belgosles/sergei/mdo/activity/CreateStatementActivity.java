@@ -55,7 +55,6 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         db = App.getInstance().getDatabase();
         setAdapters();
         fillFields();
-        // onConflict.replace
         // без заполнения лесничества, даты , не активировать кнопку на ведомость мдо, создание строки и возвращение ид повесить на эту кнопку
     }
 
@@ -85,13 +84,13 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 fund = new Fund();
                 newFundId = db.getstatementDao().insertFund(fund);// id созданной ведомости
 
-                FundEnum fundEnum = new FundEnum();
+                /*FundEnum fundEnum = new FundEnum();
                 fundEnum.setId_fund(newFundId);
                 long newFundEnumId = db.getstatementDao().insertFundEnum(fundEnum);
 
                 EnumTreesAmount enumTreesAmount = new EnumTreesAmount();
                 enumTreesAmount.setId_fund_enum(newFundEnumId);
-                long newEnumTreesAmount = db.getstatementDao().insertEnumTreesAmount(enumTreesAmount);
+                long newEnumTreesAmount = db.getstatementDao().insertEnumTreesAmount(enumTreesAmount);*/
             }
         }
     }
@@ -225,4 +224,5 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
     }
+
 }

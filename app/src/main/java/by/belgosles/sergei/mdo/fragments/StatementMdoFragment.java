@@ -77,7 +77,6 @@ public class StatementMdoFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
         if (getArguments() != null) {
             id_fund = getArguments().getLong(ID_Fund);
             mParam2 = getArguments().getString(ARG_PARAM2);
