@@ -18,15 +18,6 @@ public interface FundDao {
     @Insert
     long insertFund(Fund fund);
 
-    @Insert
-    void insertListFundEnum(List<FundEnum> fundEnumlist);
-
-    @Insert
-    void insertFundEnum(FundEnum fundEnum);
-
-    @Insert
-    long insertEnumTreesAmount(EnumTreesAmount enumTreesAmount);
-
     @Delete
     void delete(Fund fund);
 
@@ -74,9 +65,6 @@ public interface FundDao {
             "Where id_fund = :id_fund")
     void updateFund(String whip, long id_fund);
 
-    @Update
-    void updateFundEnum(FundEnum fundEnum);
-
     @Query("Update Fund SET " +
             "filling_date = :filling_date," +
             "id_forestry = :id_forestry," +
@@ -91,8 +79,25 @@ public interface FundDao {
     @Query("Delete From Fund Where id_fund = :id_fund")
     void deleteNotSaveStatement(long id_fund);
 
+
+
+    @Insert
+    List<Long> insertListFundEnum(List<FundEnum> fundEnumlist);
+
+    @Insert
+    void insertFundEnum(FundEnum fundEnum);
+
+    @Update
+    void updateFundEnum(FundEnum fundEnum);
+
     @Query("Select * From FundEnum Where id_fund = :id_fund")
     List<FundEnum> getFundEnum(long id_fund);
+
+    @Query("Delete From FundEnum Where id_fund = :id_fund")
+    void deleteFundEnum(long id_fund);
+
+    @Query("Select id_fund_enum From FundEnum Where (id_fund = :id_fund) AND (id_species = :id_species)")
+    int getIdFundEnumBySpecies(long id_fund, int id_species);
 
     @Query("Update EnumTreesAmount SET " +
             "id_diameter = :diameter," +

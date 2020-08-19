@@ -225,4 +225,9 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //db.close();
+    }
 }

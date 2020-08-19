@@ -38,6 +38,7 @@ import by.belgosles.sergei.mdo.R;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
 import by.belgosles.sergei.mdo.model.entity.FundEnum;
 
 import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -181,7 +182,6 @@ public class EnumFragment extends Fragment {
             toast.show();*/
         } else {
             addNewRadioButton(selectedItemValue, id_species, spin_trf_height.getSelectedItemPosition());
-            saveSpeciesList.add(selectedDictName);
         }
     }
 
@@ -330,7 +330,6 @@ public class EnumFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
-        db.close();
     }
 
     @Override
@@ -343,7 +342,7 @@ public class EnumFragment extends Fragment {
         String whip = getInputtedText(ed_whip);
         db.getstatementDao().updateFund(whip, id_fund);
 
-        ArrayList<FundEnum> test = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);//все данные из FundEnum открытой ведомости
+        ArrayList<FundEnum> fundEnumDb = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);//все данные из FundEnum открытой ведомости
         ArrayList<FundEnum> fundEnumList = new ArrayList<>();
         for (Map.Entry<Integer, Integer> entry : mapTrfHeightSpecies.entrySet()) {
             FundEnum fundEnum = new FundEnum();
@@ -352,27 +351,22 @@ public class EnumFragment extends Fragment {
             fundEnum.setId_height_level(entry.getValue());
             fundEnumList.add(fundEnum);
         }
-        if(test.isEmpty()){
+
+        ArrayList <Long> idFundEnumList;
+        if(fundEnumDb.isEmpty()){
             //если в таблице перечетки нет записей
-            db.getstatementDao().insertListFundEnum(fundEnumList);
+            idFundEnumList = (ArrayList<Long>) db.getstatementDao().insertListFundEnum(fundEnumList);
         }
         else {
-            for(FundEnum elemNew:fundEnumList){
-                for(FundEnum elemDb: test){
-                    if(elemNew.getId_species() == elemDb.getId_species()){
-                        elemNew.setId_fund_enum(elemDb.getId_fund_enum());
-                        db.getstatementDao().updateFundEnum(elemNew);
-                    }
-                }
-                if(elemNew.getId_fund_enum() == 0){
-                    db.getstatementDao().insertFundEnum(elemNew);
-                }
-            }
+            //если есть, удаляем по id ведомости все записи, вставляем данные с фрагмента
+            db.getstatementDao().deleteFundEnum(id_fund);
+            idFundEnumList = (ArrayList<Long>) db.getstatementDao().insertListFundEnum(fundEnumList);
         }
 
-        //fundEnum.setId_height_level();
-        //db.getstatementDao().updateFundEnum(,id_fund);
-        //db.getstatementDao().updateEnumTreesAmount();
+        ArrayList<EnumTreesAmount> enumTreesAmounts = new ArrayList<>();
+        for (Map.Entry<Integer, List<DiamDelDrov>> entry: mapEnumSpecies.entrySet()) {
+
+        }
     }
 
     public interface OnFragmentInteractionListener {
