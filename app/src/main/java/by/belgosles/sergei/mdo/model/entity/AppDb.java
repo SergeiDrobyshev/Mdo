@@ -31,7 +31,7 @@ import by.belgosles.sergei.mdo.model.entity.refs.DictTypeStem;
         DictGroupForest.class, DictSeedsKind.class, DictKindUse.class, DictRgnMeth.class, DictSection.class, DictStatus.class, DictStrSoil.class,
         DictTrfHeight.class, DictTypeForest.class, DictTypeStem.class, DictCutMeth.class
 },
-        version = 6, exportSchema = false)
+        version = 7, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
     public abstract FundDao getstatementDao();

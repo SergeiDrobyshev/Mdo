@@ -85,7 +85,7 @@ public interface FundDao {
     List<Long> insertListFundEnum(List<FundEnum> fundEnumlist);
 
     @Insert
-    void insertFundEnum(FundEnum fundEnum);
+    long insertFundEnum(FundEnum fundEnum);
 
     @Update
     void updateFundEnum(FundEnum fundEnum);

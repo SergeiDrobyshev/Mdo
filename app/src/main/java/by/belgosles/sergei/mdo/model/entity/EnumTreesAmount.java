@@ -13,8 +13,8 @@ public class EnumTreesAmount {
     private int id_trees_amount_enum;
 
     private int id_diameter;
-    private int amount_del;
-    private int amount_drov;
+    private String amount_del;
+    private String amount_drov;
 
     private long id_fund_enum;
 
@@ -26,19 +26,19 @@ public class EnumTreesAmount {
         this.id_diameter = id_diameter;
     }
 
-    public int getAmount_del() {
+    public String getAmount_del() {
         return amount_del;
     }
 
-    public void setAmount_del(int amount_del) {
+    public void setAmount_del(String amount_del) {
         this.amount_del = amount_del;
     }
 
-    public int getAmount_drov() {
+    public String getAmount_drov() {
         return amount_drov;
     }
 
-    public void setAmount_drov(int amount_drov) {
+    public void setAmount_drov(String amount_drov) {
         this.amount_drov = amount_drov;
     }
 
