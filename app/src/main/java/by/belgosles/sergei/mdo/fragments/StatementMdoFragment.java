@@ -248,7 +248,6 @@ public class StatementMdoFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        //db.close();
     }
 
     //сохранение в БД установленной во Views информации

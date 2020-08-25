@@ -83,14 +83,6 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
 
                 fund = new Fund();
                 newFundId = db.getstatementDao().insertFund(fund);// id созданной ведомости
-
-                /*FundEnum fundEnum = new FundEnum();
-                fundEnum.setId_fund(newFundId);
-                long newFundEnumId = db.getstatementDao().insertFundEnum(fundEnum);
-
-                EnumTreesAmount enumTreesAmount = new EnumTreesAmount();
-                enumTreesAmount.setId_fund_enum(newFundEnumId);
-                long newEnumTreesAmount = db.getstatementDao().insertEnumTreesAmount(enumTreesAmount);*/
             }
         }
     }
@@ -228,6 +220,5 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //db.close();
     }
 }

@@ -8,6 +8,7 @@ import androidx.room.Update;
 
 import java.util.List;
 
+import by.belgosles.sergei.mdo.DiamDelDrov;
 import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
 import by.belgosles.sergei.mdo.model.entity.Fund;
 import by.belgosles.sergei.mdo.model.entity.FundEnum;
@@ -96,8 +97,13 @@ public interface FundDao {
     @Query("Delete From FundEnum Where id_fund = :id_fund")
     void deleteFundEnum(long id_fund);
 
-    @Query("Select id_fund_enum From FundEnum Where (id_fund = :id_fund) AND (id_species = :id_species)")
-    int getIdFundEnumBySpecies(long id_fund, int id_species);
+
+
+    @Insert
+    void insertEnumTreesAmount (EnumTreesAmount enumTreesAmount);
+
+    @Query("Select id_diameter as diameter, amount_del as delAmount, amount_drov as drovAmount From EnumTreesAmount Where id_fund_enum = :id_fund_enum")
+    List<DiamDelDrov> getEnumTreesAmountByIdFundEnum(long id_fund_enum);
 
     @Query("Update EnumTreesAmount SET " +
             "id_diameter = :diameter," +

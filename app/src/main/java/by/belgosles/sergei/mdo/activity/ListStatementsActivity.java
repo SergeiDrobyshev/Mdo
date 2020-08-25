@@ -91,4 +91,5 @@ public class ListStatementsActivity extends androidx.appcompat.app.AppCompatActi
         adapter.dataChanged((ArrayList<Fund>) database.getstatementDao().getAllStatements());
         super.onResume();
     }
+
 }

@@ -1,6 +1,5 @@
 package by.belgosles.sergei.mdo.fragments;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
@@ -58,18 +57,16 @@ public class EnumFragment extends Fragment {
     Button addNewDiamRow;
     @BindView(R.id.linearLayout_add_diam)
     LinearLayout layoutAddDiamRows;
-    @BindView(R.id.spinner_trf_height) Spinner spin_trf_height;
+    @BindView(R.id.spinner_trf_height)
+    Spinner spin_trf_height;
 
     private AppDb db;
     private Map<Integer, SpeciesEnum> mapSpeciesEnum = new HashMap<>();
-    private Map<Integer, List<DiamDelDrov>> mapEnumSpecies = new HashMap<>();
-    private Map<Integer, Integer> mapTrfHeightSpecies = new HashMap<>();
-    private ArrayList<DictName> saveSpeciesList = new ArrayList<>();// todo убрать. сохранять общий map
     private List<Integer> listDialogCheckedDiameters = new ArrayList<>();
     private static final String ID_FUND = "param1";
     private static final String ARG_PARAM2 = "param2";
     private LayoutInflater inflater;
-    private String [] diameters;
+    private String[] diameters;
 
     private long id_fund;
     private String mParam2;
@@ -110,10 +107,10 @@ public class EnumFragment extends Fragment {
         diameters = getResources().getStringArray(R.array.refs_diameters);
         if (savedInstanceState != null) {
             if (savedInstanceState.containsKey("speciesButtons")) {
-               // ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons");
-               // if (list != null) {
-                    //restoreButtonsSpecies(list);
-               // }
+                // ArrayList<DictName> list = (ArrayList<DictName>) savedInstanceState.getSerializable("speciesButtons");
+                // if (list != null) {
+                //restoreButtonsSpecies(list);
+                // }
             }
         }
         //обновление списка добавленных диаметров при выборе породы
@@ -136,7 +133,7 @@ public class EnumFragment extends Fragment {
     }
 
     // добавление радиокнопки с выбранной породой
-    private void addNewRadioButton(String selectedItemValue, long id_species, int id_height_level) {
+    private void addNewRadioButton(String selectedItemValue, long id_species, int id_height_level, ArrayList<DiamDelDrov> listRows) {
         RadioButton rb = new RadioButton(getContext());
         rb.setText(selectedItemValue);
         rb.setTextSize(12);
@@ -144,7 +141,7 @@ public class EnumFragment extends Fragment {
         //todo version sdk
         rb.setId((int) id_species);
         radioGroupSelectedSpecies.addView(rb);
-        //registerForContextMenu(rb);
+        //удаление породы по долгoму клику
         rb.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -152,32 +149,20 @@ public class EnumFragment extends Fragment {
                 return false;
             }
         });
-        List<DiamDelDrov> listRows = new ArrayList<>();
 
         SpeciesEnum newSpecies = new SpeciesEnum();
         newSpecies.setIdHeightLevel(id_height_level);
         newSpecies.setListDiamDelDrov(listRows);
         mapSpeciesEnum.put((int) id_species, newSpecies);
-
-        //mapEnumSpecies.put((int) id_species, listRows);
-        //mapTrfHeightSpecies.put((int) id_species, id_height_level);
     }
 
     //при смене породы в RadioGroup обновить строки с диаметрами и значение разряда высот
-    private void updateLayoutAddDiamRows(int idRadioButton){
+    private void updateLayoutAddDiamRows(int idRadioButton) {
         layoutAddDiamRows.removeAllViews();
-        //todo not null
-        List<DiamDelDrov> list = Objects.requireNonNull(mapSpeciesEnum.get(idRadioButton)).getListDiamDelDrov();
-        //List<DiamDelDrov> list = mapEnumSpecies.get(idRadioButton);
+        List<DiamDelDrov> list = mapSpeciesEnum.get(idRadioButton).getListDiamDelDrov();
         if (list != null && !list.isEmpty()) {
             addDiamRows(list);
         }
-        /*if(mapTrfHeightSpecies.containsKey(idRadioButton)) {
-            int position = mapTrfHeightSpecies.get(idRadioButton);
-            spin_trf_height.setSelection(position);
-        }else {
-              spin_trf_height.setPrompt("");
-        }*/
         int idHeightLevel = mapSpeciesEnum.get(idRadioButton).getIdHeightLevel();
         spin_trf_height.setSelection(idHeightLevel);
         //todo empty if
@@ -195,20 +180,20 @@ public class EnumFragment extends Fragment {
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();*/
         } else {
-            addNewRadioButton(selectedItemValue, id_species, spin_trf_height.getSelectedItemPosition());
+            addNewRadioButton(selectedItemValue, id_species, spin_trf_height.getSelectedItemPosition(), new ArrayList<>());
         }
     }
 
     @OnItemSelected(R.id.spinner_trf_height)
-    public void onClickTrf(){
+    public void onClickTrf() {
         int position = spin_trf_height.getSelectedItemPosition();
         // временное сохранение выбранной позиции разряда высот
-        if(radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1) {
+        if (radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1) {
             mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).setIdHeightLevel(position);
 
-           //mapTrfHeightSpecies.put(radioGroupSelectedSpecies.getCheckedRadioButtonId(), position);
-        }else {
-              //если не добавлено и не выбрано ни одной породы
+            //mapTrfHeightSpecies.put(radioGroupSelectedSpecies.getCheckedRadioButtonId(), position);
+        } else {
+            //если не добавлено и не выбрано ни одной породы
               /*Toast toast = Toast.makeText(getContext(), "Добавьте и выберите породу!", Toast.LENGTH_SHORT);
               toast.setGravity(Gravity.CENTER, 0, 0);
               toast.show();*/
@@ -217,10 +202,10 @@ public class EnumFragment extends Fragment {
 
     @OnClick(R.id.addDiameterDelDrovRow)
     void onClickAddDiameterButton() {
-        if(radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1){
+        if (radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1) {
             AlertDialog dialog = dialogAddDiam();
             dialog.show();
-        }else {
+        } else {
             //если не добавлено и не выбрано ни одной породы
             Toast toast = Toast.makeText(getContext(), "Добавьте и выберите породу!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.CENTER, 0, 0);
@@ -235,20 +220,22 @@ public class EnumFragment extends Fragment {
                 .setMultiChoiceItems(diameters, null, (dialogInterface, i, isChecked) -> {
                     //сохранение выбранных диаметров, и удаление при снятии флажка выбора
                     if (isChecked) listDialogCheckedDiameters.add(i);
-                    else if(listDialogCheckedDiameters.contains(i)) listDialogCheckedDiameters.remove(Integer.valueOf(i));
+                    else if (listDialogCheckedDiameters.contains(i))
+                        listDialogCheckedDiameters.remove(Integer.valueOf(i));
 
                 })
                 .setPositiveButton(R.string.ok, (dialogInterface, i) -> {
-                    if(!listDialogCheckedDiameters.isEmpty()) {
+                    if (!listDialogCheckedDiameters.isEmpty()) {
                         List<DiamDelDrov> listDiamRows = new ArrayList<>();
-                        for(int k = 0; k < listDialogCheckedDiameters.size(); k++) {
+                        for (int k = 0; k < listDialogCheckedDiameters.size(); k++) {
                             DiamDelDrov d = new DiamDelDrov();
                             d.setDiameter(Integer.parseInt(diameters[listDialogCheckedDiameters.get(k)]));
                             listDiamRows.add(d);
                         }
                         checkDiamDuplication(listDiamRows);
                         addDiamRows(listDiamRows);
-                        if(!listDiamRows.isEmpty()) mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).setListDiamDelDrov(listDiamRows);
+                        if (!listDiamRows.isEmpty())
+                            mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).getListDiamDelDrov().addAll(listDiamRows);
                     }
                     listDialogCheckedDiameters.clear();
                 })
@@ -260,9 +247,9 @@ public class EnumFragment extends Fragment {
     }
 
     // добавление строк с диаметрами
-    private void addDiamRows(List <DiamDelDrov> listDiamRows){
+    private void addDiamRows(List<DiamDelDrov> listDiamRows) {
         ConstraintLayout row = null;
-        for (DiamDelDrov i:listDiamRows) {
+        for (DiamDelDrov i : listDiamRows) {
             row = (ConstraintLayout) inflater.inflate(R.layout.row_diam_del_drov, layoutAddDiamRows, false);
             TextView tvDiameterNumber = row.findViewById(R.id.textView_diameter_number);
             tvDiameterNumber.setText(String.valueOf(i.getDiameter()));
@@ -279,14 +266,14 @@ public class EnumFragment extends Fragment {
                 layoutAddDiamRows.removeView(finalRow);
                 listDiamRows.remove(i);
                 mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).setListDiamDelDrov(listDiamRows);
-                //mapEnumSpecies.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).remove(i);
+
                 return false;
             });
         }
     }
 
     // слушатель на EditTexts количества деревьев, и сохрание значений в обьект выбранной строки
-    private void setEventforAmount(TextView tv, EditText del, EditText drov, DiamDelDrov row){
+    private void setEventforAmount(TextView tv, EditText del, EditText drov, DiamDelDrov row) {
         del.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -323,14 +310,13 @@ public class EnumFragment extends Fragment {
     }
 
     //сравнение уже добавленных диаметров для породы и выбранных в AlertDialog
-    private void checkDiamDuplication(List<DiamDelDrov> listDiamRows){
-        //List <DiamDelDrov> list = mapEnumSpecies.get(radioGroupSelectedSpecies.getCheckedRadioButtonId());
+    private void checkDiamDuplication(List<DiamDelDrov> listDiamRows) {
         List<DiamDelDrov> list = mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).getListDiamDelDrov();
-        if(list != null && !list.isEmpty()){
+        if (list != null && !list.isEmpty()) {
             for (int j = 0; j < listDiamRows.size(); j++) {
                 int newDiam = listDiamRows.get(j).getDiameter();
                 for (DiamDelDrov i : list) {
-                    if(newDiam == i.getDiameter()){
+                    if (newDiam == i.getDiameter()) {
                         listDiamRows.remove(j);
                         j--;
                     }
@@ -356,39 +342,25 @@ public class EnumFragment extends Fragment {
         db.getstatementDao().updateFund(whip, id_fund);
 
         long idFundEnum;
-        ArrayList<FundEnum> fundEnumDb = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);//все данные из FundEnum открытой ведомости
-        if(!fundEnumDb.isEmpty()){
+        ArrayList<FundEnum> fundEnumDb = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);//все данные из таблицы FundEnum открытой ведомости
+        if (!fundEnumDb.isEmpty()) {
             //если в таблице перечетки уже есть записи, удаляем по текущему id ведомости все записи
             db.getstatementDao().deleteFundEnum(id_fund);
         }
-        for (Map.Entry<Integer, Integer> entry : mapTrfHeightSpecies.entrySet()) {
+        for (Map.Entry<Integer, SpeciesEnum> entry : mapSpeciesEnum.entrySet()) {
             FundEnum fundEnum = new FundEnum();
-            fundEnum.setId_fund(id_fund);
-            fundEnum.setId_species(entry.getKey());
-            fundEnum.setId_height_level(entry.getValue());
-            idFundEnum = db.getstatementDao().insertFundEnum(fundEnum);
-        }
-
-        ArrayList <Long> idFundEnumList;
-        if(fundEnumDb.isEmpty()){
-            //если в таблице перечетки нет записей
-            //idFundEnumList = (ArrayList<Long>) db.getstatementDao().insertListFundEnum(fundEnumList);
-        }
-        else {
-            //если есть, удаляем по id ведомости все записи, вставляем данные с фрагмента
-            db.getstatementDao().deleteFundEnum(id_fund);
-            //idFundEnumList = (ArrayList<Long>) db.getstatementDao().insertListFundEnum(fundEnumList);
-        }
-
-        ArrayList<EnumTreesAmount> enumTreesAmounts = new ArrayList<>();
-        for (Map.Entry<Integer, List<DiamDelDrov>> entry: mapEnumSpecies.entrySet()) {
-            ArrayList<DiamDelDrov> listValuesDelDrov = (ArrayList<DiamDelDrov>) entry.getValue();
-            for (DiamDelDrov diamDelDrov:listValuesDelDrov){
+            fundEnum.setId_fund(id_fund);// id ведомости
+            fundEnum.setId_species(entry.getKey());// id породы из mapSpeciesEnum
+            fundEnum.setId_height_level(entry.getValue().getIdHeightLevel());// id разряда высот из mapSpeciesEnum
+            idFundEnum = db.getstatementDao().insertFundEnum(fundEnum); // id вставленной строчки в FundEnum
+            ArrayList<DiamDelDrov> list = (ArrayList<DiamDelDrov>) entry.getValue().getListDiamDelDrov();
+            for (DiamDelDrov i : list) { // диаметр, кол-во деловых и дровяных деревьев сохраняется в обьект EnumTreesAmount для вставки в БД
                 EnumTreesAmount enumTreesAmount = new EnumTreesAmount();
-                enumTreesAmount.setAmount_del(diamDelDrov.getDelAmount());
-                enumTreesAmount.setAmount_drov(diamDelDrov.getDrovAmount());
-                enumTreesAmount.setId_diameter(diamDelDrov.getDiameter());
-                //enumTreesAmount.setId_fund_enum();
+                enumTreesAmount.setId_fund_enum(idFundEnum); // id вставленной строчик в таблицу FundEnum(для каждой породы свои значения диаметров, деловых и дровяных
+                enumTreesAmount.setId_diameter(i.getDiameter());
+                enumTreesAmount.setAmount_drov(i.getDrovAmount());
+                enumTreesAmount.setAmount_del(i.getDelAmount());
+                db.getstatementDao().insertEnumTreesAmount(enumTreesAmount);
             }
         }
     }
@@ -398,7 +370,7 @@ public class EnumFragment extends Fragment {
         void onFragmentInteraction(Uri uri);
     }
 
-    private void setOnLongClickRadioButtons(RadioButton rb){
+    private void setOnLongClickRadioButtons(RadioButton rb) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         String mes = getString(R.string.remove) + " " + rb.getText() + "?";
         builder.setMessage(mes)
@@ -423,15 +395,18 @@ public class EnumFragment extends Fragment {
         return "";
     }
 
-    private void getDataFromDb (long id_fund){
+    private void getDataFromDb(long id_fund) {
         ArrayList<FundEnum> fundEnum = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);
-        if(!fundEnum.isEmpty()) {
+        if (!fundEnum.isEmpty()) {
             for (FundEnum elem : fundEnum) {
-                String nameSpecies = db.getDictsDao().getNameSpecies(elem.getId_species());
-                addNewRadioButton(nameSpecies, elem.getId_species(), elem.getId_height_level());//todo переписать метод, список диаметров передаются параметром,
-                //mapEnumSpecies.put(elem.getId_species(), null);//todo add DimDelDrov to put
+                ArrayList<DiamDelDrov> diamDelDrovDB = (ArrayList<DiamDelDrov>) db.getstatementDao().getEnumTreesAmountByIdFundEnum(elem.getId_fund_enum());
+                String nameSpecies = db.getDictsDao().getNameSpecies(elem.getId_species()); // название пороы по id для кнопки
+                addNewRadioButton(nameSpecies, elem.getId_species(), elem.getId_height_level(), diamDelDrovDB);
+                SpeciesEnum speciesEnum = new SpeciesEnum();
+                speciesEnum.setIdHeightLevel(elem.getId_height_level());
+                speciesEnum.setListDiamDelDrov(diamDelDrovDB);
+                mapSpeciesEnum.put(elem.getId_species(), speciesEnum);
                 //todo check recyclerView(кнопки с породами несколько можно выбрать)
-                //mapTrfHeightSpecies.put(elem.getId_species(), elem.getId_height_level());
             }
         }
     }
