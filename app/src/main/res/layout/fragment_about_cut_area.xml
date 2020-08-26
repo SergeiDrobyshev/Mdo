@@ -1,111 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/margin"
-        android:layout_marginBottom= "@dimen/layout_margin_bottom"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/margin">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/vid_polz"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/vid_polz"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_vidpolz"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:id="@+id/vid_polz"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/vid_polz"
-                android:textSize="@dimen/textview_textsize" />
+        <Spinner
+            android:id="@+id/spinner_vidpolz"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:paddingBottom="2dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/vid_polz"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <Spinner
-                android:id="@+id/spinner_vidpolz"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:spinnerMode="dialog"
-                android:textSize="@dimen/textview_textsize" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/forest_category"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/forest_category"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_forest_category"
+            app:layout_constraintStart_toStartOf="@+id/vid_polz"
+            app:layout_constraintTop_toBottomOf="@+id/vid_polz" />
 
-            <TextView
-                android:id="@+id/forest_category"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/forest_category"
-                android:textSize="@dimen/textview_textsize" />
+        <Spinner
+            android:id="@+id/spinner_forest_category"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:paddingBottom="2dp"
+            android:spinnerMode="dialog"
+            android:gravity="center"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/forest_category"
+            app:layout_constraintTop_toBottomOf="@id/spinner_vidpolz" />
 
-            <Spinner
-                android:id="@+id/spinner_forest_category"
-                style="@style/Widget.AppCompat.Spinner.Underlined"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView_year_forest_fund"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/year_forest_fund"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_year_forest_fund"
+            app:layout_constraintStart_toStartOf="@+id/forest_category"
+            app:layout_constraintTop_toBottomOf="@+id/forest_category" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
+        <EditText
+            android:id="@+id/editText_year_forest_fund"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_year_forest_fund"
+            app:layout_constraintTop_toBottomOf="@id/spinner_forest_category" />
 
-            <TextView
-                android:id="@+id/textView_year_forest_fund"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/year_forest_fund"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_year_otvod"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/year_otvod"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_year_otvod"
+            app:layout_constraintStart_toStartOf="@+id/textView_year_forest_fund"
+            app:layout_constraintTop_toBottomOf="@+id/textView_year_forest_fund" />
 
-            <EditText
-                android:id="@+id/editText_year_forest_fund"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_year_otvod"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/year_otvod"
-                android:textSize="@dimen/textview_textsize" />
-
-            <EditText
-                android:id="@+id/editText_year_otvod"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_year_otvod"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_year_otvod"
+            app:layout_constraintTop_toBottomOf="@+id/editText_year_forest_fund" />
 
         <View
             android:id="@+id/divider"
@@ -113,107 +115,111 @@
             android:layout_height="@dimen/layout_height_view_line"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_weight="0"
-            android:background="?android:attr/listDivider" />
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_year_otvod" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
+
+        <TextView
+            android:id="@+id/textView_forest_quarter"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_forest_quarter"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/forest_quarter"
-                android:textSize="@dimen/textview_textsize" />
+            android:gravity="center_vertical"
+            android:text="@string/forest_quarter"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_forest_quarter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
-            <EditText
-                android:id="@+id/editText_forest_quarter"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height2"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_number_lesosek"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/layout_height"
-                android:gravity="center"
-                android:text="@string/number_lesosek"
-                android:textSize="@dimen/textview_textsize" />
+        <EditText
+            android:id="@+id/editText_forest_quarter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_forest_quarter"
+            app:layout_constraintTop_toBottomOf="@+id/divider" />
 
 
-            <EditText
-                android:id="@+id/editText_number_lesosek"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_number_videl"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="@string/number_tax_area"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_number_lesosek"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/layout_height"
+            android:gravity="center"
+            android:text="@string/number_lesosek"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_number_lesosek"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_forest_quarter" />
 
 
-            <EditText
-                android:id="@+id/editText_number_videl"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height2"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_square"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/square"
-                android:textSize="@dimen/textview_textsize"/>
+        <EditText
+            android:id="@+id/editText_number_lesosek"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_number_lesosek"
+            app:layout_constraintTop_toBottomOf="@+id/editText_forest_quarter" />
 
 
-            <EditText
-                android:id="@+id/editText_square"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textView_number_videl"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:text="@string/number_tax_area"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_number_videl"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_number_lesosek" />
+
+
+        <EditText
+            android:id="@+id/editText_number_videl"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_number_videl"
+            app:layout_constraintTop_toBottomOf="@+id/editText_number_lesosek" />
+
+
+        <TextView
+            android:id="@+id/textView_square"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/square"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_square"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_number_videl" />
+
+
+        <EditText
+            android:id="@+id/editText_square"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_square"
+            app:layout_constraintTop_toBottomOf="@+id/editText_number_videl" />
+
 
         <View
             android:id="@+id/divider1"
@@ -221,152 +227,168 @@
             android:layout_height="@dimen/layout_height_view_line"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_weight="0"
-            android:background="?android:attr/listDivider" />
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_square" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/textview_hoz_section"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/hoz_section"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textview_hoz_section"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/hoz_section"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_hoz_section"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-            <Spinner
-                android:id="@+id/spinner_hoz_section"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_hoz_section"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_hoz_section"
+            app:layout_constraintTop_toBottomOf="@+id/divider1" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textview_species_group"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/species_group"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_species_group"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_hoz_section" />
 
-            <TextView
-                android:id="@+id/textview_species_group"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/species_group"
-                android:textSize="@dimen/textview_textsize" />
+        <Spinner
+            android:id="@+id/spinner_species_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_species_group"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_hoz_section" />
 
-            <Spinner
-                android:id="@+id/spinner_species_group"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textview_type_cutting"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/type_cutting"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_type_cutting"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_species_group" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/spinner_type_cutting"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_type_cutting"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_species_group" />
 
-            <TextView
-                android:id="@+id/textview_type_cutting"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/type_cutting"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textview_accounting_method"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/accounting_method"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_accounting_method"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_type_cutting" />
 
-            <Spinner
-                android:id="@+id/spinner_type_cutting"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_accounting_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_accounting_method"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_type_cutting" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
+        <TextView
+            android:id="@+id/textview_cleaning_method"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/cleaning_method"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_cleaning_method"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_accounting_method" />
 
-            <TextView
-                android:id="@+id/textview_accounting_method"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/accounting_method"
-                android:textSize="@dimen/textview_textsize" />
+        <Spinner
+            android:id="@+id/spinner_cleaning_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_cleaning_method"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_accounting_method" />
 
-            <Spinner
-                android:id="@+id/spinner_accounting_method"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/textview_recovery_method"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="@string/recovery_method"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_recovery_method"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_cleaning_method" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textview_cleaning_method"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/cleaning_method"
-                android:textSize="@dimen/textview_textsize" />
-
-            <Spinner
-                android:id="@+id/spinner_cleaning_method"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textview_recovery_method"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                android:text="@string/recovery_method"
-                android:textSize="@dimen/textview_textsize" />
-
-            <Spinner
-                android:id="@+id/spinner_recovery_method"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_recovery_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textview_recovery_method"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_cleaning_method" />
 
         <View
             android:id="@+id/divider2"
@@ -374,180 +396,188 @@
             android:layout_height="@dimen/layout_height_view_line"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_weight="0"
-            android:background="?android:attr/listDivider" />
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textview_recovery_method" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_sostav"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/sostav"
-                android:textSize="@dimen/textview_textsize" />
-
-
-            <EditText
-                android:id="@+id/editText_sostav"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_bonitet"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/bonitet"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_sostav"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/sostav"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_sostav"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
 
-            <Spinner
-                android:id="@+id/spinner_bonitet"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_sostav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_sostav"
+            app:layout_constraintTop_toBottomOf="@+id/divider2" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_forest_type"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/forest_type"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_bonitet"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/bonitet"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_bonitet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_sostav" />
 
 
-            <Spinner
-                android:id="@+id/spinner_forest_type"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_bonitet"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_bonitet"
+            app:layout_constraintTop_toBottomOf="@+id/editText_sostav" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_cover"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/layout_height"
-                android:gravity="center"
-                android:text="@string/cover"
-                android:textSize="@dimen/textview_textsize" />
-
-
-            <EditText
-                android:id="@+id/editText_cover"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_soil"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/layout_height"
-                android:gravity="center"
-                android:text="@string/soil"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_forest_type"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/forest_type"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_forest_type"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_bonitet" />
 
 
-            <Spinner
-                android:id="@+id/spinner_soil"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
+        <Spinner
+            android:id="@+id/spinner_forest_type"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_forest_type"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_bonitet" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_stand_condition"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:layout_gravity="center_vertical"
-                android:text="@string/stand_condition"
-                android:textSize="@dimen/textview_textsize" />
-
-
-            <Spinner
-                android:id="@+id/spinner_stand_condition"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/layout_height"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:spinnerMode="dialog"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_age"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/age"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_cover"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/cover"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_cover"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_forest_type" />
 
 
-            <EditText
-                android:id="@+id/editText_age"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_cover"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_cover"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_forest_type" />
+
+        <TextView
+            android:id="@+id/textView_soil"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/soil"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_soil"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_cover" />
+
+
+        <Spinner
+            android:id="@+id/spinner_soil"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_soil"
+            app:layout_constraintTop_toBottomOf="@+id/editText_cover" />
+
+        <TextView
+            android:id="@+id/textView_stand_condition"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical"
+            android:text="@string/stand_condition"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_stand_condition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_soil" />
+
+
+        <Spinner
+            android:id="@+id/spinner_stand_condition"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:spinnerMode="dialog"
+            android:textSize="@dimen/textview_textsize"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_stand_condition"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_soil" />
+
+        <TextView
+            android:id="@+id/textView_age"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/age"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_age"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_stand_condition" />
+
+
+        <EditText
+            android:id="@+id/editText_age"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_age"
+            app:layout_constraintTop_toBottomOf="@+id/spinner_stand_condition" />
 
         <View
             android:id="@+id/divider3"
@@ -555,121 +585,105 @@
             android:layout_height="@dimen/layout_height_view_line"
             android:layout_marginTop="@dimen/marginTop"
             android:layout_weight="0"
-            android:background="?android:attr/listDivider" />
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="@dimen/marginTop"
-        android:orientation="horizontal">
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_age" />
 
         <TextView
             android:id="@+id/textView_fullness"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/fullness"
-            android:textSize="@dimen/textview_textsize" />
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_fullness"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
 
         <EditText
             android:id="@+id/editText_fullness"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/marginLeft"
             android:layout_marginLeft="@dimen/marginLeft"
-            android:textSize="@dimen/textview_textsize" />
-    </LinearLayout>
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_fullness"
+            app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_sr_height"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/sr_height"
-                android:textSize="@dimen/textview_textsize" />
-
-
-            <EditText
-                android:id="@+id/editText_sr_height"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_sr_diameter"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/sr_diameter"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_sr_height"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/sr_height"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_sr_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_fullness" />
 
 
-            <EditText
-                android:id="@+id/editText_sr_diameter"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize"
-                android:inputType="number"/>
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_sr_height"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_sr_height"
+            app:layout_constraintTop_toBottomOf="@+id/editText_fullness" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/marginTop"
-            android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/textView_note"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/note"
-                android:textSize="@dimen/textview_textsize" />
+        <TextView
+            android:id="@+id/textView_sr_diameter"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/sr_diameter"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_sr_diameter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_sr_height" />
 
 
-            <EditText
-                android:id="@+id/editText_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/marginLeft"
-                android:layout_marginLeft="@dimen/marginLeft"
-                android:textSize="@dimen/textview_textsize" />
-        </LinearLayout>
+        <EditText
+            android:id="@+id/editText_sr_diameter"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="number"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_sr_diameter"
+            app:layout_constraintTop_toBottomOf="@+id/editText_sr_height" />
 
-       <!--
-        <Button
-            android:id="@+id/save_statement_mdo"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/marginTop"
-            android:layout_marginBottom="@dimen/layout_margin_bottom"
-            android:padding="@dimen/button_padding"
-            android:text="@string/save_mdo"
-            android:textSize="@dimen/button_textsize" />
-            -->
+        <TextView
+            android:id="@+id/textView_note"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@string/note"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_note"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_sr_diameter" />
 
 
-    </LinearLayout>
+        <EditText
+            android:id="@+id/editText_note"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marginLeft"
+            android:layout_marginLeft="@dimen/marginLeft"
+            android:textSize="@dimen/textview_textsize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView_note"
+            app:layout_constraintTop_toBottomOf="@+id/editText_sr_diameter" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

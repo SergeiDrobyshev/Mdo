@@ -9,8 +9,7 @@
     <dimen name="marginLeft">35dp</dimen>
     <dimen name="button_padding">30dp</dimen>
     <dimen name="layout_height_view_line">8dp</dimen>
-    <dimen name="layout_margin_bottom">35dp</dimen>
-    <dimen name="layout_height2">75dp</dimen>
+    <dimen name="number_tax_vydel_layout_height2">75dp</dimen>
     <dimen name="layout_width_button">200dp</dimen>
     <dimen name="layout_width_button_save">600dp</dimen>
     <dimen name="textsizeListItemsAlertDialog">32sp</dimen>

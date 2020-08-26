@@ -255,7 +255,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginBottom="@dimen/layout_margin_bottom"
+        android:layout_marginBottom="36dp"
         android:padding="@dimen/button_padding"
         android:text="@string/save_mdo"
         android:textSize="@dimen/button_textsize" />

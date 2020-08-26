@@ -190,8 +190,6 @@ public class EnumFragment extends Fragment {
         // временное сохранение выбранной позиции разряда высот
         if (radioGroupSelectedSpecies.getCheckedRadioButtonId() != -1) {
             mapSpeciesEnum.get(radioGroupSelectedSpecies.getCheckedRadioButtonId()).setIdHeightLevel(position);
-
-            //mapTrfHeightSpecies.put(radioGroupSelectedSpecies.getCheckedRadioButtonId(), position);
         } else {
             //если не добавлено и не выбрано ни одной породы
               /*Toast toast = Toast.makeText(getContext(), "Добавьте и выберите породу!", Toast.LENGTH_SHORT);
@@ -399,8 +397,8 @@ public class EnumFragment extends Fragment {
         ArrayList<FundEnum> fundEnum = (ArrayList<FundEnum>) db.getstatementDao().getFundEnum(id_fund);
         if (!fundEnum.isEmpty()) {
             for (FundEnum elem : fundEnum) {
-                ArrayList<DiamDelDrov> diamDelDrovDB = (ArrayList<DiamDelDrov>) db.getstatementDao().getEnumTreesAmountByIdFundEnum(elem.getId_fund_enum());
-                String nameSpecies = db.getDictsDao().getNameSpecies(elem.getId_species()); // название пороы по id для кнопки
+                ArrayList<DiamDelDrov> diamDelDrovDB = (ArrayList<DiamDelDrov>) db.getstatementDao().getEnumTreesAmountByIdFundEnum(elem.getId_fund_enum()); // список диаметров для породы
+                String nameSpecies = db.getDictsDao().getNameSpecies(elem.getId_species()); // название породы по id для кнопки
                 addNewRadioButton(nameSpecies, elem.getId_species(), elem.getId_height_level(), diamDelDrovDB);
                 SpeciesEnum speciesEnum = new SpeciesEnum();
                 speciesEnum.setIdHeightLevel(elem.getId_height_level());
