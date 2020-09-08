@@ -69,10 +69,7 @@ public class EnumFragment extends Fragment {
     private String[] diameters;
 
     private long id_fund;
-    private String mParam2;
     private OnFragmentInteractionListener mListener;
-
-    private final int MENU_ITEM_REMOVE = 1;
 
     public EnumFragment() {
         // Required empty public constructor
@@ -92,7 +89,6 @@ public class EnumFragment extends Fragment {
         inflater = getLayoutInflater();
         if (getArguments() != null) {
             id_fund = getArguments().getLong(ID_FUND);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
         db = App.getInstance().getDatabase();
 
@@ -408,6 +404,7 @@ public class EnumFragment extends Fragment {
             }
         }
     }
+
 
     private void restoreButtonsSpecies(ArrayList<DictName> list) {
         for (DictName species : list) {

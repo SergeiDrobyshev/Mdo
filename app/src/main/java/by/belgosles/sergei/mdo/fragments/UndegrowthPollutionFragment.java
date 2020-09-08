@@ -1,29 +1,48 @@
 package by.belgosles.sergei.mdo.fragments;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import androidx.fragment.app.Fragment;
 
-import by.belgosles.sergei.mdo.R;
+import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link UndegrowthPollutionFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link UndegrowthPollutionFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import by.belgosles.sergei.mdo.App;
+import by.belgosles.sergei.mdo.R;
+import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
+import by.belgosles.sergei.mdo.model.DictName;
+import by.belgosles.sergei.mdo.model.entity.AppDb;
+
 public class UndegrowthPollutionFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    @BindView(R.id.spinner_poroda_value1)
+    Spinner spin_poroda;
+    @BindView(R.id.editText_amount_thousand)
+    EditText edAmount;
+    @BindView(R.id.editText_preservation_area)
+    EditText edPreserveArea;
+    @BindView(R.id.editText_structure)
+    EditText sostav;
+    @BindView(R.id.editText_report_number)
+    EditText edReportNumber;
+    @BindView(R.id.editText_report_date)
+    EditText edReportDate;
+    @BindView(R.id.editText_radiation_pollution_density)
+    EditText edRadDensity;
+    @BindView(R.id.editText_specific_activity_del)
+    EditText edSpecActivityDel;
+    @BindView(R.id.editText_specific_activity_drov)
+    EditText edSpecActivityDrov;
+
+    private AppDb db;
+    private long id_fund;
+    private static final String ID_FUND = "param1";
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -35,20 +54,10 @@ public class UndegrowthPollutionFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment UndegrowthPollutionFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static UndegrowthPollutionFragment newInstance(String param1, String param2) {
+    public static UndegrowthPollutionFragment newInstance(long id_fund) {
         UndegrowthPollutionFragment fragment = new UndegrowthPollutionFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putLong(ID_FUND, id_fund);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,28 +66,27 @@ public class UndegrowthPollutionFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            id_fund = getArguments().getLong(ID_FUND);
         }
+        db = App.getInstance().getDatabase();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_undegrowth_pollut, container, false);
+        View view = inflater.inflate(R.layout.fragment_undegrowth_pollut, container, false);
+        ButterKnife.bind(this, view);
+        setViewAdapters();
+        getDataFromDb(id_fund);
+        return view;
+    }
+    private void setViewAdapters(){
+        ArrayList<DictName> listAllSpecies = (ArrayList<DictName>) db.getDictsDao().getAllSpecies();
+        DictSpinnerAdapter adapterSpecies = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, listAllSpecies);
+        spin_poroda.setAdapter(adapterSpecies);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-
+    private void getDataFromDb(long id_fund){
 
     }
 
@@ -87,6 +95,10 @@ public class UndegrowthPollutionFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
+
+
+
+
 
     /**
      * This interface must be implemented by activities that contain this

@@ -14,12 +14,13 @@
         <TextView
             android:id="@+id/amount_of_whip"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:gravity="center_vertical"
             android:text="@string/amount_of_whip"
             android:textSize="@dimen/textview_textsize"
-            app:layout_constraintStart_toStartOf="@+id/trf_height"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/editText_amount_of_whip"/>
 
         <EditText
             android:id="@+id/editText_amount_of_whip"
@@ -33,9 +34,9 @@
             android:gravity="center_horizontal"
             android:inputType="numberDecimal"
             android:textSize="@dimen/textview_textsize"
-            app:layout_constraintBottom_toBottomOf="@+id/amount_of_whip"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_general"
-            app:layout_constraintStart_toEndOf="@+id/amount_of_whip" />
+            app:layout_constraintEnd_toEndOf="@+id/guideline_general"
+            app:layout_constraintStart_toEndOf="@+id/amount_of_whip"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_general"
@@ -59,27 +60,28 @@
         <TextView
             android:id="@+id/trf_height"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/marginTop"
+            android:layout_height="0dp"
             android:gravity="center_vertical"
             android:text="@string/height_category"
             android:textSize="@dimen/textview_textsize"
-            app:layout_constraintStart_toStartOf="@+id/radioGroup_selected_species"
+            app:layout_constraintBottom_toBottomOf="@+id/spinner_trf_height"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/amount_of_whip" />
 
-        <by.belgosles.sergei.mdo.NoDefaultSpinner
+        <Spinner
             android:id="@+id/spinner_trf_height"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:paddingEnd="4dp"
             android:paddingRight="4dp"
+            android:paddingBottom="2dp"
             android:spinnerMode="dropdown"
-            app:layout_constraintBottom_toBottomOf="@+id/trf_height"
-            app:layout_constraintEnd_toStartOf="@+id/guideline_general"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:textSize="@dimen/textview_textsize"
             app:layout_constraintStart_toEndOf="@+id/trf_height"
-            app:layout_constraintTop_toTopOf="@+id/trf_height" />
+            app:layout_constraintEnd_toEndOf = "@+id/guideline_general"
+            app:layout_constraintTop_toBottomOf="@id/editText_amount_of_whip" />
 
         <Button
             android:id="@+id/addDiameterDelDrovRow"

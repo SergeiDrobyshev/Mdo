@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin"
@@ -20,20 +20,26 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="@dimen/marginTop">
+
         <TextView
             android:id="@+id/poroda_value1"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="match_parent"
             android:gravity="center"
+            android:layout_gravity="center_vertical"
             android:text="@string/poroda"
             android:textSize="@dimen/textview_textsize" />
 
         <Spinner
             android:id="@+id/spinner_poroda_value1"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/marginLeft"
             android:layout_marginLeft="@dimen/marginLeft"
+            android:paddingBottom="2dp"
+            android:gravity="center"
+            android:spinnerMode="dialog"
             android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
 
@@ -47,6 +53,7 @@
             android:id="@+id/amount_thousand"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/amount_thousand"
             android:textSize="@dimen/textview_textsize" />
 
@@ -56,6 +63,8 @@
             android:layout_height="match_parent"
             android:layout_marginStart="@dimen/marginLeft"
             android:layout_marginLeft="@dimen/marginLeft"
+            android:paddingBottom="2dp"
+            android:inputType="numberDecimal"
             android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
 
@@ -69,6 +78,7 @@
                 android:id="@+id/preservation_area"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:gravity="center_vertical"
                 android:text="@string/preservation_area"
                 android:textSize="@dimen/textview_textsize" />
 
@@ -78,6 +88,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/marginLeft"
                 android:gravity="bottom"
+                android:inputType="numberDecimal"
                 android:layout_marginLeft="@dimen/marginLeft"
                 android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
@@ -89,7 +100,8 @@
         <TextView
             android:id="@+id/structure"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/sostav"
             android:textSize="@dimen/textview_textsize" />
 
@@ -133,16 +145,18 @@
         <TextView
             android:id="@+id/textView_number_report"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="match_parent"
             android:text="@string/number_report"
+            android:gravity="center_vertical"
             android:textSize="@dimen/textview_textsize" />
 
         <EditText
-            android:id="@+id/editText_number_report"
+            android:id="@+id/editText_report_number"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:layout_marginStart="@dimen/marginLeft"
             android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="numberDecimal"
             android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
 
@@ -154,16 +168,18 @@
         <TextView
             android:id="@+id/textView_date_report"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/layout_height"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/date_report"
             android:textSize="@dimen/textview_textsize" />
 
         <EditText
-            android:id="@+id/editText_date_report"
+            android:id="@+id/editText_report_date"
             android:layout_width="match_parent"
             android:layout_height="@dimen/layout_height"
             android:layout_marginStart="@dimen/marginLeft"
             android:layout_marginLeft="@dimen/marginLeft"
+            android:inputType="date"
             android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
 
@@ -176,6 +192,7 @@
             android:id="@+id/textView_radiation_pollution_density"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center_vertical"
             android:text="@string/radiation_pollution_density"
             android:textSize="@dimen/textview_textsize" />
 
@@ -196,6 +213,7 @@
         android:layout_gravity="left"
         android:text="@string/specific_activity"
         android:layout_marginTop="@dimen/marginTop"
+        android:gravity="center_vertical"
         android:textSize="@dimen/textview_textsize"/>
 
     <LinearLayout
@@ -208,6 +226,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/specific_activity_del"
+            android:gravity="center_vertical"
             android:textSize="@dimen/textview_textsize" />
 
         <EditText
@@ -230,6 +249,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="@string/specific_activity_drov"
+            android:gravity="center_vertical"
             android:textSize="@dimen/textview_textsize" />
 
         <EditText
@@ -241,24 +261,5 @@
             android:layout_marginLeft="@dimen/marginLeft"
             android:textSize="@dimen/textview_textsize"/>
     </LinearLayout>
-
-    <View
-        android:id="@+id/divider1"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/layout_height_view_line"
-        android:layout_marginTop="@dimen/marginTop"
-        android:background="?android:attr/listDivider" />
-
-    <Button
-        android:id="@+id/save_undergrowth-and_pollution"
-        android:layout_width="@dimen/layout_width_button_save"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="@dimen/marginTop"
-        android:layout_marginBottom="36dp"
-        android:padding="@dimen/button_padding"
-        android:text="@string/save_mdo"
-        android:textSize="@dimen/button_textsize" />
-
 </LinearLayout>
 </ScrollView>

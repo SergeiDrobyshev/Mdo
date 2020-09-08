@@ -179,7 +179,7 @@ public class CreateStatementActivity extends AppCompatActivity implements View.O
                 .show();
     }
 
-    private String getInputtedText(EditText editText) {
+    public static String getInputtedText(EditText editText) {
         if (editText.getText() != null) {
             return editText.getText().toString();
         }

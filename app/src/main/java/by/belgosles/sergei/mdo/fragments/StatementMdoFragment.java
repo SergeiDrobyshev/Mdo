@@ -17,6 +17,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.belgosles.sergei.mdo.App;
 import by.belgosles.sergei.mdo.R;
+import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
@@ -254,13 +255,13 @@ public class StatementMdoFragment extends Fragment {
     public void saveMDOValues(long id_fund){
         int id_type_use = (Integer) spin_type_use.getSelectedView().getTag();
         int id_category_for = (Integer) spin_category_for.getSelectedView().getTag();
-        String yearForestFund = getInputtedText(year_forest_fund);
-        String yeatOtvod = getInputtedText(year_otvod);
+        String yearForestFund = CreateStatementActivity.getInputtedText(year_forest_fund);
+        String yeatOtvod = CreateStatementActivity.getInputtedText(year_otvod);
 
-        String kvartN = getInputtedText(kvart_n);
-        String cut_area_n = getInputtedText(lesosek_n);
-        String taxVydelN = getInputtedText(tax_vydel_n);
-        String squareValue = getInputtedText(square);
+        String kvartN = CreateStatementActivity.getInputtedText(kvart_n);
+        String cut_area_n = CreateStatementActivity.getInputtedText(lesosek_n);
+        String taxVydelN = CreateStatementActivity.getInputtedText(tax_vydel_n);
+        String squareValue = CreateStatementActivity.getInputtedText(square);
 
         int id_hoz_section = (Integer) spin_hoz_section.getSelectedView().getTag();
         int id_species_group = (Integer) spin_species_group.getSelectedView().getTag();
@@ -269,31 +270,24 @@ public class StatementMdoFragment extends Fragment {
         int id_clean_meth = (Integer) spin_clean_meth.getSelectedView().getTag();
         int id_recovery_meth = (Integer) spin_recovery_meth.getSelectedView().getTag();
 
-        String sostavValue = getInputtedText(sostav);
+        String sostavValue = CreateStatementActivity.getInputtedText(sostav);
         int id_bonitet = (Integer) spin_bonitet.getSelectedView().getTag();
         int id_type_forest = (Integer) spin_type_for.getSelectedView().getTag();
-        String coverValue = getInputtedText(cover);
+        String coverValue = CreateStatementActivity.getInputtedText(cover);
         int id_soil = (Integer) spin_soil.getSelectedView().getTag();
         int id_stand_cond = (Integer) spin_stand_cond.getSelectedView().getTag();
-        String ageValue = getInputtedText(age);
+        String ageValue = CreateStatementActivity.getInputtedText(age);
 
-        String fullnessValue = getInputtedText(fullness);
-        String sr_heightValue = getInputtedText(sr_height);
-        String sr_diameterValue = getInputtedText(sr_diameter);
-        String noteValue = getInputtedText(note);
+        String fullnessValue = CreateStatementActivity.getInputtedText(fullness);
+        String sr_heightValue = CreateStatementActivity.getInputtedText(sr_height);
+        String sr_diameterValue = CreateStatementActivity.getInputtedText(sr_diameter);
+        String noteValue = CreateStatementActivity.getInputtedText(note);
 
         db.getstatementDao().updateMdoStatementData(id_type_use, id_category_for, yearForestFund, yeatOtvod,
                 kvartN, cut_area_n, taxVydelN, squareValue,
                 id_hoz_section, id_species_group, id_type_cut, id_acc_meth, id_clean_meth, id_recovery_meth,
                 sostavValue, id_bonitet, id_type_forest, coverValue, id_soil, id_stand_cond, ageValue,
                 fullnessValue, sr_heightValue, sr_diameterValue, noteValue, id_fund);
-    }
-
-    private String getInputtedText(EditText editText) {
-        if (editText.getText() != null) {
-            return editText.getText().toString();
-        }
-        return "";
     }
 
     private int getPosition(ArrayList<DictName> list, int id){

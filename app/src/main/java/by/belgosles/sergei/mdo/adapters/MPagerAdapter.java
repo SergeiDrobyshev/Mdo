@@ -40,9 +40,9 @@ public class MPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return EnumFragment.newInstance(id_fund);
             case 2:
-                //todo change to .newInstance
-                return new UndegrowthPollutionFragment();
+                return UndegrowthPollutionFragment.newInstance(id_fund);
             case 3:
+                //todo change to newInstance
                 return CanNotCutFragment.newInstance();
                 default:return null;
         }
