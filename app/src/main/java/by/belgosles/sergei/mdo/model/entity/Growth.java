@@ -11,14 +11,14 @@ public class Growth {
 
     @PrimaryKey(autoGenerate = true)
     private long id_growth;
-    private int id_fund;
+    private long id_fund;
 
-    private String id_species;
-    private int amount;
-    private int square_preserved;
+    private int id_species;
+    private String amount;
+    private String square_preserved;
     private String sostav;
 
-    private int act_rad_n;
+    private String act_rad_n;
     private String act_rad_date;
     private String soil_rad_density; //плотность
     private String spec_activ_del;
@@ -31,35 +31,35 @@ public class Growth {
         this.id_growth = id_growth;
     }
 
-    public int getId_fund() {
+    public long getId_fund() {
         return id_fund;
     }
 
-    public void setId_fund(int id_fund) {
+    public void setId_fund(long id_fund) {
         this.id_fund = id_fund;
     }
 
-    public String getId_species() {
+    public int getId_species() {
         return id_species;
     }
 
-    public void setId_species(String id_species) {
+    public void setId_species(int id_species) {
         this.id_species = id_species;
     }
 
-    public int getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(String amount) {
         this.amount = amount;
     }
 
-    public int getSquare_preserved() {
+    public String getSquare_preserved() {
         return square_preserved;
     }
 
-    public void setSquare_preserved(int square_preserved) {
+    public void setSquare_preserved(String square_preserved) {
         this.square_preserved = square_preserved;
     }
 
@@ -71,11 +71,11 @@ public class Growth {
         this.sostav = sostav;
     }
 
-    public int getAct_rad_n() {
+    public String getAct_rad_n() {
         return act_rad_n;
     }
 
-    public void setAct_rad_n(int act_rad_n) {
+    public void setAct_rad_n(String act_rad_n) {
         this.act_rad_n = act_rad_n;
     }
 

@@ -61,6 +61,7 @@ public class StatementInfoActivity extends AppCompatActivity {
         enumfragment.saveEnumValues(id_fund);
 
         UndegrowthPollutionFragment undegrowthPollutionFragment = (UndegrowthPollutionFragment) sectionsPagerAdapter.instantiateItem(viewPager,2);
+        undegrowthPollutionFragment.saveUnderGrowthValues(id_fund);
 
         CanNotCutFragment canNotFragment = (CanNotCutFragment) sectionsPagerAdapter.instantiateItem(viewPager,3);
     }

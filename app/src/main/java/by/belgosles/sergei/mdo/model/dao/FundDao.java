@@ -12,6 +12,7 @@ import by.belgosles.sergei.mdo.DiamDelDrov;
 import by.belgosles.sergei.mdo.model.entity.EnumTreesAmount;
 import by.belgosles.sergei.mdo.model.entity.Fund;
 import by.belgosles.sergei.mdo.model.entity.FundEnum;
+import by.belgosles.sergei.mdo.model.entity.Growth;
 
 @Dao
 public interface FundDao {
@@ -83,13 +84,8 @@ public interface FundDao {
 
 
     @Insert
-    List<Long> insertListFundEnum(List<FundEnum> fundEnumlist);
-
-    @Insert
     long insertFundEnum(FundEnum fundEnum);
 
-    @Update
-    void updateFundEnum(FundEnum fundEnum);
 
     @Query("Select * From FundEnum Where id_fund = :id_fund")
     List<FundEnum> getFundEnum(long id_fund);
@@ -112,4 +108,14 @@ public interface FundDao {
             "Where id_fund_enum = :id_fund_enum")
     void updateEnumTreesAmount(int diameter, int del, int drov, int id_fund_enum);
 
+
+
+    @Insert
+    long insertGrowth(Growth growth);
+
+    @Update
+    void updateGrowth(Growth growth);
+
+    @Query("Select * From Growth Where id_fund = :id_fund")
+    Growth getGrowthByFundId(long id_fund);
 }

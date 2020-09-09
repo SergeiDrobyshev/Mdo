@@ -16,9 +16,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import by.belgosles.sergei.mdo.App;
 import by.belgosles.sergei.mdo.R;
+import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
+import by.belgosles.sergei.mdo.model.entity.FundEnum;
+import by.belgosles.sergei.mdo.model.entity.Growth;
 
 public class UndegrowthPollutionFragment extends Fragment {
     @BindView(R.id.spinner_poroda_value1)
@@ -28,7 +31,7 @@ public class UndegrowthPollutionFragment extends Fragment {
     @BindView(R.id.editText_preservation_area)
     EditText edPreserveArea;
     @BindView(R.id.editText_structure)
-    EditText sostav;
+    EditText edSostav;
     @BindView(R.id.editText_report_number)
     EditText edReportNumber;
     @BindView(R.id.editText_report_date)
@@ -80,13 +83,46 @@ public class UndegrowthPollutionFragment extends Fragment {
         getDataFromDb(id_fund);
         return view;
     }
-    private void setViewAdapters(){
+
+    private void setViewAdapters() {
         ArrayList<DictName> listAllSpecies = (ArrayList<DictName>) db.getDictsDao().getAllSpecies();
         DictSpinnerAdapter adapterSpecies = new DictSpinnerAdapter(getContext(), R.layout.spinner_title, listAllSpecies);
+
         spin_poroda.setAdapter(adapterSpecies);
     }
 
-    private void getDataFromDb(long id_fund){
+    private void getDataFromDb(long id_fund) {
+        /*ArrayList<Growth> listGrowth = (ArrayList<FundEnum>) db.getstatementDao().getGrowth(id_fund);
+        if(!listGrowth.isEmpty()){
+            for (Growth growth:listGrowth) {
+                
+            }
+        }*/
+
+    }
+
+    public void saveUnderGrowthValues(long id_fund) {
+        if (spin_poroda.getSelectedView() != null) {
+            Growth growth = new Growth();
+            growth.setId_species((int)spin_poroda.getSelectedView().getTag());
+            growth.setAmount(CreateStatementActivity.getInputtedText(edAmount));
+            growth.setSquare_preserved(CreateStatementActivity.getInputtedText(edPreserveArea));
+            growth.setSostav(CreateStatementActivity.getInputtedText(edSostav));
+
+            growth.setAct_rad_n(CreateStatementActivity.getInputtedText(edReportNumber));
+            growth.setAct_rad_date(CreateStatementActivity.getInputtedText(edReportDate));
+            growth.setSoil_rad_density(CreateStatementActivity.getInputtedText(edRadDensity));
+            growth.setSpec_activ_del(CreateStatementActivity.getInputtedText(edSpecActivityDel));
+            growth.setSpec_activ_drov(CreateStatementActivity.getInputtedText(edSpecActivityDrov));
+            growth.setId_fund(id_fund);// id текущей ведомости
+
+            if(db.getstatementDao().getGrowthByFundId(id_fund) != null){
+                db.getstatementDao().updateGrowth(growth);
+            }else{
+                db.getstatementDao().insertGrowth(growth);
+            }
+
+        }
 
     }
 
@@ -95,10 +131,6 @@ public class UndegrowthPollutionFragment extends Fragment {
         super.onDetach();
         mListener = null;
     }
-
-
-
-
 
     /**
      * This interface must be implemented by activities that contain this
