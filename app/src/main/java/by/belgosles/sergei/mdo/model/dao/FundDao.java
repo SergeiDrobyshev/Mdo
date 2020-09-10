@@ -116,6 +116,6 @@ public interface FundDao {
     @Update
     void updateGrowth(Growth growth);
 
-    @Query("Select * From Growth Where id_fund = :id_fund")
-    Growth getGrowthByFundId(long id_fund);
+    @Query("Select id_growth From Growth Where id_fund = :id_fund")
+    long getGrowthByFundId(long id_fund);
 }

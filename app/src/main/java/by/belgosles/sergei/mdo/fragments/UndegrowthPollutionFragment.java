@@ -102,9 +102,11 @@ public class UndegrowthPollutionFragment extends Fragment {
     }
 
     public void saveUnderGrowthValues(long id_fund) {
-        if (spin_poroda.getSelectedView() != null) {
+        long idGrowth = db.getstatementDao().getGrowthByFundId(id_fund);
+
+
             Growth growth = new Growth();
-            growth.setId_species((int)spin_poroda.getSelectedView().getTag());
+            growth.setId_species((int) spin_poroda.getSelectedView().getTag());
             growth.setAmount(CreateStatementActivity.getInputtedText(edAmount));
             growth.setSquare_preserved(CreateStatementActivity.getInputtedText(edPreserveArea));
             growth.setSostav(CreateStatementActivity.getInputtedText(edSostav));
@@ -115,14 +117,11 @@ public class UndegrowthPollutionFragment extends Fragment {
             growth.setSpec_activ_del(CreateStatementActivity.getInputtedText(edSpecActivityDel));
             growth.setSpec_activ_drov(CreateStatementActivity.getInputtedText(edSpecActivityDrov));
             growth.setId_fund(id_fund);// id текущей ведомости
+            growth.setId_growth(idGrowth);
 
-            if(db.getstatementDao().getGrowthByFundId(id_fund) != null){
-                db.getstatementDao().updateGrowth(growth);
-            }else{
-                db.getstatementDao().insertGrowth(growth);
-            }
+           // db.getstatementDao().updateGrowth(growth);// обновляем по id
 
-        }
+            //db.getstatementDao().insertGrowth(growth);
 
     }
 

@@ -22,6 +22,7 @@ public class Growth {
     private String act_rad_date;
     private String soil_rad_density; //плотность
     private String spec_activ_del;
+    private String spec_activ_drov;
 
     public long getId_growth() {
         return id_growth;
@@ -110,7 +111,4 @@ public class Growth {
     public void setSpec_activ_drov(String spec_activ_drov) {
         this.spec_activ_drov = spec_activ_drov;
     }
-
-    private String spec_activ_drov;
-
 }

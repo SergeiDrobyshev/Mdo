@@ -20,6 +20,7 @@ public class App extends Application {
         instance = this;
         database = Room.databaseBuilder(this, AppDb.class, "databaseMdo").allowMainThreadQueries()
                 .createFromAsset("DICTS_MDO.db")
+                .addMigrations(AppDb.Migration_9_10)
                 //.fallbackToDestructiveMigration() //TODO change
                 .build();
         InitializeStetho();

@@ -53,7 +53,7 @@ public class StatementInfoActivity extends AppCompatActivity {
     }
 
     // при сохранении все данные с фрагментов обновятся в бд
-    private void setDataFragments (long id_fund){
+    private void saveDataFragments(long id_fund){
         StatementMdoFragment fragment = (StatementMdoFragment) sectionsPagerAdapter.instantiateItem(viewPager,0);
         fragment.saveMDOValues(id_fund);
 
@@ -69,7 +69,7 @@ public class StatementInfoActivity extends AppCompatActivity {
     @OnClick(R.id.saveInfoActivity)
     public void onClick() {
         Intent intent = new Intent();
-        setDataFragments(id_fund);
+        saveDataFragments(id_fund);
         setResult(RESULT_OK, intent);
     }
 }

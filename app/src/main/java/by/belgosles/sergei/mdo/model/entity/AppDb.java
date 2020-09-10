@@ -1,7 +1,10 @@
 package by.belgosles.sergei.mdo.model.entity;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
+import androidx.room.migration.Migration;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import by.belgosles.sergei.mdo.model.dao.DictsDao;
 import by.belgosles.sergei.mdo.model.dao.FundDao;
@@ -31,7 +34,7 @@ import by.belgosles.sergei.mdo.model.entity.refs.DictTypeStem;
         DictGroupForest.class, DictSeedsKind.class, DictKindUse.class, DictRgnMeth.class, DictSection.class, DictStatus.class, DictStrSoil.class,
         DictTrfHeight.class, DictTypeForest.class, DictTypeStem.class, DictCutMeth.class
 },
-        version = 9, exportSchema = false)
+        version = 10, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
     public abstract FundDao getstatementDao();
@@ -39,11 +42,18 @@ public abstract class AppDb extends RoomDatabase {
     public abstract DictsDao getDictsDao();
 
 
-    /*public static final Migration Migration_1_2 = new Migration(1,2) {
+    public static final Migration Migration_9_10 = new Migration(9, 10) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase database) {
-            database.execSQL("ALTER TABLE FundEnum ADD COLUMN test_field INTEGER DEFAULT 0 NOT NULL");
+                //создание новой таблицы
+            database.execSQL("CREATE TABLE Growth_new (id_growth INTEGER Not Null ,id_fund INTEGER Not Null, id_species INTEGER Not Null, amount TEXT, square_preserved TEXT, sostav TEXT, act_rad_n TEXT, act_rad_date TEXT, soil_rad_density TEXT, spec_activ_del TEXT, spec_activ_drov TEXT, PRIMARY KEY (id_growth) , FOREIGN KEY (id_fund) REFERENCES Fund(id_fund) ON DELETE CASCADE ON UPDATE CASCADE)");
+                // копируем данные во временную таблицу
+            database.execSQL("INSERT INTO Growth_new (id_growth, id_fund, id_species, amount, square_preserved, sostav, act_rad_n, act_rad_date, soil_rad_density, spec_activ_del, spec_activ_drov) SELECT id_growth, id_fund, id_species, amount, square_preserved, sostav, act_rad_n, act_rad_date, soil_rad_density, spec_activ_del, spec_activ_drov FROM Growth");
+                // Удаляем старую таблицу
+            database.execSQL("DROP TABLE Growth");
+                // Измените имя таблицы на правильное
+            database.execSQL("ALTER TABLE Growth_new RENAME TO Growth");
         }
-    };*/
+    };
 
 }
