@@ -20,7 +20,6 @@ import by.belgosles.sergei.mdo.activity.CreateStatementActivity;
 import by.belgosles.sergei.mdo.adapters.DictSpinnerAdapter;
 import by.belgosles.sergei.mdo.model.DictName;
 import by.belgosles.sergei.mdo.model.entity.AppDb;
-import by.belgosles.sergei.mdo.model.entity.FundEnum;
 import by.belgosles.sergei.mdo.model.entity.Growth;
 
 public class UndegrowthPollutionFragment extends Fragment {
@@ -92,37 +91,43 @@ public class UndegrowthPollutionFragment extends Fragment {
     }
 
     private void getDataFromDb(long id_fund) {
-        /*ArrayList<Growth> listGrowth = (ArrayList<FundEnum>) db.getstatementDao().getGrowth(id_fund);
-        if(!listGrowth.isEmpty()){
-            for (Growth growth:listGrowth) {
-                
-            }
-        }*/
+        Growth growthfromDB = db.getstatementDao().getGrowthByFundId(id_fund);
+        if (growthfromDB != null) {
+            spin_poroda.setSelection(growthfromDB.getId_species());
+            edAmount.setText(growthfromDB.getAmount());
+            edPreserveArea.setText(growthfromDB.getSquare_preserved());
+            edSostav.setText(growthfromDB.getSostav());
+            edReportNumber.setText(growthfromDB.getAct_rad_n());
+            edReportDate.setText(growthfromDB.getAct_rad_date());
+            edRadDensity.setText(growthfromDB.getSoil_rad_density());
+            edSpecActivityDel.setText(growthfromDB.getSpec_activ_del());
+            edSpecActivityDrov.setText(growthfromDB.getSpec_activ_drov());
+        }
 
     }
 
     public void saveUnderGrowthValues(long id_fund) {
-        long idGrowth = db.getstatementDao().getGrowthByFundId(id_fund);
+        long idGrowth = db.getstatementDao().getGrowthIdByFundId(id_fund);
 
+        Growth growth = new Growth();
+        growth.setId_species((int) spin_poroda.getSelectedView().getTag());
+        growth.setAmount(CreateStatementActivity.getInputtedText(edAmount));
+        growth.setSquare_preserved(CreateStatementActivity.getInputtedText(edPreserveArea));
+        growth.setSostav(CreateStatementActivity.getInputtedText(edSostav));
 
-            Growth growth = new Growth();
-            growth.setId_species((int) spin_poroda.getSelectedView().getTag());
-            growth.setAmount(CreateStatementActivity.getInputtedText(edAmount));
-            growth.setSquare_preserved(CreateStatementActivity.getInputtedText(edPreserveArea));
-            growth.setSostav(CreateStatementActivity.getInputtedText(edSostav));
+        growth.setAct_rad_n(CreateStatementActivity.getInputtedText(edReportNumber));
+        growth.setAct_rad_date(CreateStatementActivity.getInputtedText(edReportDate));
+        growth.setSoil_rad_density(CreateStatementActivity.getInputtedText(edRadDensity));
+        growth.setSpec_activ_del(CreateStatementActivity.getInputtedText(edSpecActivityDel));
+        growth.setSpec_activ_drov(CreateStatementActivity.getInputtedText(edSpecActivityDrov));
+        growth.setId_fund(id_fund);// id текущей ведомости
+        growth.setId_growth(idGrowth);
 
-            growth.setAct_rad_n(CreateStatementActivity.getInputtedText(edReportNumber));
-            growth.setAct_rad_date(CreateStatementActivity.getInputtedText(edReportDate));
-            growth.setSoil_rad_density(CreateStatementActivity.getInputtedText(edRadDensity));
-            growth.setSpec_activ_del(CreateStatementActivity.getInputtedText(edSpecActivityDel));
-            growth.setSpec_activ_drov(CreateStatementActivity.getInputtedText(edSpecActivityDrov));
-            growth.setId_fund(id_fund);// id текущей ведомости
-            growth.setId_growth(idGrowth);
-
-           // db.getstatementDao().updateGrowth(growth);// обновляем по id
-
-            //db.getstatementDao().insertGrowth(growth);
-
+        if(idGrowth != 0){
+            db.getstatementDao().updateGrowth(growth); // обновляем по id
+        }else {
+            db.getstatementDao().insertGrowth(growth);
+        }
     }
 
     @Override

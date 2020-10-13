@@ -34,13 +34,14 @@ import by.belgosles.sergei.mdo.model.entity.refs.DictTypeStem;
         DictGroupForest.class, DictSeedsKind.class, DictKindUse.class, DictRgnMeth.class, DictSection.class, DictStatus.class, DictStrSoil.class,
         DictTrfHeight.class, DictTypeForest.class, DictTypeStem.class, DictCutMeth.class
 },
-        version = 10, exportSchema = false)
+        version = 11, exportSchema = false)
 public abstract class AppDb extends RoomDatabase {
 
     public abstract FundDao getstatementDao();
 
     public abstract DictsDao getDictsDao();
 
+    //todo добавить миграции сразу через несколько версий
 
     public static final Migration Migration_9_10 = new Migration(9, 10) {
         @Override
@@ -53,6 +54,13 @@ public abstract class AppDb extends RoomDatabase {
             database.execSQL("DROP TABLE Growth");
                 // Измените имя таблицы на правильное
             database.execSQL("ALTER TABLE Growth_new RENAME TO Growth");
+        }
+    };
+
+    public static final Migration Migration_10_11 = new Migration(10, 11) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+
         }
     };
 
