@@ -103,7 +103,6 @@ public class UndegrowthPollutionFragment extends Fragment {
             edSpecActivityDel.setText(growthfromDB.getSpec_activ_del());
             edSpecActivityDrov.setText(growthfromDB.getSpec_activ_drov());
         }
-
     }
 
     public void saveUnderGrowthValues(long id_fund) {
@@ -122,6 +121,7 @@ public class UndegrowthPollutionFragment extends Fragment {
         growth.setSpec_activ_drov(CreateStatementActivity.getInputtedText(edSpecActivityDrov));
         growth.setId_fund(id_fund);// id текущей ведомости
         growth.setId_growth(idGrowth);
+
 
         if(idGrowth != 0){
             db.getstatementDao().updateGrowth(growth); // обновляем по id
